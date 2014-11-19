@@ -4,11 +4,11 @@ from datetime import datetime
 
 class Socio:
     def __int__(self, DNI, nombre, apellidos, movil, correo):
-        self.DNI = DNI;
-        self.nombre = nombre;
-        self.apellidos = apellidos;
-        self.movil = movil;
-        self.correo = correo;
+        self.DNI = DNI
+        self.nombre = nombre
+        self.apellidos = apellidos
+        self.movil = movil
+        self.correo = correo
         self.fechaAlta = datetime.datetime.now().time()
 
     def get_DNI(self):
