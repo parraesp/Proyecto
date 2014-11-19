@@ -1,6 +1,6 @@
 __author__ = 'alberto'
-import Socio
-import Club
+from Socio import Socio
+from Club import Club
 
 seleccion = -1
 print 'Bienvenido al sistema de gestion de clubes de padel'
@@ -27,5 +27,4 @@ while(seleccion!=0):
       apellidos = int(raw_input('Apellidos: '))
       movil = raw_input('Movil: ')
       correo = raw_input('Correo electronico: ')
-      socio = Socio(DNI,nombre,apellidos,movil,correo)
-      club.alta_socio(socio)
+      club.alta_socio(DNI,nombre,apellidos,movil,correo)
