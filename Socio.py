@@ -3,13 +3,13 @@ __author__ = 'francisco'
 from time import *
 
 class Socio:
-    def __int__(self, DNI, nombre, apellidos, movil, correo, fechaAlta, fechaBaja):
+    def __int__(self, DNI, nombre, apellidos, movil, correo):
         self.DNI = DNI;
         self.nombre = nombre;
         self.apellidos = apellidos;
         self.movil = movil;
         self.correo = correo;
-        self.fechaAlta = fechaAlta;
+        self.fechaAlta =
         self.fechaBaja = fechaBaja;
 
     def get_DNI(self):

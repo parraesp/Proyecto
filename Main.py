@@ -1,4 +1,5 @@
 __author__ = 'alberto'
+import Socio
 
 seleccion = -1
 print 'Bienvenido al sistema de gestion de clubes de padel'
@@ -20,5 +21,6 @@ while(seleccion!=0):
       DNI = raw_input('DNI: ')
       nombre = raw_input('Nombre: ')
       apellidos = int(raw_input('Apellidos: '))
-      movil = int(raw_input('Móvil: '))
-      correo = int(raw_input('Correo electrónico: '))
+      movil = raw_input('Movil: ')
+      correo = raw_input('Correo electronico: ')
+      socio = Socio(DNI,nombre,apellidos,movil,correo)
