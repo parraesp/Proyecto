@@ -1,9 +1,13 @@
 __author__ = 'alberto'
 import Socio
+import Club
 
 seleccion = -1
 print 'Bienvenido al sistema de gestion de clubes de padel'
 print '==================================================='
+print "Cargando el club..."
+club = Club()
+print "Club cargado"
 while(seleccion!=0):
   print '1. Dar de alta a socio'
   print '2. Editar datos de socio'
@@ -24,3 +28,4 @@ while(seleccion!=0):
       movil = raw_input('Movil: ')
       correo = raw_input('Correo electronico: ')
       socio = Socio(DNI,nombre,apellidos,movil,correo)
+      club.alta_socio(socio)

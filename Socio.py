@@ -1,6 +1,6 @@
 __author__ = 'francisco'
 
-from time import *
+from datetime import datetime
 
 class Socio:
     def __int__(self, DNI, nombre, apellidos, movil, correo):
@@ -9,8 +9,7 @@ class Socio:
         self.apellidos = apellidos;
         self.movil = movil;
         self.correo = correo;
-        self.fechaAlta =
-        self.fechaBaja = fechaBaja;
+        self.fechaAlta = datetime.datetime.now().time()
 
     def get_DNI(self):
         return self.DNI
