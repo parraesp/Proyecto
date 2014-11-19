@@ -39,20 +39,20 @@ class Socio:
 
     def get_estado(self):
         return self.__estado
+
+    def set_DNI(self,DNI):
+        self.__DNI = DNI
     #public void darAltaSocioExistente() {
         #ponemos fechabaja a null y fecha alta a la fecha de hoy para no tener qie volver a crear el socio
         #fechaBaja = null;
         #fechaAlta = time.strftime("%d/%m/%y");
     #}
 
-    DNI = property(get_DNI())
-    nombre = property(get_apellidos())
-    apellidos = property(get_apellidos())
-    movil = property(get_movil())
-    correo = property(get_correo())
-    fechaAlta = property(get_fechaAlta())
-    estado = property(get_estado())
-
-
-
+    DNI = property(get_DNI)
+    nombre = property(get_apellidos)
+    apellidos = property(get_apellidos)
+    movil = property(get_movil)
+    correo = property(get_correo)
+    fechaAlta = property(get_fechaAlta)
+    estado = property(get_estado)
 
