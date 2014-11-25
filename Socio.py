@@ -1,15 +1,15 @@
 __author__ = 'francisco'
 
-from datetime import datetime
+import time
 
-class Socio:
-    def __int__(self, DNI, nombre, apellidos, movil, correo):
-        self.__DNI = DNI
-        self.__nombre = nombre
-        self.__apellidos = apellidos
-        self.__movil = movil
-        self.__correo = correo
-        self.__fechaAlta = datetime.datetime.now().time()
+class Socio():
+    def __init__(self, DNI, nombre, apellidos, movil, correo):
+        self.__DNI = str(DNI)
+        self.__nombre = str(nombre)
+        self.__apellidos = str(apellidos)
+        self.__movil = str(movil)
+        self.__correo = str(correo)
+        self.__fechaAlta = str(time.strftime("%d/%m/%y"))
         self.__estado = True
 
 
@@ -49,7 +49,7 @@ class Socio:
     #}
 
     DNI = property(get_DNI)
-    nombre = property(get_apellidos)
+    nombre = property(get_nombre)
     apellidos = property(get_apellidos)
     movil = property(get_movil)
     correo = property(get_correo)

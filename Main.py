@@ -22,9 +22,19 @@ while(seleccion!=0):
 
   if(seleccion==1):
       print 'Dar de alta a socio: '
-      DNI = raw_input('DNI: ')
+      DNI =raw_input('DNI: ')
       nombre = raw_input('Nombre: ')
-      apellidos = int(raw_input('Apellidos: '))
+      apellidos = raw_input('Apellidos: ')
       movil = raw_input('Movil: ')
       correo = raw_input('Correo electronico: ')
       club.alta_socio(DNI,nombre,apellidos,movil,correo)
+  if(seleccion==3):
+      DNI = raw_input('Introduzca el DNI del usuario a eleminar: ')
+      socio = club.obtener_socio(DNI)
+      print socio
+
+  if(seleccion==4):
+      DNI = raw_input('Editar datos del socio: ')
+      socio = club.obtener_socio(DNI)
+      print socio
+
