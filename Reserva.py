@@ -1,7 +1,6 @@
 __author__ = 'Ricardo'
 class Reserva():
 
-
     def get_fecha(self):
         return self.__fecha
 
@@ -24,9 +23,9 @@ class Reserva():
     instalacion = property(get_instalacion,set_instalacion)
     socio = property(get_socio,set_socio)
 
-    def __init__(self,fecha, socio, instalacion):
-        self.__fecha = fecha
+    def __init__(self,DNI, fecha, instalacion):
         self.__socio = socio
+        self.__fecha = fecha
         self.__instalacion = instalacion
 
     def __eq__(self, otro):
