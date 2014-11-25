@@ -30,11 +30,11 @@ while(seleccion!=0):
       club.alta_socio(DNI,nombre,apellidos,movil,correo)
   if(seleccion==3):
       DNI = raw_input('Introduzca el DNI del usuario a eleminar: ')
-      socio = club.obtener_socio(DNI)
+      socio = club.eliminar_socio(DNI)
       print socio
 
   if(seleccion==4):
       DNI = raw_input('Editar datos del socio: ')
       socio = club.obtener_socio(DNI)
-      print socio
+      print socio.__str__()
 

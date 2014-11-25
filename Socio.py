@@ -42,11 +42,15 @@ class Socio():
 
     def set_DNI(self,DNI):
         self.__DNI = DNI
-    #public void darAltaSocioExistente() {
-        #ponemos fechabaja a null y fecha alta a la fecha de hoy para no tener qie volver a crear el socio
-        #fechaBaja = null;
-        #fechaAlta = time.strftime("%d/%m/%y");
-    #}
+
+    def __str__(self):
+        texto =''
+        texto+='\nDNI: '+ self.DNI
+        texto+='\nNombre: '+ self.nombre
+        texto+='\nApellidos: '+ self.apellidos
+        texto+='\nMovil: '+ self.movil
+        texto+='\nCorreo: '+ self.correo
+        return texto
 
     DNI = property(get_DNI)
     nombre = property(get_nombre)

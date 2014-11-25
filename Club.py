@@ -9,11 +9,10 @@ class Club():
         guardar_socio(socio)
 
     def eliminar_socio(self,DNI):
-        socio = self.obtener_socio(DNI)
+        socio = borrar_socio(DNI)
         return socio
 
     def obtener_socio(self,DNI):
         socio = sacar_socio(DNI)
         return socio
 
-    
