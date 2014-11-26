@@ -3,15 +3,21 @@ __author__ = 'francisco'
 import time
 
 class Socio():
-    def __init__(self, DNI, nombre, apellidos, movil, correo):
+    def __init__(self, DNI, nombre, apellidos, movil, correo ,*otros):
         self.__DNI = str(DNI)
         self.__nombre = str(nombre)
         self.__apellidos = str(apellidos)
         self.__movil = str(movil)
         self.__correo = str(correo)
-        self.__fechaAlta = str(time.strftime("%d/%m/%y"))
-        self.__estado = True
+        if (len(otros) == 2):
+            self.__fechaAlta = otros[0]
+            self.__estado = bool(otros[1])
+        else:
+            self.__fechaAlta = str(time.strftime("%d/%m/%y"))
+            self.__estado = True
 
+    def __str__(self):
+        return 'DNI: ' + self.__DNI + ', fecha: ' + self.__fechaAlta + ', estado: ' + str(self.__estado)
 
     def darBaja(self):
         #nos da la fecha del sistema para que la cambiemos por el null que teniamos puesto antes de dar de baja a un socio

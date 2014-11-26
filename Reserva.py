@@ -23,7 +23,7 @@ class Reserva():
     instalacion = property(get_instalacion,set_instalacion)
     socio = property(get_socio,set_socio)
 
-    def __init__(self,DNI, fecha, instalacion):
+    def __init__(self,socio, fecha, instalacion):
         self.__socio = socio
         self.__fecha = fecha
         self.__instalacion = instalacion
