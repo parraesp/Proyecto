@@ -49,6 +49,9 @@ class Socio():
     def set_DNI(self,DNI):
         self.__DNI = DNI
 
+    def cambiar_estado(self):
+        self.__estado = False
+
     def set_fechaAlta(self,fecha):
         self.__fechaAlta = fecha
     #public void darAltaSocioExistente() {

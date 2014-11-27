@@ -38,6 +38,7 @@ class Conexion():
     def __init__(self):
         self.__socios = self.__listar_socios()
         self.__instalaciones = self.__listar_instalaciones()
+        print self.__socios
         #self.__profesores = self.__listar_profesores()
         #self.__reservas = self.__listar_reservas()
         #self.__alquileres = self.__listar_alquileres()
@@ -58,12 +59,27 @@ class Conexion():
 
     def sacar_socio(self,DNI):
         valor = -1
-        with open('socios.csv') as f:
-            content = csv.reader(f, delimiter='\t')
-            for row in content:
-                if(row[0]==DNI):
-                    valor = row
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__socios) and not(encontrado)):
+            if(self.__socios[cont].DNI==DNI):
+                encontrado = True
+                valor=self.__socios[cont]
+            else:
+                cont=cont+1
         return valor
+
+    def dar_baja_socio(self,DNI):
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__socios) and not(encontrado)):
+            if(self.__socios[cont].DNI==DNI):
+                encontrado = True
+            else:
+                cont=cont+1
+        self.__socios[cont].cambiar_estado()
+        print self.__socios[cont]
+        #Ahora lo cambiamos en el archivo
 
     def guardar_reserva(self,reserva):
         f = open('reservas.csv','a+')
