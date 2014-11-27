@@ -93,7 +93,7 @@ class Conexion():
     def guardar_reserva(self,reserva):
         f = open('reservas.csv','a+')
         texto =''
-        texto+= str(reserva.socio[0])+'\t'
+        texto+= str(reserva.socio.DNI)+'\t'
         texto+=str(reserva.fecha.strftime("%d/%m/%y %H:%M"))+'\t'
         texto+=str(reserva.instalacion.id)+'\n'
         f.write(texto)
