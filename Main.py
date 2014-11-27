@@ -40,7 +40,6 @@ while(seleccion!=0):
 
     if (seleccion==5):
         DNI = raw_input('DNI del socio que desea reservar: ')
-        fecha = raw_input('Fecha para la reserva (dd/mm/aa): ')
+        fecha = raw_input('Fecha y hora para la reserva (dd/mm/aa HH): ')
         instalacionID = raw_input('Pista que desea reservar: ')
-        instalacion = Instalacion(instalacionID,20,'prueba')
-        club.crear_reserva(DNI,fecha, instalacion)
+        club.crear_reserva(DNI,fecha, instalacionID)

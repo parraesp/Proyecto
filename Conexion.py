@@ -3,6 +3,7 @@ import csv
 from Socio import Socio
 from Instalacion import Instalacion
 from Reserva import Reserva
+from datetime import *
 
 class Conexion():
 
@@ -39,7 +40,7 @@ class Conexion():
         self.__socios = self.__listar_socios()
         self.__instalaciones = self.__listar_instalaciones()
         #self.__profesores = self.__listar_profesores()
-        #self.__reservas = self.__listar_reservas()
+        self.__reservas = self.__listar_reservas()
         #self.__alquileres = self.__listar_alquileres()
         #self.__clases = self.__listar_clases()
 
@@ -65,11 +66,22 @@ class Conexion():
                     valor = row
         return valor
 
+    def sacar_instalacion(self,instalacionID):
+        instalacion = False
+        with open('instalaciones.csv') as f:
+            content = csv.reader(f, delimiter='\t')
+            for row in content:
+                if(row[0]==instalacionID):
+                    instalacion =  Instalacion(row[0],row[1],row[2])
+        return instalacion
+
     def guardar_reserva(self,reserva):
         f = open('reservas.csv','a+')
         texto =''
-        texto+=reserva.socio.DNI+'\t'
-        texto+=reserva.fecha+'\t'
-        texto+=reserva.instalacion.id+'\n'
+        texto+= str(reserva.socio[0])+'\t'
+        texto+=str(reserva.fecha.strftime("%d/%m/%y %H:%M"))+'\t'
+        texto+=str(reserva.instalacion.id)+'\n'
         f.write(texto)
         f.close()
+        self.__reservas.append(reserva)
+

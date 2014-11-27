@@ -5,16 +5,16 @@ class Instalacion():
         return self.__descripcion
 
     def get_precio(self):
-        return self.__descripcion
+        return self.__precio
 
     def get_id(self):
-        return self.__descripcion
+        return self.__id
 
     id = property(get_id)
     descripcion = property(get_descripcion)
     precio = property(get_precio)
 
-    def __init__(self,id, precio, descripcion):
+    def __init__(self,id, descripcion, precio):
         self.__id = id
         self.__precio = precio
         self.__descripcion = descripcion
