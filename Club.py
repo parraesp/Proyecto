@@ -22,6 +22,10 @@ class Club():
         socio = self.__conexion.sacar_socio(DNI)
         return socio
 
+    def dar_baja_socio(self, DNI):
+        index = self.__conexion.dar_baja_socio(DNI)
+
+
     def crear_reserva(self,DNI,fecha,instalacionID):
         #verificar datos
         socio = self.__conexion.sacar_socio(DNI)
