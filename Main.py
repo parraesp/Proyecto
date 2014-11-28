@@ -37,17 +37,17 @@ while(seleccion!=0):
         if(seleccion==2):
             DNI = raw_input('Editar datos del socio: ')
             socio = club.obtener_socio(DNI)
-            print 'Datos del socio seleccionado: '
+            print 'Introduzca nuevos valores: '
             print socio
-            DNI =raw_input('DNI['.str(socio[0]))
-            nombre = raw_input('Nombre: '.str(socio[1]))
-            apellidos = raw_input('Apellidos: '.str(socio[2]))
-            movil = raw_input('Movil: '.str(socio[3]))
-            correo = raw_input('Correo electronico: '.str(socio[4]))
+            DNI =raw_input('DNI['+str(socio.DNI)+']')
+            nombre = raw_input('Nombre: '+str(socio.nombre))
+            apellidos = raw_input('Apellidos: '+str(socio.apellidos))
+            movil = raw_input('Movil: '+str(socio.movil))
+            correo = raw_input('Correo electronico: '+str(socio.correo))
+            club.editar_socio(DNI,nombre,apellidos,movil,correo)
         if(seleccion==3):
             DNI = raw_input('Introduzca el DNI del usuario a dar de baja: ')
-            socio = club.dar_baja_socio(DNI)
-            print socio
+            club.dar_baja_socio(DNI)
         if(seleccion==4):
             DNI = raw_input('Introduzca el DNI del usuario a consultar: ')
             socio = club.obtener_socio(DNI)

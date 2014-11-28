@@ -17,11 +17,7 @@ class Socio():
             self.__estado = True
 
     def __str__(self):
-        return 'DNI: ' + self.__DNI + ', fecha: ' + self.__fechaAlta + ', estado: ' + str(self.__estado)
-
-    def darBaja(self):
-        #nos da la fecha del sistema para que la cambiemos por el null que teniamos puesto antes de dar de baja a un socio
-        self.__estado = False
+        return 'DNI: ' + self.__DNI + ', fecha: ' + self.__fechaAlta + ', estado: ' + str(self.__estado)+', correo: '+str(self.correo)
 
     def get_DNI(self):
         return self.__DNI
@@ -54,6 +50,18 @@ class Socio():
 
     def set_fechaAlta(self,fecha):
         self.__fechaAlta = fecha
+
+    def set_nombre(self,nombre):
+        self.__nombre = nombre
+
+    def set_apellidos(self,apellidos):
+        self.__apellidos = apellidos
+
+    def set_correo(self,correo):
+        self.__correo = correo
+
+    def set_movil(self,movil):
+        self.__movil = movil
     #public void darAltaSocioExistente() {
         #ponemos fechabaja a null y fecha alta a la fecha de hoy para no tener qie volver a crear el socio
         #fechaBaja = null;

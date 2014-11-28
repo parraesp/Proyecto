@@ -1,5 +1,8 @@
+from tempfile import NamedTemporaryFile
+
 __author__ = 'alberto'
 import csv
+import shutil
 from Socio import Socio
 from Instalacion import Instalacion
 from Reserva import Reserva
@@ -56,6 +59,7 @@ class Conexion():
         texto+=str(socio.estado)+'\n'
         f.write(texto)
         f.close()
+        self.__socios.append(socio)
 
     def sacar_socio(self,DNI):
         valor = -1
@@ -78,8 +82,22 @@ class Conexion():
             else:
                 cont=cont+1
         self.__socios[cont].cambiar_estado()
-        print self.__socios[cont]
         #Ahora lo cambiamos en el archivo
+        tempfile = NamedTemporaryFile(delete=False)
+
+        with open('socios.csv', 'rb') as csvFile, tempfile:
+            reader = csv.reader(csvFile, delimiter='\t')
+            writer = csv.writer(tempfile, delimiter='\t')
+
+            for row in reader:
+                if(row[0]==self.__socios[cont].DNI):
+                    row[6]=False
+                    writer.writerow(row)
+                else:
+                    writer.writerow(row)
+        shutil.move(tempfile.name, 'socios.csv')
+        csvFile.close()
+        tempfile.close()
 
     def sacar_instalacion(self,instalacionID):
         instalacion = False
@@ -88,6 +106,7 @@ class Conexion():
             for row in content:
                 if(row[0]==instalacionID):
                     instalacion =  Instalacion(row[0],row[1],row[2])
+        f.close()
         return instalacion
 
     def guardar_reserva(self,reserva):
@@ -100,3 +119,37 @@ class Conexion():
         f.close()
         self.__reservas.append(reserva)
 
+    def cambiar_socio(self,DNI,nombre,apellidos,movil,correo):
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__socios) and not(encontrado)):
+            if(self.__socios[cont].DNI==DNI):
+                encontrado = True
+            else:
+                cont=cont+1
+        self.__socios[cont].set_DNI(DNI)
+        self.__socios[cont].set_nombre(nombre)
+        self.__socios[cont].set_apellidos(apellidos)
+        self.__socios[cont].set_movil(movil)
+        self.__socios[cont].set_correo(correo)
+        print self.__socios[cont]
+        #Ahora lo cambiamos en el archivo
+        tempfile = NamedTemporaryFile(delete=False)
+
+        with open('socios.csv', 'rb') as csvFile, tempfile:
+            reader = csv.reader(csvFile, delimiter='\t')
+            writer = csv.writer(tempfile, delimiter='\t')
+
+            for row in reader:
+                if(row[0]==self.__socios[cont].DNI):
+                    row[0]=DNI
+                    row[1]=nombre
+                    row[2]=apellidos
+                    row[3]=movil
+                    row[4]=correo
+                    writer.writerow(row)
+                else:
+                    writer.writerow(row)
+        shutil.move(tempfile.name, 'socios.csv')
+        csvFile.close()
+        tempfile.close()

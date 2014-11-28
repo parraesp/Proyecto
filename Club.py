@@ -14,16 +14,15 @@ class Club():
         socio = Socio(DNI,nombre,apellidos,movil,correo)
         self.__conexion.guardar_socio(socio)
 
-    def eliminar_socio(self,DNI):
-        socio = self.obtener_socio(DNI)
-        return socio
+    def editar_socio(self,DNI,nombre,apellidos,movil,correo):
+        self.__conexion.cambiar_socio(DNI,nombre,apellidos,movil,correo)
 
     def obtener_socio(self,DNI):
         socio = self.__conexion.sacar_socio(DNI)
         return socio
 
     def dar_baja_socio(self, DNI):
-        index = self.__conexion.dar_baja_socio(DNI)
+        self.__conexion.dar_baja_socio(DNI)
 
 
     def crear_reserva(self,DNI,fecha,instalacionID):
