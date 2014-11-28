@@ -6,6 +6,7 @@ import shutil
 from Socio import Socio
 from Instalacion import Instalacion
 from Reserva import Reserva
+from Profesor import Profesor
 from datetime import *
 
 class Conexion():
@@ -17,6 +18,7 @@ class Conexion():
             for row in content:
                 socio = Socio(row[0],row[1],row[2],row[3],row[4],row[5],row[6])
                 socios.append(socio)
+        f.close()
         return socios
 
     def __listar_instalaciones(self):
@@ -26,6 +28,7 @@ class Conexion():
             for row in content:
                 instalacion = Instalacion(row[0],row[1],row[2])
                 instalaciones.append(instalacion)
+        f.close()
         return instalaciones
 
     def __listar_reservas(self):
@@ -37,12 +40,22 @@ class Conexion():
                 instalacion = self.sacar_instalacion(row[2])
                 reserva = Reserva(socio,row[1],instalacion)
                 reservas.append(reserva)
+        f.close()
         return reservas
+
+    def __listar_profesores(self):
+        profesores = []
+        with open('profesores.csv') as f:
+            content = csv.reader(f, delimiter='\t')
+            for row in content:
+                profesor = Profesor(row[0],row[1],row[2],row[3],row[4],row[7],row[8],row[5],row[6])
+                profesores.append(profesor)
+        return profesores
 
     def __init__(self):
         self.__socios = self.__listar_socios()
         self.__instalaciones = self.__listar_instalaciones()
-        #self.__profesores = self.__listar_profesores()
+        self.__profesores = self.__listar_profesores()
         self.__reservas = self.__listar_reservas()
         #self.__alquileres = self.__listar_alquileres()
         #self.__clases = self.__listar_clases()
@@ -61,6 +74,22 @@ class Conexion():
         f.close()
         self.__socios.append(socio)
 
+    def guardar_profesor(self,profesor):
+        f = open('profesores.csv','a+')
+        texto =''
+        texto+=profesor.DNI+'\t'
+        texto+=profesor.nombre+'\t'
+        texto+=profesor.apellidos+'\t'
+        texto+=profesor.movil+'\t'
+        texto+=profesor.correo+'\t'
+        texto+=profesor.fechaAlta+'\t'
+        texto+=str(profesor.estado)+'\t'
+        texto+=str(profesor.get_salario())+'\t'
+        texto+=profesor.get_jornada()+'\n'
+        f.write(texto)
+        f.close()
+        self.__profesores.append(profesor)
+
     def sacar_socio(self,DNI):
         valor = -1
         cont = 0
@@ -69,6 +98,18 @@ class Conexion():
             if(self.__socios[cont].DNI==DNI):
                 encontrado = True
                 valor=self.__socios[cont]
+            else:
+                cont=cont+1
+        return valor
+
+    def sacar_profesor(self,DNI):
+        valor = -1
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__socios) and not(encontrado)):
+            if(self.__profesores[cont].DNI==DNI):
+                encontrado = True
+                valor=self.__profesores[cont]
             else:
                 cont=cont+1
         return valor
@@ -96,6 +137,32 @@ class Conexion():
                 else:
                     writer.writerow(row)
         shutil.move(tempfile.name, 'socios.csv')
+        csvFile.close()
+        tempfile.close()
+
+    def dar_baja_profesor(self,DNI):
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__profesores) and not(encontrado)):
+            if(self.__profesores[cont].DNI==DNI):
+                encontrado = True
+            else:
+                cont=cont+1
+        self.__profesores[cont].cambiar_estado()
+        #Ahora lo cambiamos en el archivo
+        tempfile = NamedTemporaryFile(delete=False)
+
+        with open('profesores.csv', 'rb') as csvFile, tempfile:
+            reader = csv.reader(csvFile, delimiter='\t')
+            writer = csv.writer(tempfile, delimiter='\t')
+
+            for row in reader:
+                if(row[0]==self.__profesores[cont].DNI):
+                    row[6]=False
+                    writer.writerow(row)
+                else:
+                    writer.writerow(row)
+        shutil.move(tempfile.name, 'profesores.csv')
         csvFile.close()
         tempfile.close()
 
@@ -127,7 +194,6 @@ class Conexion():
                 encontrado = True
             else:
                 cont=cont+1
-        self.__socios[cont].set_DNI(DNI)
         self.__socios[cont].set_nombre(nombre)
         self.__socios[cont].set_apellidos(apellidos)
         self.__socios[cont].set_movil(movil)
@@ -147,6 +213,44 @@ class Conexion():
                     row[2]=apellidos
                     row[3]=movil
                     row[4]=correo
+                    writer.writerow(row)
+                else:
+                    writer.writerow(row)
+        shutil.move(tempfile.name, 'socios.csv')
+        csvFile.close()
+        tempfile.close()
+
+    def cambiar_profesor(self,DNI,nombre,apellidos,movil,correo,sueldo,jornada):
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__profesores) and not(encontrado)):
+            if(self.__profesores[cont].DNI==DNI):
+                encontrado = True
+            else:
+                cont=cont+1
+        self.__profesores[cont].set_nombre(nombre)
+        self.__profesores[cont].set_apellidos(apellidos)
+        self.__profesores[cont].set_movil(movil)
+        self.__profesores[cont].set_correo(correo)
+        self.__profesores[cont].set_salario(sueldo)
+        self.__profesores[cont].set_jornada(jornada)
+        print self.__profesores[cont]
+        #Ahora lo cambiamos en el archivo
+        tempfile = NamedTemporaryFile(delete=False)
+
+        with open('profesores.csv', 'rb') as csvFile, tempfile:
+            reader = csv.reader(csvFile, delimiter='\t')
+            writer = csv.writer(tempfile, delimiter='\t')
+
+            for row in reader:
+                if(row[0]==self.__profesores[cont].DNI):
+                    row[0]=DNI
+                    row[1]=nombre
+                    row[2]=apellidos
+                    row[3]=movil
+                    row[4]=correo
+                    row[7]=sueldo
+                    row[8]=jornada
                     writer.writerow(row)
                 else:
                     writer.writerow(row)
