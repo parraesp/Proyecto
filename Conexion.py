@@ -55,7 +55,7 @@ class Conexion():
     def __init__(self):
         self.__socios = self.__listar_socios()
         self.__instalaciones = self.__listar_instalaciones()
-        self.__profesores = self.__listar_profesores()
+        #self.__profesores = self.__listar_profesores()
         self.__reservas = self.__listar_reservas()
         #self.__alquileres = self.__listar_alquileres()
         #self.__clases = self.__listar_clases()
@@ -185,6 +185,36 @@ class Conexion():
         f.write(texto)
         f.close()
         self.__reservas.append(reserva)
+
+    def sacar_reserva(self,fecha):
+        valor = -1
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__reservas) and not(encontrado)):
+            if(self.__reservas[cont].fecha==fecha.strftime("%d/%m/%y %H:%M")):
+                encontrado = True
+                valor=self.__reservas[cont]
+            else:
+                cont=cont+1
+        return valor
+
+    def borrar_reserva(self,fecha):
+        borrado = False
+        reserva = self.sacar_reserva(fecha)
+        if (reserva != -1):
+            borrado = True
+            self.__reservas.remove(reserva)
+            f = open("reservas.csv","r")
+            reservas = f.readlines()
+            f.close()
+
+            f = open("reservas.csv","w")
+            for res in reservas:
+                resAux = res.split("\t")
+                if resAux[1]!=fecha.strftime("%d/%m/%y %H:%M"):
+                    f.write(res)
+            f.close()
+        return borrado
 
     def cambiar_socio(self,DNI,nombre,apellidos,movil,correo):
         cont = 0

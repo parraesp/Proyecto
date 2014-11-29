@@ -28,7 +28,4 @@ class Reserva():
         self.__fecha = fecha
         self.__instalacion = instalacion
 
-    def __eq__(self, otro):
-        return (isinstance(self,otro) and self.__fecha == otro.fecha
-        and self.__socio == otro.socio and self.__instalacion == otro.instalacion)
 
