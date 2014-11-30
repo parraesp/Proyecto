@@ -7,6 +7,11 @@ def pedir_reserva():
     instalacionID = raw_input('Pista que desea reservar: ')
     club.crear_reserva(DNI,fecha, instalacionID)
 
+def consultar_reserva():
+    fecha = raw_input('Fecha y hora de la reserva (dd/mm/aa HH): ')
+    reserva = club.consultar_reserva(fecha)
+    return reserva
+
 seleccion = -1
 print 'Bienvenido al sistema de gestion de clubes de padel'
 print '==================================================='
@@ -71,12 +76,33 @@ while(int(seleccion)!=0):
             else:
                 print "No existia ninguna reserva para esa fecha"
         if (int(seleccion) == 3):
-            fecha = raw_input('Fecha y hora de la reserva (dd/mm/aa HH): ')
-            reserva = club.consultar_reserva(fecha)
+            reserva = consultar_reserva()
             if (reserva != -1):
                 print reserva
             else:
                 print "No existe una reserva para esa fecha"
+
+
+    if (int(seleccion)==3):
+        print 'Haga su seleccion: '
+        print '1. Crear alquiler'
+        print '2. Devolver alquiler'
+        print '3. Consultar alquiler'
+        seleccion = raw_input('Haga su seleccion: ')
+        if (int(seleccion) == 1):
+            reserva = consultar_reserva()
+            if (reserva != -1):
+                inst = '-1'
+                ids = []
+                while(inst!= '0'):
+                    if (inst != '-1'):
+                        ids.append(inst)
+                    print 'Introduzca el id de la instalacion a alquilar o 0 para salir.'
+                    inst = raw_input('Instalacion: ')
+                club.crear_alquiler(reserva,ids)
+            else:
+                print "No existe una reserva para esa fecha"
+
 
 
     if(int(seleccion)==4):

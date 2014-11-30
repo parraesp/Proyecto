@@ -1,4 +1,5 @@
 from tempfile import NamedTemporaryFile
+from datetime import *
 
 __author__ = 'alberto'
 import csv
@@ -7,7 +8,7 @@ from Socio import Socio
 from Instalacion import Instalacion
 from Reserva import Reserva
 from Profesor import Profesor
-from datetime import *
+from Alquiler import Alquiler
 
 class Conexion():
 
@@ -22,12 +23,12 @@ class Conexion():
         return socios
 
     def __listar_instalaciones(self):
-        instalaciones = []
+        instalaciones = {}
         with open('instalaciones.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
-                instalacion = Instalacion(row[0],row[1],row[2])
-                instalaciones.append(instalacion)
+                    instalacion = Instalacion(row[0],row[1],row[2])
+                    instalaciones[row[0]] = instalacion
         f.close()
         return instalaciones
 
@@ -43,6 +44,25 @@ class Conexion():
         f.close()
         return reservas
 
+    def __listar_alquileres(self):
+        alquileres = []
+        with open('alquileres.csv') as f:
+            content = csv.reader(f, delimiter='\t')
+            for row in content:
+                fecha = datetime.strptime(row[0], "%d/%m/%y %H:%M")
+                reserva = self.sacar_reserva(fecha)
+                alquiler = Alquiler(reserva)
+                for i in range(1,len(row)-1,1):
+                    instalacion = self.sacar_instalacion(row[i])
+                    alquiler.aniadirInstalacion(instalacion)
+                if (row[len(row)-1] == 'True'):
+                    alquiler.devuelto = True
+                else:
+                    alquiler.devuelto = False
+                alquileres.append(alquiler)
+        f.close()
+        return alquileres
+
     def __listar_profesores(self):
         profesores = []
         with open('profesores.csv') as f:
@@ -57,7 +77,7 @@ class Conexion():
         self.__instalaciones = self.__listar_instalaciones()
         #self.__profesores = self.__listar_profesores()
         self.__reservas = self.__listar_reservas()
-        #self.__alquileres = self.__listar_alquileres()
+        self.__alquileres = self.__listar_alquileres()
         #self.__clases = self.__listar_clases()
 
     def guardar_socio(self,socio):
@@ -167,14 +187,7 @@ class Conexion():
         tempfile.close()
 
     def sacar_instalacion(self,instalacionID):
-        instalacion = False
-        with open('instalaciones.csv') as f:
-            content = csv.reader(f, delimiter='\t')
-            for row in content:
-                if(row[0]==instalacionID):
-                    instalacion =  Instalacion(row[0],row[1],row[2])
-        f.close()
-        return instalacion
+        return self.__instalaciones.get(instalacionID,-1)
 
     def guardar_reserva(self,reserva):
         f = open('reservas.csv','a+')
@@ -215,6 +228,19 @@ class Conexion():
                     f.write(res)
             f.close()
         return borrado
+
+    def guardar_alquiler(self,alquiler):
+        f = open('alquileres.csv','a+')
+        texto =''
+        texto+= str(alquiler.reserva.fecha)+'\t'
+        insts = alquiler.instalaciones
+        for i in insts:
+            texto+=str(i.id)+'\t'
+        texto+=str(alquiler.devuelto)+'\n'
+        f.write(texto)
+        f.close()
+        self.__alquileres.append(alquiler)
+
 
     def cambiar_socio(self,DNI,nombre,apellidos,movil,correo):
         cont = 0
@@ -287,3 +313,5 @@ class Conexion():
         shutil.move(tempfile.name, 'socios.csv')
         csvFile.close()
         tempfile.close()
+
+

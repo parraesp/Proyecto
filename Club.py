@@ -5,6 +5,7 @@ from Reserva import Reserva
 from Conexion import Conexion
 from datetime import *
 import re
+from Alquiler import Alquiler
 
 class Club():
     def __init__(self):
@@ -50,7 +51,6 @@ class Club():
 
     def consultar_reserva(self,fecha):
         fecha = datetime.strptime(fecha, "%d/%m/%y %H")
-        print fecha
         reserva = self.__conexion.sacar_reserva(fecha)
         return reserva
 
@@ -61,6 +61,15 @@ class Club():
     def obtener_instalacion(self,id):
         instalacion = self.__conexion.sacar_instalacion(id)
         return instalacion
+
+    def crear_alquiler(self,reserva,ids):
+        alquiler = Alquiler(reserva)
+        for id in ids:
+            instalacion = self.__conexion.sacar_instalacion(id)
+            if (instalacion != -1):
+                alquiler.aniadirInstalacion(instalacion)
+        self.__conexion.guardar_alquiler(alquiler)
+
 
     def validarDNI(self,DNI):
         error = True
