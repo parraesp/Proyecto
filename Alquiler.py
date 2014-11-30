@@ -26,7 +26,7 @@ class Alquiler():
         self.__devuelto = False
 
     def __str__(self):
-        texto = self.__reserva.fecha
+        texto = self.__reserva.fecha+','
         for i in self.__instalaciones:
             texto += i.id +','
         texto +=str(self.devuelto)

@@ -231,16 +231,50 @@ class Conexion():
 
     def guardar_alquiler(self,alquiler):
         f = open('alquileres.csv','a+')
+        self.guardar_alquiler_fichero(alquiler,f)
+        f.close()
+        self.__alquileres.append(alquiler)
+
+    def guardar_alquiler_fichero(self,alquiler,fichero):
         texto =''
         texto+= str(alquiler.reserva.fecha)+'\t'
         insts = alquiler.instalaciones
         for i in insts:
             texto+=str(i.id)+'\t'
         texto+=str(alquiler.devuelto)+'\n'
-        f.write(texto)
-        f.close()
-        self.__alquileres.append(alquiler)
+        fichero.write(texto)
 
+
+    def sacar_alquiler(self,reserva):
+        valor = -1
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__alquileres) and not(encontrado)):
+            if(self.__alquileres[cont].reserva == reserva):
+                encontrado = True
+                valor=self.__alquileres[cont]
+            else:
+                cont=cont+1
+        return valor
+
+    def devolver_alquiler(self,reserva):
+        print reserva.fecha
+        valor = -1
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__alquileres) and not(encontrado)):
+            if(self.__alquileres[cont].reserva == reserva):
+                encontrado = True
+                self.__alquileres[cont].devuelto = True
+                valor=self.__alquileres[cont]
+            else:
+                cont=cont+1
+
+        f = open("alquileres.csv","w")
+        for alq in self.__alquileres:
+            self.guardar_alquiler_fichero(alq,f)
+        f.close()
+        return valor
 
     def cambiar_socio(self,DNI,nombre,apellidos,movil,correo):
         cont = 0

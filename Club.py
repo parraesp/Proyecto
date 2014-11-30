@@ -70,6 +70,11 @@ class Club():
                 alquiler.aniadirInstalacion(instalacion)
         self.__conexion.guardar_alquiler(alquiler)
 
+    def devolver_alquiler(self,reserva):
+        self.__conexion.devolver_alquiler(reserva)
+
+    def consultar_alquiler(self,reserva):
+        return self.__conexion.sacar_alquiler(reserva)
 
     def validarDNI(self,DNI):
         error = True
