@@ -18,3 +18,6 @@ class Instalacion():
         self.__id = id
         self.__precio = precio
         self.__descripcion = descripcion
+
+    def __str__(self):
+        return self.id + ','+self.descripcion

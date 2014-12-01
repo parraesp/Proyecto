@@ -55,7 +55,7 @@ class Conexion():
     def __init__(self):
         self.__socios = self.__listar_socios()
         self.__instalaciones = self.__listar_instalaciones()
-        self.__profesores = self.__listar_profesores()
+        #self.__profesores = self.__listar_profesores()
         self.__reservas = self.__listar_reservas()
         #self.__alquileres = self.__listar_alquileres()
         #self.__clases = self.__listar_clases()
@@ -73,15 +73,6 @@ class Conexion():
         f.write(texto)
         f.close()
         self.__socios.append(socio)
-
-    def guardar_clase(self,clase):
-        f = open('clases.csv','a+')
-        texto =''
-        texto+=clase.get_profesor().get_DNI()+'\t'
-        texto+=clase.get_reserva().get_fecha()+'\n'
-        f.write(texto)
-        f.close()
-        self.__clases.append(clase)
 
     def guardar_profesor(self,profesor):
         f = open('profesores.csv','a+')
@@ -296,4 +287,3 @@ class Conexion():
         shutil.move(tempfile.name, 'socios.csv')
         csvFile.close()
         tempfile.close()
-
