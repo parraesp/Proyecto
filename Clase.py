@@ -15,3 +15,6 @@ class Clase():
 
     def set_reservaI(self,reserva):
         self.__reserva = reserva
+
+    def __str__(self):
+        return self.__profesor.__str__()+self.__reserva.__str__()

@@ -31,3 +31,5 @@ class Reserva():
     def __eq__(self, other):
         return self.__fecha == other.fecha
 
+    def __str(self):
+        return 'Socio: '+self.__socio.__str__()+' Fecha: '+str(self.__fecha)+' Instalacion: '+self.__instalacion

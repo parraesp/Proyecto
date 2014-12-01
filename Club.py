@@ -49,6 +49,7 @@ class Club():
         fecha = datetime.strptime(fecha, "%d/%m/%y %H")
         reserva = Reserva(socio,fecha,instalacion)
         self.__conexion.guardar_reserva(reserva)
+        return reserva
 
     def consultar_reserva(self,fecha):
         fecha = datetime.strptime(fecha, "%d/%m/%y %H")
@@ -62,6 +63,11 @@ class Club():
     def obtener_instalacion(self,id):
         instalacion = self.__conexion.sacar_instalacion(id)
         return instalacion
+
+    def obtener_clase(self,profesor, fecha):
+        clase = self.__conexion.sacar_clase(profesor,fecha)
+        return clase
+
     def registrar_clase(self,profesor, reserva):
         clase = Clase(profesor,reserva)
         self.__conexion.guardar_clase(clase)

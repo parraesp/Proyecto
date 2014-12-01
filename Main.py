@@ -5,7 +5,7 @@ def pedir_reserva():
     DNI = raw_input('DNI del socio que desea reservar: ')
     fecha = raw_input('Fecha y hora para la reserva (dd/mm/aa HH): ')
     instalacionID = raw_input('Pista que desea reservar: ')
-    club.crear_reserva(DNI,fecha, instalacionID)
+    return club.crear_reserva(DNI,fecha, instalacionID)
 
 def consultar_reserva():
     fecha = raw_input('Fecha y hora de la reserva (dd/mm/aa HH): ')
@@ -158,7 +158,7 @@ while(seleccion!='0'):
         print '4. Consultar informacion clase'
         seleccion = raw_input('Haga su seleccion: ')
         if(int(seleccion)==1):
-            pedir_reserva()
+            reserva = pedir_reserva()
             dni_profesor = raw_input('Introduzca DNI profesor: ')
             profesor = club.obtener_profesor(dni_profesor)
             club.registrar_clase(profesor, reserva)
@@ -178,6 +178,7 @@ while(seleccion!='0'):
             DNI = raw_input('Introduzca el DNI del profesor a dar de baja: ')
             club.dar_baja_profesor(DNI)
         if(int(seleccion)==4):
-            DNI = raw_input('I.ntroduzca el DNI del profesor a consultar: ')
-            profesor = club.obtener_profesor(DNI)
-            print profesor
+            DNI = raw_input('Introduzca el DNI del profesor que da la clase: ')
+            fecha = raw_input('Introduzca la fecha de la clase: ')
+            clase = club.obtener_clase(DNI,fecha)
+            print clase

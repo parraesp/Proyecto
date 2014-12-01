@@ -20,6 +20,15 @@ class Conexion():
                 socios.append(socio)
         f.close()
         return socios
+    def __listar_clases(self):
+        clases = []
+        with open('clases.csv') as f:
+            content = csv.reader(f, delimiter='\t')
+            for row in content:
+                clase = Socio(self.sacar_profesor(row[0]),self.sacar_reserva(row[1]))
+                clases.append(clase)
+        f.close()
+        return clases
 
     def __listar_instalaciones(self):
         instalaciones = []
@@ -55,10 +64,10 @@ class Conexion():
     def __init__(self):
         self.__socios = self.__listar_socios()
         self.__instalaciones = self.__listar_instalaciones()
-        #self.__profesores = self.__listar_profesores()
+        self.__profesores = self.__listar_profesores()
         self.__reservas = self.__listar_reservas()
         #self.__alquileres = self.__listar_alquileres()
-        #self.__clases = self.__listar_clases()
+        self.__clases = self.__listar_clases()
 
     def guardar_socio(self,socio):
         f = open('socios.csv','a+')
@@ -106,7 +115,7 @@ class Conexion():
         valor = -1
         cont = 0
         encontrado = False
-        while(cont<len(self.__socios) and not(encontrado)):
+        while(cont<len(self.__profesores) and not(encontrado)):
             if(self.__profesores[cont].DNI==DNI):
                 encontrado = True
                 valor=self.__profesores[cont]
@@ -176,6 +185,18 @@ class Conexion():
         f.close()
         return instalacion
 
+    def sacar_clase(self,profesor, fecha):
+        valor = -1
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__clases) and not(encontrado)):
+            if(self.__clases[cont].get_profesor().DNI==profesor and self.__clases[cont].__eq__(fecha)):
+                encontrado = True
+                valor=self.__clases[cont]
+            else:
+                cont=cont+1
+        return valor
+
     def guardar_reserva(self,reserva):
         f = open('reservas.csv','a+')
         texto =''
@@ -185,6 +206,15 @@ class Conexion():
         f.write(texto)
         f.close()
         self.__reservas.append(reserva)
+
+    def guardar_clase(self,clase):
+        f = open('clases.csv','a+')
+        texto =''
+        texto+= clase.get_profesor().get_DNI()+'\t'
+        texto+= str(clase.get_reserva().get_fecha())+'\n'
+        f.write(texto)
+        f.close()
+        self.__clases.append(clase)
 
     def sacar_reserva(self,fecha):
         valor = -1
