@@ -8,8 +8,9 @@ def pedir_reserva():
     return club.crear_reserva(DNI,fecha, instalacionID)
 
 def consultar_reserva():
+    DNI = raw_input('DNI del socio que reservo: ')
     fecha = raw_input('Fecha y hora de la reserva (dd/mm/aa HH): ')
-    reserva = club.consultar_reserva(fecha)
+    reserva = club.consultar_reserva(DNI, fecha)
     return reserva
 
 seleccion = -1
@@ -69,8 +70,9 @@ while(seleccion!='0'):
         if (seleccion=='1'):
             pedir_reserva()
         if(seleccion=='2'):
+            DNI = raw_input('DNI del socio que reservo: ')
             fecha = raw_input('Fecha y hora de la reserva (dd/mm/aa HH): ')
-            if(club.cancelar_reserva(fecha)):
+            if(club.cancelar_reserva(DNI, fecha)):
                 print "La reserva ha sido cancelada"
             else:
                 print "No existia ninguna reserva para esa fecha"

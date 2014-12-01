@@ -8,6 +8,7 @@ from Instalacion import Instalacion
 from Reserva import Reserva
 from Clase import Clase
 from Profesor import Profesor
+from Alquiler import Alquiler
 from datetime import *
 
 class Conexion():
@@ -27,7 +28,7 @@ class Conexion():
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 fecha = datetime.strptime(row[1], "%d/%m/%y %H:%M")
-                clase = Clase(self.sacar_profesor(row[0]),self.sacar_reserva(fecha))
+                clase = Clase(self.sacar_profesor(row[0]),self.sacar_reserva(row[0],fecha))
                 clases.append(clase)
         f.close()
         return clases
@@ -54,6 +55,25 @@ class Conexion():
         f.close()
         return reservas
 
+    def __listar_alquileres(self):
+        alquileres = []
+        with open('alquileres.csv') as f:
+            content = csv.reader(f, delimiter='\t')
+            for row in content:
+                fecha = datetime.strptime(row[1], "%d/%m/%y %H:%M")
+                reserva = self.sacar_reserva(row[0],fecha)
+                alquiler = Alquiler(reserva)
+                for i in range(2,len(row)-1,1):
+                    instalacion = self.sacar_instalacion(row[i])
+                    alquiler.aniadirInstalacion(instalacion)
+                if (row[len(row)-1] == 'True'):
+                    alquiler.devuelto = True
+                else:
+                    alquiler.devuelto = False
+                alquileres.append(alquiler)
+        f.close()
+        return alquileres
+
     def __listar_profesores(self):
         profesores = []
         with open('profesores.csv') as f:
@@ -68,7 +88,7 @@ class Conexion():
         self.__instalaciones = self.__listar_instalaciones()
         self.__profesores = self.__listar_profesores()
         self.__reservas = self.__listar_reservas()
-        #self.__alquileres = self.__listar_alquileres()
+        self.__alquileres = self.__listar_alquileres()
         self.__clases = self.__listar_clases()
 
     def guardar_socio(self,socio):
@@ -218,21 +238,22 @@ class Conexion():
         f.close()
         self.__clases.append(clase)
 
-    def sacar_reserva(self,fecha):
+    def sacar_reserva(self,DNI, fecha):
         valor = -1
         cont = 0
         encontrado = False
         while(cont<len(self.__reservas) and not(encontrado)):
-            if(self.__reservas[cont].fecha==fecha.strftime("%d/%m/%y %H:%M")):
+            if(self.__reservas[cont].fecha==fecha.strftime("%d/%m/%y %H:%M") and
+            self.__reservas[cont].socio.DNI == DNI):
                 encontrado = True
                 valor=self.__reservas[cont]
             else:
                 cont=cont+1
         return valor
 
-    def borrar_reserva(self,fecha):
+    def borrar_reserva(self,DNI,fecha):
         borrado = False
-        reserva = self.sacar_reserva(fecha)
+        reserva = self.sacar_reserva(DNI,fecha)
         if (reserva != -1):
             borrado = True
             self.__reservas.remove(reserva)
@@ -243,10 +264,57 @@ class Conexion():
             f = open("reservas.csv","w")
             for res in reservas:
                 resAux = res.split("\t")
-                if resAux[1]!=fecha.strftime("%d/%m/%y %H:%M"):
+                if resAux[1]!=fecha.strftime("%d/%m/%y %H:%M") and resAux[0] == DNI:
                     f.write(res)
             f.close()
         return borrado
+
+    def guardar_alquiler(self,alquiler):
+        f = open('alquileres.csv','a+')
+        self.guardar_alquiler_fichero(alquiler,f)
+        f.close()
+        self.__alquileres.append(alquiler)
+
+    def sacar_alquiler(self,reserva):
+        valor = -1
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__alquileres) and not(encontrado)):
+            if(self.__alquileres[cont].reserva == reserva):
+                encontrado = True
+                valor=self.__alquileres[cont]
+            else:
+                cont=cont+1
+        return valor
+
+    def devolver_alquiler(self,reserva):
+        print reserva.fecha
+        valor = -1
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__alquileres) and not(encontrado)):
+            if(self.__alquileres[cont].reserva == reserva):
+                encontrado = True
+                self.__alquileres[cont].devuelto = True
+                valor=self.__alquileres[cont]
+            else:
+                cont=cont+1
+
+        f = open("alquileres.csv","w")
+        for alq in self.__alquileres:
+            self.guardar_alquiler_fichero(alq,f)
+        f.close()
+        return valor
+
+    def guardar_alquiler_fichero(self,alquiler,fichero):
+        texto =''
+        texto +=alquiler.reserva.socio.DNI+'\t'
+        texto+= str(alquiler.reserva.fecha)+'\t'
+        insts = alquiler.instalaciones
+        for i in insts:
+            texto+=str(i.id)+'\t'
+        texto+=str(alquiler.devuelto)+'\n'
+        fichero.write(texto)
 
     def cambiar_socio(self,DNI,nombre,apellidos,movil,correo):
         cont = 0
