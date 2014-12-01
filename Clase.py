@@ -1,4 +1,5 @@
 __author__ = 'alberto'
+from Reserva import Reserva
 class Clase():
     def __init__(self,profesor, reserva):
         self.__profesor = profesor

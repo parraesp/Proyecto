@@ -146,7 +146,7 @@ while(seleccion!='0'):
             DNI = raw_input('Introduzca el DNI del profesor a dar de baja: ')
             club.dar_baja_profesor(DNI)
         if(seleccion=='4'):
-            DNI = raw_input('I.ntroduzca el DNI del profesor a consultar: ')
+            DNI = raw_input('Introduzca el DNI del profesor a consultar: ')
             profesor = club.obtener_profesor(DNI)
             print profesor
 

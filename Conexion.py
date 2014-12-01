@@ -6,6 +6,7 @@ import shutil
 from Socio import Socio
 from Instalacion import Instalacion
 from Reserva import Reserva
+from Clase import Clase
 from Profesor import Profesor
 from datetime import *
 
@@ -25,7 +26,8 @@ class Conexion():
         with open('clases.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
-                clase = Socio(self.sacar_profesor(row[0]),self.sacar_reserva(row[1]))
+                fecha = datetime.strptime(row[1], "%d/%m/%y %H:%M")
+                clase = Clase(self.sacar_profesor(row[0]),self.sacar_reserva(fecha))
                 clases.append(clase)
         f.close()
         return clases
@@ -190,7 +192,7 @@ class Conexion():
         cont = 0
         encontrado = False
         while(cont<len(self.__clases) and not(encontrado)):
-            if(self.__clases[cont].get_profesor().DNI==profesor and self.__clases[cont].__eq__(fecha)):
+            if(self.__clases[cont].get_profesor().DNI==profesor and self.__clases[cont].get_reserva().get_fecha()==fecha):
                 encontrado = True
                 valor=self.__clases[cont]
             else:
@@ -211,7 +213,7 @@ class Conexion():
         f = open('clases.csv','a+')
         texto =''
         texto+= clase.get_profesor().get_DNI()+'\t'
-        texto+= str(clase.get_reserva().get_fecha())+'\n'
+        texto+= str(clase.get_reserva().get_fecha().strftime("%d/%m/%y %H:%M"))+'\n'
         f.write(texto)
         f.close()
         self.__clases.append(clase)
