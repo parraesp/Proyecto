@@ -4,6 +4,7 @@ from Socio import Socio
 from Reserva import Reserva
 from Conexion import Conexion
 from datetime import *
+from Clase import Clase
 import re
 
 class Club():
@@ -61,6 +62,9 @@ class Club():
     def obtener_instalacion(self,id):
         instalacion = self.__conexion.sacar_instalacion(id)
         return instalacion
+    def registrar_clase(self,profesor, reserva):
+        clase = Clase(profesor,reserva)
+        self.__conexion.guardar_clase(clase)
 
     def validarDNI(self,DNI):
         error = True

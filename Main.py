@@ -115,4 +115,34 @@ while(int(seleccion)!=0):
             profesor = club.obtener_profesor(DNI)
             print profesor
 
-
+    if(int(seleccion)==5):
+        print 'Haga su seleccion: '
+        print '1. Registrar Clase'
+        print '2. Editar informacion clase'
+        print '3. Cancelar clase'
+        print '4. Consultar informacion clase'
+        seleccion = raw_input('Haga su seleccion: ')
+        if(int(seleccion)==1):
+            pedir_reserva()
+            dni_profesor = raw_input('Introduzca DNI profesor: ')
+            profesor = club.obtener_profesor(dni_profesor)
+            club.registrar_clase(profesor, reserva)
+        if(int(seleccion)==2):
+            DNI = raw_input('Editar datos del profesor: ')
+            profesor = club.obtener_profesor(DNI)
+            print 'Introduzca nuevos valores: '
+            print profesor
+            nombre = raw_input('Nombre: ')
+            apellidos = raw_input('Apellidos: ')
+            movil = raw_input('Movil: ')
+            correo = raw_input('Correo electronico: ')
+            sueldo = raw_input('Sueldo: ')
+            jornada = raw_input('Jornada: ')
+            club.editar_profesor(DNI,nombre,apellidos,movil,correo, sueldo, jornada)
+        if(int(seleccion)==3):
+            DNI = raw_input('Introduzca el DNI del profesor a dar de baja: ')
+            club.dar_baja_profesor(DNI)
+        if(int(seleccion)==4):
+            DNI = raw_input('I.ntroduzca el DNI del profesor a consultar: ')
+            profesor = club.obtener_profesor(DNI)
+            print profesor
