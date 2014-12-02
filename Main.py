@@ -177,8 +177,9 @@ while(seleccion!='0'):
             jornada = raw_input('Jornada: ')
             club.editar_profesor(DNI,nombre,apellidos,movil,correo, sueldo, jornada)
         if(int(seleccion)==3):
-            DNI = raw_input('Introduzca el DNI del profesor a dar de baja: ')
-            club.dar_baja_profesor(DNI)
+            DNI = raw_input('Introduzca el DNI del profesor que da la clase: ')
+            fecha = raw_input('Introduzca la fecha de la clase: ')
+            club.cancelar_clase(DNI,fecha)
         if(int(seleccion)==4):
             DNI = raw_input('Introduzca el DNI del profesor que da la clase: ')
             fecha = raw_input('Introduzca la fecha de la clase: ')
