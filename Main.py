@@ -1,6 +1,6 @@
 __author__ = 'alberto'
 from Club import Club
-from Instalacion import Instalacion
+
 def pedir_reserva():
     DNI = raw_input('DNI del socio que desea reservar: ')
     fecha = raw_input('Fecha y hora para la reserva (dd/mm/aa HH): ')
@@ -38,6 +38,9 @@ while(seleccion!='0'):
         seleccion = raw_input('Haga su seleccion: ')
         if(seleccion=='1'):
             DNI =raw_input('DNI: ')
+            while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                DNI =raw_input('DNI: ')
             nombre = raw_input('Nombre: ')
             apellidos = raw_input('Apellidos: ')
             movil = raw_input('Movil: ')
@@ -46,16 +49,23 @@ while(seleccion!='0'):
         if(seleccion=='2'):
             DNI = raw_input('Editar datos del socio: ')
             socio = club.obtener_socio(DNI)
-            print 'Introduzca nuevos valores: '
-            print socio
-            nombre = raw_input('Nombre: '+str(socio.nombre))
-            apellidos = raw_input('Apellidos: '+str(socio.apellidos))
-            movil = raw_input('Movil: '+str(socio.movil))
-            correo = raw_input('Correo electronico: '+str(socio.correo))
-            club.editar_socio(DNI,nombre,apellidos,movil,correo)
+            if (socio != -1):
+                print 'Introduzca nuevos valores: '
+                print socio
+                nombre = raw_input('Nombre: '+str(socio.nombre))
+                apellidos = raw_input('Apellidos: '+str(socio.apellidos))
+                movil = raw_input('Movil: '+str(socio.movil))
+                correo = raw_input('Correo electronico: '+str(socio.correo))
+                club.editar_socio(DNI,nombre,apellidos,movil,correo)
+            else:
+                print '\033[91m'+'No existe ningun socio con ese DNI.'+'\033[0m'
+                seleccion = '-1'
         if(seleccion=='3'):
             DNI = raw_input('Introduzca el DNI del usuario a dar de baja: ')
-            club.dar_baja_socio(DNI)
+            socio = club.dar_baja_socio(DNI)
+            if (socio == -1):
+                print '\033[91m'+'No existe ningun socio con ese DNI.'+'\033[0m'
+                seleccion = '-1'
         if(seleccion=='4'):
             DNI = raw_input('Introduzca el DNI del usuario a consultar: ')
             socio = club.obtener_socio(DNI)
@@ -152,19 +162,19 @@ while(seleccion!='0'):
             profesor = club.obtener_profesor(DNI)
             print profesor
 
-    if(int(seleccion)==5):
+    if(seleccion == '5'):
         print 'Haga su seleccion: '
         print '1. Registrar Clase'
         print '2. Editar informacion clase'
         print '3. Cancelar clase'
         print '4. Consultar informacion clase'
         seleccion = raw_input('Haga su seleccion: ')
-        if(int(seleccion)==1):
+        if(seleccion == '1'):
             reserva = pedir_reserva()
             dni_profesor = raw_input('Introduzca DNI profesor: ')
             profesor = club.obtener_profesor(dni_profesor)
             club.registrar_clase(profesor, reserva)
-        if(int(seleccion)==2):
+        if(seleccion == '2'):
             DNI = raw_input('Profesor de la clase: ')
             fecha = raw_input('Fecha de la clase: ')
             profesor = club.obtener_clase(club.obtener_profesor(DNI),club.consultar_reserva())
@@ -177,11 +187,11 @@ while(seleccion!='0'):
             sueldo = raw_input('Sueldo: ')
             jornada = raw_input('Jornada: ')
             club.editar_profesor(DNI,nombre,apellidos,movil,correo, sueldo, jornada)
-        if(int(seleccion)==3):
+        if(seleccion == '3'):
             DNI = raw_input('Introduzca el DNI del profesor que da la clase: ')
             fecha = raw_input('Introduzca la fecha de la clase: ')
             club.cancelar_clase(DNI,fecha)
-        if(int(seleccion)==4):
+        if(seleccion == '4'):
             DNI = raw_input('Introduzca el DNI del profesor que da la clase: ')
             fecha = raw_input('Introduzca la fecha de la clase: ')
             clase = club.obtener_clase(DNI,fecha)

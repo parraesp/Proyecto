@@ -37,7 +37,10 @@ class Club():
         return profesor
 
     def dar_baja_socio(self, DNI):
-        self.__conexion.dar_baja_socio(DNI)
+        socio = self.__conexion.sacar_socio(DNI)
+        if (socio != -1):
+            self.__conexion.dar_baja_socio(socio)
+        return socio
 
     def dar_baja_profesor(self, DNI):
         self.__conexion.dar_baja_profesor(DNI)

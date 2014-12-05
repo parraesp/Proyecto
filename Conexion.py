@@ -125,15 +125,9 @@ class Conexion():
                 cont=cont+1
         return valor
 
-    def dar_baja_socio(self,DNI):
-        cont = 0
-        encontrado = False
-        while(cont<len(self.__socios) and not(encontrado)):
-            if(self.__socios[cont].DNI==DNI):
-                encontrado = True
-            else:
-                cont=cont+1
-        self.__socios[cont].cambiar_estado()
+    def dar_baja_socio(self,socio):
+        ind = self.__socios.index(socio)
+        self.__socios[ind].cambiar_estado()
         #Ahora lo cambiamos en el archivo
         tempfile = NamedTemporaryFile(delete=False)
 
@@ -142,7 +136,7 @@ class Conexion():
             writer = csv.writer(tempfile, delimiter='\t')
 
             for row in reader:
-                if(row[0]==self.__socios[cont].DNI):
+                if(row[0]==self.__socios[ind].DNI):
                     row[6]=False
                     writer.writerow(row)
                 else:
