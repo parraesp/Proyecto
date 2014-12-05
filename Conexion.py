@@ -256,10 +256,7 @@ class Conexion():
             writer = csv.writer(tempfile, delimiter='\t')
 
             for row in reader:
-                print row[0]+" "+profesor
-                print row[1]+" "+str(fecha)
                 if(row[0]!=profesor and row[1]!=str(fecha)):
-                    print "HOAL"
                     writer.writerow(row)
         shutil.move(tempfile.name, 'clases.csv')
         csvFile.close()

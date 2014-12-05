@@ -165,8 +165,9 @@ while(seleccion!='0'):
             profesor = club.obtener_profesor(dni_profesor)
             club.registrar_clase(profesor, reserva)
         if(int(seleccion)==2):
-            DNI = raw_input('Editar datos del profesor: ')
-            profesor = club.obtener_profesor(DNI)
+            DNI = raw_input('Profesor de la clase: ')
+            fecha = raw_input('Fecha de la clase: ')
+            profesor = club.obtener_clase(club.obtener_profesor(DNI),club.consultar_reserva())
             print 'Introduzca nuevos valores: '
             print profesor
             nombre = raw_input('Nombre: ')
