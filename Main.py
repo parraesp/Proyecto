@@ -5,7 +5,7 @@ def pedir_reserva():
     DNI = raw_input('DNI del socio que desea reservar: ')
     fecha = raw_input('Fecha y hora para la reserva (dd/mm/aa HH): ')
     instalacionID = raw_input('Pista que desea reservar: ')
-    return club.crear_reserva(DNI,fecha, instalacionID)
+    return club.crear_reserva(DNI,fecha, instalacionID,0)
 
 def consultar_reserva():
     DNI = raw_input('DNI del socio que reservo: ')
@@ -196,3 +196,35 @@ while(seleccion!='0'):
             fecha = raw_input('Introduzca la fecha de la clase: ')
             clase = club.obtener_clase(DNI,fecha)
             print clase
+
+    if(seleccion == '6'):
+        print 'Haga su seleccion: '
+        print '1. Crear Torneo.'
+        print '2. Introducir resultado.'
+        print '3. Borrar torneo.'
+        print '4. Consultar torneo.'
+        seleccion = raw_input('Haga su seleccion: ')
+        if (seleccion == '1'):
+            nombre = raw_input('Introduzca el nombre del torneo: ')
+            i = 0
+            socios = []
+            while i<8:
+                DNI = raw_input('Introduzca el DNI del participante: ')
+                socios.append(club.obtener_socio(DNI))
+                i+=1
+            fecha = raw_input('Introduzca una fecha para empezar el torneo: ')
+            club.crear_torneo(nombre, socios, fecha)
+
+        if seleccion == '2':
+            nombre = raw_input('Introduzca el nombre del torneo: ')
+            partido = raw_input('Introduzca el partido del torneo: ')
+            resultado = raw_input('Introduzca el resultado del partido: ')
+            club.introducir_resultado(nombre,partido,resultado)
+
+        if seleccion == '3':
+            nombre = raw_input('Introduzca el nombre del torneo: ')
+            club.borrar_torneo(nombre)
+
+        if seleccion == '4':
+            nombre = raw_input('Introduzca el nombre del torneo: ')
+            print club.consultar_torneo(nombre)

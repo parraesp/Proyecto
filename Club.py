@@ -5,6 +5,7 @@ from Reserva import Reserva
 from Conexion import Conexion
 from datetime import *
 from Clase import Clase
+from Torneo import Torneo
 import re
 from Alquiler import Alquiler
 
@@ -63,6 +64,26 @@ class Club():
     def cancelar_reserva(self,DNI, fecha):
         fecha = datetime.strptime(fecha, "%d/%m/%y %H")
         return self.__conexion.borrar_reserva(DNI, fecha)
+
+    def crear_torneo(self,nombre,socios,fecha):
+        fechaAux = datetime.strptime(fecha, "%d/%m/%y %H")
+        self.crear_reserva(socios[0].DNI,fechaAux.strftime("%d/%m/%y %H") ,'inst02')
+        for i in range(0,6,1):
+            fechaAux += timedelta(days=1)
+            self.crear_reserva(socios[0].DNI,fechaAux.strftime("%d/%m/%y %H") ,'inst02')
+        torneo = Torneo(nombre,socios)
+        self.__conexion.guardar_torneo(torneo)
+
+    def consultar_torneo(self,nombre):
+        return self.__conexion.sacar_torneo(nombre)
+
+    def introducir_resultado(self,nombre,partido,resultado):
+        torneo = self.__conexion.sacar_torneo(nombre)
+        self.__conexion.poner_resultado(torneo,partido,resultado)
+
+    def borrar_torneo(self,nombre):
+        torneo = self.__conexion.sacar_torneo(nombre)
+        self.__conexion.borrar_torneo(torneo)
 
     def cancelar_clase(self,profesor, fecha):
         #fecha = datetime.strptime(fecha, "%d/%m/%y %H")

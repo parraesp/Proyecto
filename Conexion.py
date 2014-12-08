@@ -9,6 +9,7 @@ from Reserva import Reserva
 from Clase import Clase
 from Alquiler import Alquiler
 from Profesor import Profesor
+from Torneo import Torneo
 from datetime import *
 
 class Conexion():
@@ -83,6 +84,22 @@ class Conexion():
         f.close()
         return alquileres
 
+    def __listar_torneos(self):
+        torneos = []
+        with open('torneos.csv') as f:
+            content = csv.reader(f, delimiter='\t')
+            for row in content:
+                if row:
+                    socios=[]
+                    for i in range(1,9,1):
+                        socios.append(self.sacar_socio(row[i]))
+                    torneo = Torneo(row[0],socios)
+                    for i in range(9,23,2):
+                        torneo.set_resultado(row[i],row[i+1])
+                    torneos.append(torneo)
+        f.close()
+        return torneos
+
     def __init__(self):
         self.__socios = self.__listar_socios()
         self.__instalaciones = self.__listar_instalaciones()
@@ -90,6 +107,7 @@ class Conexion():
         self.__reservas = self.__listar_reservas()
         self.__alquileres = self.__listar_alquileres()
         self.__clases = self.__listar_clases()
+        self.__torneos = self.__listar_torneos()
 
     def guardar_socio(self,socio):
         f = open('socios.csv','a+')
@@ -393,3 +411,52 @@ class Conexion():
         shutil.move(tempfile.name, 'profesores.csv')
         csvFile.close()
         tempfile.close()
+
+    def guardar_torneo(self,torneo):
+        f = open('torneos.csv','a+')
+        self.guardar_torneo_fichero(torneo,f)
+        f.close()
+        self.__torneos.append(torneo)
+
+    def guardar_torneo_fichero(self,torneo,f):
+        texto =''
+        texto+=torneo.nombre+'\t'
+        for s in torneo.socios:
+            texto+=s.DNI+'\t'
+        for r in torneo.resultados:
+            texto+= r+'\t'
+            texto+= str(torneo.resultados[r])+'\t'
+        texto+='\n'
+        f.write(texto)
+
+    def sacar_torneo(self,nombre):
+        valor = -1
+        cont = 0
+        encontrado = False
+        while(cont<len(self.__torneos) and not(encontrado)):
+            if(self.__torneos[cont].nombre == nombre):
+                encontrado = True
+                valor=self.__torneos[cont]
+            else:
+                cont=cont+1
+        return valor
+
+    def poner_resultado(self, torneo, partido,resultado):
+        torneo.set_resultado(partido,resultado)
+        f = open("torneos.csv","w")
+        for t in self.__torneos:
+            self.guardar_torneo_fichero(t,f)
+        f.close()
+
+    def borrar_torneo(self,torneo):
+        self.__torneos.remove(torneo)
+        f = open("torneos.csv","r")
+        torneos = f.readlines()
+        f.close()
+
+        f = open("torneos.csv","w")
+        for t in torneos:
+            tAux = t.split("\t")
+            if tAux[0]!=torneo.nombre:
+                f.write(t)
+        f.close()
