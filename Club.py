@@ -51,17 +51,19 @@ class Club():
         instalacion = self.__conexion.sacar_instalacion(instalacionID)
         fecha = datetime.strptime(fecha, "%d/%m/%y %H")
         reserva = Reserva(socio,fecha,instalacion)
+        reserva.fecha = str(reserva.fecha.strftime("%d/%m/%y %H:%M"))
         self.__conexion.guardar_reserva(reserva)
         return reserva
 
-    def consultar_reserva(self,fecha):
+    def consultar_reserva(self,DNI,fecha):
         fecha = datetime.strptime(fecha, "%d/%m/%y %H")
-        reserva = self.__conexion.sacar_reserva(fecha)
+        reserva = self.__conexion.sacar_reserva(DNI,fecha)
         return reserva
 
-    def cancelar_reserva(self,fecha):
+    def cancelar_reserva(self,DNI, fecha):
         fecha = datetime.strptime(fecha, "%d/%m/%y %H")
-        return self.__conexion.borrar_reserva(fecha)
+        return self.__conexion.borrar_reserva(DNI, fecha)
+
     def cancelar_clase(self,profesor, fecha):
         #fecha = datetime.strptime(fecha, "%d/%m/%y %H")
         return self.__conexion.borrar_clase(profesor,fecha)

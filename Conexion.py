@@ -70,9 +70,9 @@ class Conexion():
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 fecha = datetime.strptime(row[1], "%d/%m/%y %H:%M")
-                reserva = self.sacar_reserva(fecha)
+                reserva = self.sacar_reserva(row[0],fecha)
                 alquiler = Alquiler(reserva)
-                for i in range(1,len(row)-1,1):
+                for i in range(2,len(row)-1,1):
                     instalacion = self.sacar_instalacion(row[i])
                     alquiler.aniadirInstalacion(instalacion)
                 if (row[len(row)-1] == 'True'):
@@ -217,7 +217,7 @@ class Conexion():
         f = open('reservas.csv','a+')
         texto =''
         texto+= str(reserva.socio.DNI)+'\t'
-        texto+=str(reserva.fecha.strftime("%d/%m/%y %H:%M"))+'\t'
+        texto+=str(reserva.fecha)+'\t'
         texto+=str(reserva.instalacion.id)+'\n'
         f.write(texto)
         f.close()
@@ -258,7 +258,7 @@ class Conexion():
             f = open("reservas.csv","w")
             for res in reservas:
                 resAux = res.split("\t")
-                if resAux[1]!=fecha.strftime("%d/%m/%y %H:%M") and resAux[0] == DNI:
+                if resAux[1]!=fecha.strftime("%d/%m/%y %H:%M") and resAux[0] != DNI:
                     f.write(res)
             f.close()
         return borrado
@@ -282,7 +282,6 @@ class Conexion():
         return valor
 
     def devolver_alquiler(self,reserva):
-        print reserva.fecha
         valor = -1
         cont = 0
         encontrado = False
@@ -304,9 +303,8 @@ class Conexion():
         texto =''
         texto +=alquiler.reserva.socio.DNI+'\t'
         texto+= str(alquiler.reserva.fecha)+'\t'
-        insts = alquiler.instalaciones
-        for i in insts:
-            texto+=str(i.id)+'\t'
+        for ins in alquiler.instalaciones:
+            texto+=str(ins.id)+'\t'
         texto+=str(alquiler.devuelto)+'\n'
         fichero.write(texto)
 
