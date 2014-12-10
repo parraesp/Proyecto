@@ -66,7 +66,7 @@ class conexion_alquiler():
                 alquiler = Alquiler(reserva)
                 for i in range(2,len(row)-1,1):
                     instalacion = self.instalaciones.sacar_instalacion(row[i])
-                    alquiler.aniadirInstalacion(instalacion)
+                    alquiler.aniadir_instalacion(instalacion)
                 if (row[len(row)-1] == 'True'):
                     alquiler.devuelto = True
                 else:
