@@ -1,10 +1,11 @@
 __author__ = 'alberto'
-from Reserva import Reserva
+
+
 class Clase():
     """
         Clase para gestionar clases de padel.
     """
-    def __init__(self,profesor, reserva):
+    def __init__(self, profesor, reserva):
         """
         Constructor de la clase departamento
 
@@ -30,7 +31,7 @@ class Clase():
         """
         return self.__reserva
 
-    def set_profesor(self,profesor):
+    def set_profesor(self, profesor):
         """
         Asigna un profesor a una clase
 
@@ -38,7 +39,7 @@ class Clase():
         """
         self.__profesor = profesor
 
-    def set_reservaI(self,reserva):
+    def set_reservaI(self, reserva):
         """
         Asigna una reserva a una clase
 

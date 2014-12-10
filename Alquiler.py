@@ -1,5 +1,6 @@
 __author__ = 'Ricardo'
 
+
 class Alquiler():
     def isDevuelto(self):
         return self.__devuelto
@@ -10,17 +11,17 @@ class Alquiler():
     def get_instalaciones(self):
         return self.__instalaciones
 
-    def aniadirInstalacion(self,instalacion):
+    def aniadirInstalacion(self, instalacion):
         self.__instalaciones.append(instalacion)
 
-    def set_devuelto(self,devuelto):
+    def set_devuelto(self, devuelto):
         self.__devuelto = devuelto
 
     reserva = property(get_reserva)
     instalaciones = property(get_instalaciones)
-    devuelto = property(isDevuelto,set_devuelto)
+    devuelto = property(isDevuelto, set_devuelto)
 
-    def __init__(self,reserva):
+    def __init__(self, reserva):
         self.__reserva = reserva
         self.__instalaciones = []
         self.__devuelto = False
@@ -29,5 +30,5 @@ class Alquiler():
         texto = self.__reserva.__str__()+','
         for i in self.__instalaciones:
             texto += str(i.__str__())
-        texto +=str(self.devuelto)
+        texto += str(self.devuelto)
         return texto

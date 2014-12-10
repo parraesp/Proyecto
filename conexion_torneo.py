@@ -3,7 +3,8 @@ from Torneo import Torneo
 import csv
 class conexion_torneo():
 
-    def __init__(self):
+    def __init__(self,socios):
+        self.socios = socios
         self.__torneos = self.__listar_torneos()
 
     def guardar_torneo(self,torneo):
@@ -64,7 +65,7 @@ class conexion_torneo():
                 if row:
                     socios=[]
                     for i in range(1,9,1):
-                        socios.append(self.sacar_socio(row[i]))
+                        socios.append(self.socios.sacar_socio(row[i]))
                     torneo = Torneo(row[0],socios)
                     for i in range(9,23,2):
                         torneo.set_resultado(row[i],row[i+1])

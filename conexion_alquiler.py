@@ -2,10 +2,15 @@ __author__ = 'alberto'
 import csv
 from Alquiler import Alquiler
 from datetime import datetime
+
+
 class conexion_alquiler():
 
-    def __init__(self):
+    def __init__(self, reservas, instalaciones):
+        self.reservas = reservas
+        self.instalaciones = instalaciones
         self.__alquileres = self.__listar_alquileres()
+
     def guardar_alquiler(self,alquiler):
         f = open('alquileres.csv','a+')
         self.guardar_alquiler_fichero(alquiler,f)
@@ -57,10 +62,10 @@ class conexion_alquiler():
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 fecha = datetime.strptime(row[1], "%d/%m/%y %H:%M")
-                reserva = self.sacar_reserva(row[0],fecha)
+                reserva = self.reservas.sacar_reserva(row[0],fecha)
                 alquiler = Alquiler(reserva)
                 for i in range(2,len(row)-1,1):
-                    instalacion = self.sacar_instalacion(row[i])
+                    instalacion = self.instalaciones.sacar_instalacion(row[i])
                     alquiler.aniadirInstalacion(instalacion)
                 if (row[len(row)-1] == 'True'):
                     alquiler.devuelto = True

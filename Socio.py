@@ -2,11 +2,12 @@ __author__ = 'francisco'
 
 import time
 
+
 class Socio():
     """
     Clase encargada de gestionar los socios del club
     """
-    def __init__(self, DNI, nombre, apellidos, movil, correo ,*otros):
+    def __init__(self, DNI, nombre, apellidos, movil, correo, *otros):
         """
         Constructor de la clase socio.
 
@@ -35,7 +36,8 @@ class Socio():
 
         :return: Socio
         """
-        return 'DNI: ' + self.__DNI + ', fecha: ' + self.__fechaAlta + ', estado: ' + str(self.__estado)+', correo: '+str(self.correo)
+        return 'DNI: ' + self.__DNI + ', fecha: ' + self.__fechaAlta \
+               + ', estado: ' + str(self.__estado)+', correo: ' + str(self.correo)
 
     def get_DNI(self):
         """
@@ -44,7 +46,6 @@ class Socio():
         :return: DNI
         """
         return self.__DNI
-
 
     def get_nombre(self):
         """
@@ -61,7 +62,6 @@ class Socio():
         :return: apellidos
         """
         return self.__apellidos
-
 
     def get_movil(self):
         """
@@ -95,7 +95,7 @@ class Socio():
         """
         return self.__estado
 
-    def set_DNI(self,DNI):
+    def set_DNI(self, DNI):
         """
         Asigna un nuevo DNI a un determinado usuario
 
@@ -109,7 +109,7 @@ class Socio():
         """
         self.__estado = False
 
-    def set_fechaAlta(self,fecha):
+    def set_fechaAlta(self, fecha):
         """
         Asigna una nueva fecha de alta
 
@@ -117,7 +117,7 @@ class Socio():
         """
         self.__fechaAlta = fecha
 
-    def set_nombre(self,nombre):
+    def set_nombre(self, nombre):
         """
         Asigna un nuevo nombre a un socio
 
@@ -125,14 +125,14 @@ class Socio():
         """
         self.__nombre = nombre
 
-    def set_apellidos(self,apellidos):
+    def set_apellidos(self, apellidos):
         """
         Asigna nuevo(s) apellido(s) al socio
         :param: apellido(s)
         """
         self.__apellidos = apellidos
 
-    def set_correo(self,correo):
+    def set_correo(self, correo):
         """
         Asigna un nuevo correo electronico
 
@@ -140,7 +140,7 @@ class Socio():
         """
         self.__correo = correo
 
-    def set_movil(self,movil):
+    def set_movil(self, movil):
         """
         Asigna un nuevo movil
 
@@ -153,6 +153,5 @@ class Socio():
     apellidos = property(get_apellidos)
     movil = property(get_movil)
     correo = property(get_correo)
-    fechaAlta = property(get_fechaAlta,set_fechaAlta)
+    fechaAlta = property(get_fechaAlta, set_fechaAlta)
     estado = property(get_estado)
-

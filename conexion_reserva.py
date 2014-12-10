@@ -2,7 +2,9 @@ __author__ = 'alberto'
 import csv
 from Reserva import Reserva
 class conexion_reserva():
-    def __init__(self):
+    def __init__(self, socios, instalaciones):
+        self.__socios = socios
+        self.__instalaciones = instalaciones
         self.__reservas = self.__listar_reservas()
     def guardar_reserva(self,reserva):
         f = open('reservas.csv','a+')
@@ -50,8 +52,8 @@ class conexion_reserva():
         with open('reservas.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
-                socio = self.sacar_socio(row[0])
-                instalacion = self.sacar_instalacion(row[2])
+                socio = self.__socios.sacar_socio(row[0])
+                instalacion = self.__instalaciones.sacar_instalacion(row[2])
                 reserva = Reserva(socio,row[1],instalacion)
                 reservas.append(reserva)
         f.close()

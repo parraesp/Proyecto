@@ -1,6 +1,7 @@
 __author__ = 'alberto'
 from Socio import Socio
 
+
 class Profesor(Socio):
     """
     Clase que gestiona los profesores del club
@@ -18,14 +19,14 @@ class Profesor(Socio):
         :param: tipo de jornada
         :param: parametros a usar en caso de querer cargar un objeto de la persistencia en lugar de crear uno nuevo
         """
-        if(len(otros)==2):
-            Socio.__init__(self,DNI,nombre,apellidos,movil,correo,otros[0],otros[1])
+        if(len(otros) == 2):
+            Socio.__init__(self, DNI, nombre, apellidos, movil, correo, otros[0], otros[1])
         else:
-            Socio.__init__(self,DNI,nombre,apellidos,movil,correo)
+            Socio.__init__(self, DNI, nombre, apellidos, movil, correo)
         self.__salario = int(salario)
         self.__jornada = str(jornada)
 
-    def set_salario(self,salario):
+    def set_salario(self, salario):
         """
         Asgina un nuevo salario a un profesor
 
@@ -33,7 +34,7 @@ class Profesor(Socio):
         """
         self.__salario = salario
 
-    def set_jornada(self,jornada):
+    def set_jornada(self, jornada):
         """
         Asgina un nuevo tipo de jornada a un profesor
 
