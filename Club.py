@@ -47,14 +47,12 @@ class Club():
         self.__conexion.dar_baja_profesor(DNI)
 
     def crear_reserva(self,DNI,fecha,instalacionID):
-        #verificar datos
         socio = self.__conexion.sacar_socio(DNI)
         instalacion = self.__conexion.sacar_instalacion(instalacionID)
         fecha = datetime.strptime(fecha, "%d/%m/%y %H")
         reserva = Reserva(socio,fecha,instalacion)
         reserva.fecha = str(reserva.fecha.strftime("%d/%m/%y %H:%M"))
         self.__conexion.guardar_reserva(reserva)
-        return reserva
 
     def consultar_reserva(self,DNI,fecha):
         fecha = datetime.strptime(fecha, "%d/%m/%y %H")
@@ -84,6 +82,7 @@ class Club():
     def borrar_torneo(self,nombre):
         torneo = self.__conexion.sacar_torneo(nombre)
         self.__conexion.borrar_torneo(torneo)
+        return torneo
 
     def cancelar_clase(self,profesor, fecha):
         #fecha = datetime.strptime(fecha, "%d/%m/%y %H")
@@ -153,3 +152,6 @@ class Club():
         except:
             pass
         return result
+
+    def validarInstalacion(self,instalacionID):
+        return self.__conexion.sacar_instalacion(instalacionID)

@@ -112,7 +112,7 @@ class Conexion():
     def guardar_socio(self,socio):
         f = open('socios.csv','a+')
         texto =''
-        texto+=socio.DNI+'\t'
+        texto+=socio.DNI.upper()+'\t'
         texto+=socio.nombre+'\t'
         texto+=socio.apellidos+'\t'
         texto+=socio.movil+'\t'
@@ -126,7 +126,7 @@ class Conexion():
     def guardar_profesor(self,profesor):
         f = open('profesores.csv','a+')
         texto =''
-        texto+=profesor.DNI+'\t'
+        texto+=profesor.DNI.upper()+'\t'
         texto+=profesor.nombre+'\t'
         texto+=profesor.apellidos+'\t'
         texto+=profesor.movil+'\t'
@@ -234,7 +234,7 @@ class Conexion():
     def guardar_reserva(self,reserva):
         f = open('reservas.csv','a+')
         texto =''
-        texto+= str(reserva.socio.DNI)+'\t'
+        texto+= str(reserva.socio.DNI.upper())+'\t'
         texto+=str(reserva.fecha)+'\t'
         texto+=str(reserva.instalacion.id)+'\n'
         f.write(texto)
@@ -319,7 +319,7 @@ class Conexion():
 
     def guardar_alquiler_fichero(self,alquiler,fichero):
         texto =''
-        texto +=alquiler.reserva.socio.DNI+'\t'
+        texto +=alquiler.reserva.socio.DNI.upper()+'\t'
         texto+= str(alquiler.reserva.fecha)+'\t'
         for ins in alquiler.instalaciones:
             texto+=str(ins.id)+'\t'
@@ -422,7 +422,7 @@ class Conexion():
         texto =''
         texto+=torneo.nombre+'\t'
         for s in torneo.socios:
-            texto+=s.DNI+'\t'
+            texto+=s.DNI.upper()+'\t'
         for r in torneo.resultados:
             texto+= r+'\t'
             texto+= str(torneo.resultados[r])+'\t'

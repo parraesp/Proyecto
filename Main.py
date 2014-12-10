@@ -3,13 +3,28 @@ from Club import Club
 
 def pedir_reserva():
     DNI = raw_input('DNI del socio que desea reservar: ')
+    while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                DNI =raw_input('DNI: ')
     fecha = raw_input('Fecha y hora para la reserva (dd/mm/aa HH): ')
+    while not club.validarFecha(fecha):
+                print '\033[91m'+'La fecha no tiene un formato correcto.'+'\033[0m'
+                fecha = raw_input('Fecha y hora para la reserva (dd/mm/aa HH): ')
     instalacionID = raw_input('Pista que desea reservar: ')
-    return club.crear_reserva(DNI,fecha, instalacionID,0)
+    while not club.validarInstalacion(instalacionID):
+                print '\033[91m'+'La instalacion no existe.'+'\033[0m'
+                instalacionID = raw_input('Pista que desea reservar: ')
+    return club.crear_reserva(DNI,fecha, instalacionID)
 
 def consultar_reserva():
-    DNI = raw_input('DNI del socio que reservo: ')
-    fecha = raw_input('Fecha y hora de la reserva (dd/mm/aa HH): ')
+    DNI = raw_input('DNI del socio que ha reservado: ')
+    while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                DNI =raw_input('DNI: ')
+    fecha = raw_input('Fecha y hora para la reserva (dd/mm/aa HH): ')
+    while not club.validarFecha(fecha):
+                print '\033[91m'+'La fecha no tiene un formato correcto.'+'\033[0m'
+                fecha = raw_input('Fecha y hora para la reserva (dd/mm/aa HH): ')
     reserva = club.consultar_reserva(DNI, fecha)
     return reserva
 
@@ -36,6 +51,7 @@ while(seleccion!='0'):
         print '3. Dar socio de baja'
         print '4. Consultar socio'
         seleccion = raw_input('Haga su seleccion: ')
+
         if(seleccion=='1'):
             DNI =raw_input('DNI: ')
             while not club.validarDNI(DNI):
@@ -44,10 +60,20 @@ while(seleccion!='0'):
             nombre = raw_input('Nombre: ')
             apellidos = raw_input('Apellidos: ')
             movil = raw_input('Movil: ')
+            while not club.validarTelefono(movil):
+                print '\033[91m'+'El telefono no tiene un formato correcto. Deben ser 9 digitos'+'\033[0m'
+                movil = raw_input('Movil: ')
             correo = raw_input('Correo electronico: ')
+            while not club.validarEmail(correo):
+                print '\033[91m'+'El email no es correcto.'+'\033[0m'
+                correo = raw_input('Correo electronico: ')
             club.alta_socio(DNI,nombre,apellidos,movil,correo)
+            seleccion = '-1'
         if(seleccion=='2'):
             DNI = raw_input('Editar datos del socio: ')
+            while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                DNI =raw_input('DNI: ')
             socio = club.obtener_socio(DNI)
             if (socio != -1):
                 print 'Introduzca nuevos valores: '
@@ -55,21 +81,36 @@ while(seleccion!='0'):
                 nombre = raw_input('Nombre: '+str(socio.nombre))
                 apellidos = raw_input('Apellidos: '+str(socio.apellidos))
                 movil = raw_input('Movil: '+str(socio.movil))
+                while not club.validarTelefono(movil):
+                    print '\033[91m'+'El telefono no tiene un formato correcto. Deben ser 9 digitos'+'\033[0m'
+                    movil = raw_input('Movil: '+str(socio.movil))
                 correo = raw_input('Correo electronico: '+str(socio.correo))
+                while not club.validarEmail(correo):
+                    print '\033[91m'+'El email no es correcto.'+'\033[0m'
+                    correo = raw_input('Correo electronico: '+str(socio.correo))
                 club.editar_socio(DNI,nombre,apellidos,movil,correo)
             else:
                 print '\033[91m'+'No existe ningun socio con ese DNI.'+'\033[0m'
-                seleccion = '-1'
+            seleccion = '-1'
         if(seleccion=='3'):
             DNI = raw_input('Introduzca el DNI del usuario a dar de baja: ')
+            while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
             socio = club.dar_baja_socio(DNI)
             if (socio == -1):
                 print '\033[91m'+'No existe ningun socio con ese DNI.'+'\033[0m'
-                seleccion = '-1'
+            seleccion = '-1'
         if(seleccion=='4'):
             DNI = raw_input('Introduzca el DNI del usuario a consultar: ')
+            while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
             socio = club.obtener_socio(DNI)
-            print socio
+            if (socio != -1):
+                print socio
+            else:
+                print '\033[91m'+'No existe ningun socio con ese DNI.'+'\033[0m'
+            seleccion = '-1'
+
 
     if (seleccion=='2'):
         print 'Haga su seleccion: '
@@ -78,10 +119,16 @@ while(seleccion!='0'):
         print '3. Consultar reservas'
         seleccion = raw_input('Haga su seleccion: ')
         if (seleccion=='1'):
-            pedir_reserva()
+            reserva = pedir_reserva()
         if(seleccion=='2'):
-            DNI = raw_input('DNI del socio que reservo: ')
-            fecha = raw_input('Fecha y hora de la reserva (dd/mm/aa HH): ')
+            DNI = raw_input('DNI del socio que desea reservar: ')
+            while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                DNI =raw_input('DNI: ')
+            fecha = raw_input('Fecha y hora para la reserva (dd/mm/aa HH): ')
+            while not club.validarFecha(fecha):
+                print '\033[91m'+'La fecha no tiene un formato correcto.'+'\033[0m'
+                fecha = raw_input('Fecha y hora para la reserva (dd/mm/aa HH): ')
             if(club.cancelar_reserva(DNI, fecha)):
                 print "La reserva ha sido cancelada"
             else:
@@ -110,6 +157,9 @@ while(seleccion!='0'):
                         ids.append(inst)
                     print 'Introduzca el id de la instalacion a alquilar o 0 para salir.'
                     inst = raw_input('Instalacion: ')
+                    while not club.validarInstalacion(inst) and inst != '0':
+                        print '\033[91m'+'La instalacion no existe.'+'\033[0m'
+                        inst = raw_input('Introduzca el id de la instalacion a alquilar o 0 para salir: ')
                 club.crear_alquiler(reserva,ids)
             else:
                 print "No existe una reserva para esa fecha"
@@ -135,67 +185,98 @@ while(seleccion!='0'):
         seleccion = raw_input('Haga su seleccion: ')
         if(seleccion=='1'):
             DNI =raw_input('DNI: ')
+            while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                DNI =raw_input('DNI: ')
             nombre = raw_input('Nombre: ')
             apellidos = raw_input('Apellidos: ')
             movil = raw_input('Movil: ')
+            while not club.validarTelefono(movil):
+                print '\033[91m'+'El telefono no tiene un formato correcto. Deben ser 9 digitos'+'\033[0m'
+                movil = raw_input('Movil: ')
             correo = raw_input('Correo electronico: ')
+            while not club.validarEmail(correo):
+                print '\033[91m'+'El email no es correcto.'+'\033[0m'
+                correo = raw_input('Correo electronico: ')
             salario = raw_input('Salario en euros: ')
             jornada = raw_input('Tipo de jornada: ')
             club.alta_profesor(DNI,nombre,apellidos,movil,correo,salario,jornada)
         if(seleccion=='2'):
-            DNI = raw_input('Editar datos del profesor: ')
+            DNI = raw_input('DNI del profesor: ')
+            while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                DNI =raw_input('DNI: ')
             profesor = club.obtener_profesor(DNI)
             print 'Introduzca nuevos valores: '
             print profesor
             nombre = raw_input('Nombre: ')
             apellidos = raw_input('Apellidos: ')
             movil = raw_input('Movil: ')
+            while not club.validarTelefono(movil):
+                print '\033[91m'+'El telefono no tiene un formato correcto. Deben ser 9 digitos'+'\033[0m'
+                movil = raw_input('Movil: ')
             correo = raw_input('Correo electronico: ')
+            while not club.validarEmail(correo):
+                print '\033[91m'+'El email no es correcto.'+'\033[0m'
+                correo = raw_input('Correo electronico: ')
             sueldo = raw_input('Sueldo: ')
             jornada = raw_input('Jornada: ')
             club.editar_profesor(DNI,nombre,apellidos,movil,correo, sueldo, jornada)
         if(seleccion=='3'):
             DNI = raw_input('Introduzca el DNI del profesor a dar de baja: ')
+            while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                DNI =raw_input('DNI: ')
             club.dar_baja_profesor(DNI)
         if(seleccion=='4'):
             DNI = raw_input('Introduzca el DNI del profesor a consultar: ')
+            while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                DNI =raw_input('DNI: ')
             profesor = club.obtener_profesor(DNI)
-            print profesor
+            if profesor != -1:
+                print profesor
+            else:
+                print 'No existe dicho profesor.'
 
     if(seleccion == '5'):
         print 'Haga su seleccion: '
         print '1. Registrar Clase'
-        print '2. Editar informacion clase'
-        print '3. Cancelar clase'
-        print '4. Consultar informacion clase'
+        print '2. Cancelar clase'
+        print '3. Consultar informacion clase'
         seleccion = raw_input('Haga su seleccion: ')
         if(seleccion == '1'):
             reserva = pedir_reserva()
             dni_profesor = raw_input('Introduzca DNI profesor: ')
+            while not club.validarDNI(dni_profesor):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                dni_profesor =raw_input('Introduzca DNI profesor: ')
             profesor = club.obtener_profesor(dni_profesor)
             club.registrar_clase(profesor, reserva)
         if(seleccion == '2'):
-            DNI = raw_input('Profesor de la clase: ')
-            fecha = raw_input('Fecha de la clase: ')
-            profesor = club.obtener_clase(club.obtener_profesor(DNI),club.consultar_reserva())
-            print 'Introduzca nuevos valores: '
-            print profesor
-            nombre = raw_input('Nombre: ')
-            apellidos = raw_input('Apellidos: ')
-            movil = raw_input('Movil: ')
-            correo = raw_input('Correo electronico: ')
-            sueldo = raw_input('Sueldo: ')
-            jornada = raw_input('Jornada: ')
-            club.editar_profesor(DNI,nombre,apellidos,movil,correo, sueldo, jornada)
-        if(seleccion == '3'):
-            DNI = raw_input('Introduzca el DNI del profesor que da la clase: ')
-            fecha = raw_input('Introduzca la fecha de la clase: ')
+            DNI = raw_input('Introduzca el DNI del profesor que da la clase:')
+            while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                DNI =raw_input('DNI: ')
+            fecha = raw_input('Fecha y hora para la clase (dd/mm/aa HH): ')
+            while not club.validarFecha(fecha):
+                print '\033[91m'+'La fecha no tiene un formato correcto.'+'\033[0m'
+                fecha = raw_input('Fecha y hora para la clase (dd/mm/aa HH): ')
             club.cancelar_clase(DNI,fecha)
-        if(seleccion == '4'):
-            DNI = raw_input('Introduzca el DNI del profesor que da la clase: ')
-            fecha = raw_input('Introduzca la fecha de la clase: ')
+        if(seleccion == '3'):
+            DNI = raw_input('Introduzca el DNI del profesor que da la clase:')
+            while not club.validarDNI(DNI):
+                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                DNI =raw_input('DNI: ')
+            fecha = raw_input('Fecha y hora para la clase (dd/mm/aa HH): ')
+            while not club.validarFecha(fecha):
+                print '\033[91m'+'La fecha no tiene un formato correcto.'+'\033[0m'
+                fecha = raw_input('Fecha y hora para la clase (dd/mm/aa HH): ')
             clase = club.obtener_clase(DNI,fecha)
-            print clase
+            if clase != -1:
+                print clase
+            else:
+                print 'No existe clase dicha clase.'
 
     if(seleccion == '6'):
         print 'Haga su seleccion: '
@@ -210,9 +291,19 @@ while(seleccion!='0'):
             socios = []
             while i<8:
                 DNI = raw_input('Introduzca el DNI del participante: ')
-                socios.append(club.obtener_socio(DNI))
-                i+=1
+                while not club.validarDNI(DNI):
+                    print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+                    DNI =raw_input('DNI: ')
+                socio = club.obtener_socio(DNI)
+                if (socio != -1):
+                    socios.append(socio)
+                    i+=1
+                else:
+                    print 'No existe socio para ese DNI.'
             fecha = raw_input('Introduzca una fecha para empezar el torneo: ')
+            while not club.validarFecha(fecha):
+                print '\033[91m'+'La fecha no tiene un formato correcto.'+'\033[0m'
+                fecha = raw_input('Fecha y hora para la clase (dd/mm/aa HH): ')
             club.crear_torneo(nombre, socios, fecha)
 
         if seleccion == '2':
@@ -223,8 +314,14 @@ while(seleccion!='0'):
 
         if seleccion == '3':
             nombre = raw_input('Introduzca el nombre del torneo: ')
-            club.borrar_torneo(nombre)
+            torneo = club.borrar_torneo(nombre)
+            if torneo ==-1:
+               print 'No existe un toreno con ese nombre.'
 
         if seleccion == '4':
             nombre = raw_input('Introduzca el nombre del torneo: ')
-            print club.consultar_torneo(nombre)
+            torneo = club.consultar_torneo(nombre)
+            if torneo !=-1:
+                print torneo
+            else:
+                print 'No existe un toreno con ese nombre.'
