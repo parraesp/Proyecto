@@ -28,6 +28,25 @@ def consultar_reserva():
     reserva = club.consultar_reserva(DNI, fecha)
     return reserva
 
+def pedir_datos_persona():
+    DNI =raw_input('DNI: ')
+    while not club.validarDNI(DNI):
+        print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
+        DNI =raw_input('DNI: ')
+    nombre = raw_input('Nombre: ')
+    apellidos = raw_input('Apellidos: ')
+    movil = raw_input('Movil: ')
+    while not club.validarTelefono(movil):
+        print '\033[91m'+'El telefono no tiene un formato correcto. Deben ser 9 digitos'+'\033[0m'
+        movil = raw_input('Movil: ')
+    correo = raw_input('Correo electronico: ')
+    while not club.validarEmail(correo):
+        print '\033[91m'+'El email no es correcto.'+'\033[0m'
+        correo = raw_input('Correo electronico: ')
+    datos = [DNI,nombre,apellidos,movil,correo]
+    return datos
+
+
 seleccion = -1
 print 'Bienvenido al sistema de gestion de clubes de padel'
 print '==================================================='
@@ -53,21 +72,8 @@ while(seleccion!='0'):
         seleccion = raw_input('Haga su seleccion: ')
 
         if(seleccion=='1'):
-            DNI =raw_input('DNI: ')
-            while not club.validarDNI(DNI):
-                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
-                DNI =raw_input('DNI: ')
-            nombre = raw_input('Nombre: ')
-            apellidos = raw_input('Apellidos: ')
-            movil = raw_input('Movil: ')
-            while not club.validarTelefono(movil):
-                print '\033[91m'+'El telefono no tiene un formato correcto. Deben ser 9 digitos'+'\033[0m'
-                movil = raw_input('Movil: ')
-            correo = raw_input('Correo electronico: ')
-            while not club.validarEmail(correo):
-                print '\033[91m'+'El email no es correcto.'+'\033[0m'
-                correo = raw_input('Correo electronico: ')
-            club.alta_socio(DNI,nombre,apellidos,movil,correo)
+            datos = pedir_datos_persona()
+            club.alta_socio(datos[0],datos[1],datos[2],datos[3],datos[4])
             seleccion = '-1'
         if(seleccion=='2'):
             DNI = raw_input('Editar datos del socio: ')
@@ -184,23 +190,10 @@ while(seleccion!='0'):
         print '4. Consultar profesor'
         seleccion = raw_input('Haga su seleccion: ')
         if(seleccion=='1'):
-            DNI =raw_input('DNI: ')
-            while not club.validarDNI(DNI):
-                print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'
-                DNI =raw_input('DNI: ')
-            nombre = raw_input('Nombre: ')
-            apellidos = raw_input('Apellidos: ')
-            movil = raw_input('Movil: ')
-            while not club.validarTelefono(movil):
-                print '\033[91m'+'El telefono no tiene un formato correcto. Deben ser 9 digitos'+'\033[0m'
-                movil = raw_input('Movil: ')
-            correo = raw_input('Correo electronico: ')
-            while not club.validarEmail(correo):
-                print '\033[91m'+'El email no es correcto.'+'\033[0m'
-                correo = raw_input('Correo electronico: ')
+            datos = pedir_datos_persona()
             salario = raw_input('Salario en euros: ')
             jornada = raw_input('Tipo de jornada: ')
-            club.alta_profesor(DNI,nombre,apellidos,movil,correo,salario,jornada)
+            club.alta_profesor(datos[0],datos[1],datos[2],datos[3],datos[4],salario,jornada)
         if(seleccion=='2'):
             DNI = raw_input('DNI del profesor: ')
             while not club.validarDNI(DNI):
