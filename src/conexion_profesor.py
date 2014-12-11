@@ -1,4 +1,5 @@
-from src import Profesor
+from src.Profesor import Profesor
+import os
 
 __author__ = 'alberto'
 import csv
@@ -10,7 +11,7 @@ class conexion_profesor():
     def __init__(self):
         self.__profesores= self.__listar_profesores()
     def guardar_profesor(self,profesor):
-        f = open('profesores.csv','a+')
+        f = open(os.path.dirname(__file__)+'/files/profesores.csv','a+')
         texto =''
         texto+=profesor.DNI+'\t'
         texto+=profesor.nombre+'\t'
@@ -49,7 +50,7 @@ class conexion_profesor():
         #Ahora lo cambiamos en el archivo
         tempfile = NamedTemporaryFile(delete=False)
 
-        with open('profesores.csv', 'rb') as csvFile, tempfile:
+        with open(os.path.dirname(__file__)+'/files/profesores.csv', 'rb') as csvFile, tempfile:
             reader = csv.reader(csvFile, delimiter='\t')
             writer = csv.writer(tempfile, delimiter='\t')
 
@@ -59,7 +60,7 @@ class conexion_profesor():
                     writer.writerow(row)
                 else:
                     writer.writerow(row)
-        shutil.move(tempfile.name, 'profesores.csv')
+        shutil.move(tempfile.name, os.path.dirname(__file__)+'/files/profesores.csv')
         csvFile.close()
         tempfile.close()
 
@@ -81,7 +82,7 @@ class conexion_profesor():
         #Ahora lo cambiamos en el archivo
         tempfile = NamedTemporaryFile(delete=False)
 
-        with open('profesores.csv', 'rb') as csvFile, tempfile:
+        with open(os.path.dirname(__file__)+'/files/profesores.csv', 'rb') as csvFile, tempfile:
             reader = csv.reader(csvFile, delimiter='\t')
             writer = csv.writer(tempfile, delimiter='\t')
 
@@ -97,12 +98,12 @@ class conexion_profesor():
                     writer.writerow(row)
                 else:
                     writer.writerow(row)
-        shutil.move(tempfile.name, 'profesores.csv')
+        shutil.move(tempfile.name, os.path.dirname(__file__)+'/files/profesores.csv')
         csvFile.close()
         tempfile.close()
     def __listar_profesores(self):
         profesores = []
-        with open('profesores.csv') as f:
+        with open(os.path.dirname(__file__)+'/files/profesores.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 profesor = Profesor(row[0],row[1],row[2],row[3],row[4],row[7],row[8],row[5],row[6])

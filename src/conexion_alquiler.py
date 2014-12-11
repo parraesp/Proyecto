@@ -1,4 +1,5 @@
-from src import Alquiler
+from src.Alquiler import Alquiler
+import os
 
 __author__ = 'alberto'
 import csv
@@ -13,7 +14,7 @@ class conexion_alquiler():
         self.__alquileres = self.__listar_alquileres()
 
     def guardar_alquiler(self,alquiler):
-        f = open('alquileres.csv','a+')
+        f = open(os.path.dirname(__file__)+'/files/alquileres.csv','a+')
         self.guardar_alquiler_fichero(alquiler,f)
         f.close()
         self.__alquileres.append(alquiler)
@@ -42,7 +43,7 @@ class conexion_alquiler():
             else:
                 cont=cont+1
 
-        f = open("alquileres.csv","w")
+        f = open("src/files/alquileres.csv","w")
         for alq in self.__alquileres:
             self.guardar_alquiler_fichero(alq,f)
         f.close()
@@ -59,7 +60,7 @@ class conexion_alquiler():
 
     def __listar_alquileres(self):
         alquileres = []
-        with open('alquileres.csv') as f:
+        with open(os.path.dirname(__file__)+'/files/alquileres.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 fecha = datetime.strptime(row[1], "%d/%m/%y %H:%M")

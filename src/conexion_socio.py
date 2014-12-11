@@ -1,8 +1,8 @@
-from src import Socio
-
+from src.Socio import Socio
 __author__ = 'alberto'
 import csv
 import shutil
+import os
 from tempfile import NamedTemporaryFile
 
 
@@ -12,7 +12,7 @@ class conexion_socio():
 
     def __listar_socios(self):
         socios = []
-        with open('socios.csv') as f:
+        with open(os.path.dirname(__file__)+'/files/socios.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 socio = Socio(row[0],row[1],row[2],row[3],row[4],row[5],row[6])
@@ -20,7 +20,7 @@ class conexion_socio():
         f.close()
         return socios
     def guardar_socio(self,socio):
-        f = open('socios.csv','a+')
+        f = open(os.path.dirname(__file__)+'/files/socios.csv','a+')
         texto =''
         texto+=socio.DNI+'\t'
         texto+=socio.nombre+'\t'
@@ -51,7 +51,7 @@ class conexion_socio():
         #Ahora lo cambiamos en el archivo
         tempfile = NamedTemporaryFile(delete=False)
 
-        with open('socios.csv', 'rb') as csvFile, tempfile:
+        with open(os.path.dirname(__file__)+'/files/socios.csv', 'rb') as csvFile, tempfile:
             reader = csv.reader(csvFile, delimiter='\t')
             writer = csv.writer(tempfile, delimiter='\t')
 
@@ -61,7 +61,7 @@ class conexion_socio():
                     writer.writerow(row)
                 else:
                     writer.writerow(row)
-        shutil.move(tempfile.name, 'socios.csv')
+        shutil.move(tempfile.name, os.path.dirname(__file__)+'/files/socios.csv')
         csvFile.close()
         tempfile.close()
 
@@ -81,7 +81,7 @@ class conexion_socio():
         #Ahora lo cambiamos en el archivo
         tempfile = NamedTemporaryFile(delete=False)
 
-        with open('socios.csv', 'rb') as csvFile, tempfile:
+        with open(os.path.dirname(__file__)+'/files/socios.csv', 'rb') as csvFile, tempfile:
             reader = csv.reader(csvFile, delimiter='\t')
             writer = csv.writer(tempfile, delimiter='\t')
 
@@ -95,6 +95,6 @@ class conexion_socio():
                     writer.writerow(row)
                 else:
                     writer.writerow(row)
-        shutil.move(tempfile.name, 'socios.csv')
+        shutil.move(tempfile.name, os.path.dirname(__file__)+'/files/socios.csv')
         csvFile.close()
         tempfile.close()

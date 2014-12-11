@@ -1,5 +1,5 @@
-from src import Torneo
-
+from src.Torneo import Torneo
+import os
 __author__ = 'alberto'
 import csv
 class conexion_torneo():
@@ -9,7 +9,7 @@ class conexion_torneo():
         self.__torneos = self.__listar_torneos()
 
     def guardar_torneo(self,torneo):
-        f = open('torneos.csv','a+')
+        f = open(os.path.dirname(__file__)+'/files/torneos.csv','a+')
         self.guardar_torneo_fichero(torneo,f)
         f.close()
         self.__torneos.append(torneo)
@@ -39,18 +39,18 @@ class conexion_torneo():
 
     def poner_resultado(self, torneo, partido,resultado):
         torneo.set_resultado(partido,resultado)
-        f = open("torneos.csv","w")
+        f = open("src/files/torneos.csv","w")
         for t in self.__torneos:
             self.guardar_torneo_fichero(t,f)
         f.close()
 
     def borrar_torneo(self,torneo):
         self.__torneos.remove(torneo)
-        f = open("torneos.csv","r")
+        f = open("src/files/torneos.csv","r")
         torneos = f.readlines()
         f.close()
 
-        f = open("torneos.csv","w")
+        f = open("src/files/torneos.csv","w")
         for t in torneos:
             tAux = t.split("\t")
             if tAux[0]!=torneo.nombre:
@@ -60,7 +60,7 @@ class conexion_torneo():
 
     def __listar_torneos(self):
         torneos = []
-        with open('torneos.csv') as f:
+        with open(os.path.dirname(__file__)+'/files/torneos.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 if row:

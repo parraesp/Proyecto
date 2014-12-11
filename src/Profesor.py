@@ -1,4 +1,4 @@
-from src import Socio
+from src.Socio import Socio
 
 __author__ = 'alberto'
 

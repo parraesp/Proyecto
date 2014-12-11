@@ -1,4 +1,5 @@
 from src import Clase
+import os
 
 __author__ = 'alberto'
 import csv
@@ -22,7 +23,7 @@ class conexion_clase():
         return valor
 
     def guardar_clase(self,clase):
-        f = open('clases.csv','a+')
+        f = open(os.path.dirname(__file__)+'/files/clases.csv','a+')
         texto =''
         texto+= clase.get_profesor().get_DNI()+'\t'
         texto+= str(clase.get_reserva().get_fecha().strftime("%d/%m/%y %H:%M"))+'\n'
@@ -33,20 +34,20 @@ class conexion_clase():
     def borrar_clase(self,profesor,fecha):
         tempfile = NamedTemporaryFile(delete=False)
 
-        with open('clases.csv', 'rb') as csvFile, tempfile:
+        with open(os.path.dirname(__file__)+'/files/clases.csv', 'rb') as csvFile, tempfile:
             reader = csv.reader(csvFile, delimiter='\t')
             writer = csv.writer(tempfile, delimiter='\t')
 
             for row in reader:
                 if(row[0]!=profesor and row[1]!=str(fecha)):
                     writer.writerow(row)
-        shutil.move(tempfile.name, 'clases.csv')
+        shutil.move(tempfile.name, os.path.dirname(__file__)+'/files/clases.csv')
         csvFile.close()
         tempfile.close()
 
     def __listar_clases(self):
         clases = []
-        with open('clases.csv') as f:
+        with open(os.path.dirname(__file__)+'/files/clases.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 fecha = datetime.strptime(row[1], "%d/%m/%y %H:%M")

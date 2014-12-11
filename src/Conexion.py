@@ -1,5 +1,10 @@
-from src import conexion_reserva, conexion_profesor, conexion_alquiler, conexion_clase, conexion_instalacion, \
-    conexion_socio, conexion_torneo
+from src.conexion_reserva import conexion_reserva
+from src.conexion_profesor import conexion_profesor
+from src.conexion_alquiler import conexion_alquiler
+from src.conexion_clase import conexion_clase
+from src.conexion_instalacion import conexion_instalacion
+from src.conexion_socio import conexion_socio
+from src.conexion_torneo import conexion_torneo
 
 __author__ = 'alberto'
 

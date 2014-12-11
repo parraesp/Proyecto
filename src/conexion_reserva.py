@@ -1,8 +1,8 @@
-from src import Reserva
+from src.Reserva import Reserva
 
 __author__ = 'alberto'
 import csv
-
+import os
 
 class conexion_reserva():
     def __init__(self, socios, instalaciones):
@@ -10,7 +10,7 @@ class conexion_reserva():
         self.__instalaciones = instalaciones
         self.__reservas = self.__listar_reservas()
     def guardar_reserva(self,reserva):
-        f = open('reservas.csv','a+')
+        f = open(os.path.dirname(__file__)+'/files/reservas.csv','a+')
         texto =''
         texto+= str(reserva.socio.DNI)+'\t'
         texto+=str(reserva.fecha)+'\t'
@@ -38,11 +38,11 @@ class conexion_reserva():
         if (reserva != -1):
             borrado = True
             self.__reservas.remove(reserva)
-            f = open("reservas.csv","r")
+            f = open("src/files/reservas.csv","r")
             reservas = f.readlines()
             f.close()
 
-            f = open("reservas.csv","w")
+            f = open("src/files/reservas.csv","w")
             for res in reservas:
                 resAux = res.split("\t")
                 if resAux[1]!=fecha.strftime("%d/%m/%y %H:%M") and resAux[0] != DNI:
@@ -52,7 +52,7 @@ class conexion_reserva():
 
     def __listar_reservas(self):
         reservas = []
-        with open('reservas.csv') as f:
+        with open(os.path.dirname(__file__)+'/files/reservas.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 socio = self.__socios.sacar_socio(row[0])

@@ -1,5 +1,5 @@
-from src import Instalacion
-
+from src.Instalacion import Instalacion
+import os
 __author__ = 'alberto'
 import csv
 class conexion_instalacion():
@@ -7,7 +7,7 @@ class conexion_instalacion():
         self.__instalaciones = self.__listar_instalaciones()
     def sacar_instalacion(self,instalacionID):
         instalacion = False
-        with open('instalaciones.csv') as f:
+        with open(os.path.dirname(__file__)+'/files/instalaciones.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 if(row[0]==instalacionID):
@@ -17,7 +17,7 @@ class conexion_instalacion():
 
     def __listar_instalaciones(self):
         instalaciones = []
-        with open('instalaciones.csv') as f:
+        with open(os.path.dirname(__file__)+'/files/instalaciones.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 instalacion = Instalacion(row[0],row[1],row[2])

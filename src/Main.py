@@ -1,4 +1,4 @@
-from src import Club
+from src.Club import Club
 
 __author__ = 'alberto'
 

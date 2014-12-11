@@ -1,4 +1,6 @@
-from src import Torneo, Clase, Socio, Conexion, Reserva, Alquiler
+
+from src.Conexion import Conexion
+
 
 __author__ = 'Ricardo'
 from datetime import *
