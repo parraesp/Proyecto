@@ -1,8 +1,9 @@
+from src import Clase
+
 __author__ = 'alberto'
 import csv
 import shutil
 from tempfile import NamedTemporaryFile
-from Clase import  Clase
 from datetime import datetime
 class conexion_clase():
     def __init__(self):

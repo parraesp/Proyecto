@@ -1,5 +1,6 @@
+from src import Torneo
+
 __author__ = 'alberto'
-from Torneo import Torneo
 import csv
 class conexion_torneo():
 

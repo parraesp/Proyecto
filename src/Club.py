@@ -1,13 +1,9 @@
+from src import Torneo, Clase, Socio, Conexion, Reserva, Alquiler
+
 __author__ = 'Ricardo'
-from Conexion import *
-from Socio import Socio
-from Reserva import Reserva
-from Conexion import Conexion
 from datetime import *
-from Clase import Clase
-from Torneo import Torneo
 import re
-from Alquiler import Alquiler
+
 
 class Club():
     def __init__(self):
@@ -114,7 +110,7 @@ class Club():
     def consultar_alquiler(self,reserva):
         return self.__conexion.sacar_alquiler(reserva)
 
-    def validarDNI(self,DNI):
+    def validarDNI(self, DNI):
         error = True
         DNI = DNI.upper()
         if len(DNI) == 9:
@@ -125,14 +121,14 @@ class Club():
                     if not str(n).isdigit():
                         error = False
             else:
-               error = False
+                error = False
         else:
             error = False
         return error
 
     def validarEmail(self,email):
-        if re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,4}$',email.lower()):
-	        result = True
+        if re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,4}$', email.lower()):
+            result = True
         else:
 	        result = False
         return result

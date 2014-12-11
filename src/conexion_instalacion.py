@@ -1,5 +1,6 @@
+from src import Instalacion
+
 __author__ = 'alberto'
-from Instalacion import Instalacion
 import csv
 class conexion_instalacion():
     def __init__(self):

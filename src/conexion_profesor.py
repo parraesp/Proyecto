@@ -1,8 +1,10 @@
+from src import Profesor
+
 __author__ = 'alberto'
 import csv
 import shutil
 from tempfile import NamedTemporaryFile
-from Profesor import Profesor
+
 
 class conexion_profesor():
     def __init__(self):

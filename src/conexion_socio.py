@@ -1,8 +1,10 @@
+from src import Socio
+
 __author__ = 'alberto'
 import csv
 import shutil
 from tempfile import NamedTemporaryFile
-from Socio import Socio
+
 
 class conexion_socio():
     def __init__(self):

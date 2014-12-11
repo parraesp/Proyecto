@@ -1,5 +1,7 @@
+from src import Club
+
 __author__ = 'alberto'
-from Club import Club
+
 
 def pedir_reserva():
     DNI = raw_input('DNI del socio que desea reservar: ')

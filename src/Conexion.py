@@ -1,21 +1,7 @@
+from src import conexion_reserva, conexion_profesor, conexion_alquiler, conexion_clase, conexion_instalacion, \
+    conexion_socio, conexion_torneo
+
 __author__ = 'alberto'
-import csv
-import shutil
-from Socio import Socio
-from Instalacion import Instalacion
-from Reserva import Reserva
-from Clase import Clase
-from Alquiler import Alquiler
-from Profesor import Profesor
-from Torneo import Torneo
-from datetime import *
-from conexion_socio import conexion_socio
-from conexion_profesor import conexion_profesor
-from conexion_alquiler import conexion_alquiler
-from conexion_clase import conexion_clase
-from conexion_instalacion import conexion_instalacion
-from conexion_reserva import conexion_reserva
-from conexion_torneo import conexion_torneo
 
 
 class Conexion():
@@ -97,6 +83,7 @@ class Conexion():
 
     def sacar_torneo(self,nombre):
         return self.__conexion_torneo.sacar_torneo(nombre)
+
     def poner_resultado(self, torneo, partido,resultado):
         self.__conexion_torneo.poner_resultado(torneo, partido,resultado)
 

@@ -1,6 +1,7 @@
+from src import Alquiler
+
 __author__ = 'alberto'
 import csv
-from Alquiler import Alquiler
 from datetime import datetime
 
 

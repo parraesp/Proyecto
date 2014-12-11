@@ -1,6 +1,9 @@
+from src import Reserva
+
 __author__ = 'alberto'
 import csv
-from Reserva import Reserva
+
+
 class conexion_reserva():
     def __init__(self, socios, instalaciones):
         self.__socios = socios

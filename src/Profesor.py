@@ -1,5 +1,6 @@
+from src import Socio
+
 __author__ = 'alberto'
-from Socio import Socio
 
 
 class Profesor(Socio):
