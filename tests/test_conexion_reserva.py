@@ -6,7 +6,6 @@ from src.Instalacion import Instalacion
 from mockito import mock, when
 from datetime import *
 import os
-
 __author__ = 'Ricardo'
 
 

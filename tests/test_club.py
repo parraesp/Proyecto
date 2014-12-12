@@ -5,8 +5,6 @@ from random import randrange
 from datetime import *
 from src.Socio import Socio
 from src.Profesor import Profesor
-from mockito import mock
-
 __author__ = 'Ricardo'
 
 
@@ -26,15 +24,6 @@ class TestClub(TestCase):
         self.assertFalse(club.validarDNI('12345678-a'))
         self.assertFalse(club.validarDNI('1234567a8'))
 
-    def test_validarEmail(self):
-        club = Club()
-        self.assertTrue(club.validarEmail('olakase@hotmail.com'))
-        self.assertFalse(club.validarEmail('noesunemail'))
-    def test_obtener_socio(self):
-        club = Club()
-        self.assertIsInstance(club.obtener_socio("49116999K"), Socio)
-        self.assertEqual(club.obtener_socio("socioNoExistente"), -1)
-
     def test_validarInstalacion(self):
         club = Club()
         self.assertTrue(club.validarInstalacion('inst01'))
@@ -42,6 +31,31 @@ class TestClub(TestCase):
         self.assertTrue(club.validarInstalacion('pala3'))
         self.assertFalse(club.validarInstalacion('1234134'))
         self.assertFalse(club.validarInstalacion('inst1'))
+
+    def test_validarEmail(self):
+        club = Club()
+        self.assertTrue(club.validarEmail('olakase@hotmail.com'))
+        self.assertFalse(club.validarEmail('noesunemail'))
+
+    def test_validarTelefono(self):
+        club = Club()
+        self.assertTrue(club.validarTelefono('123456789'))
+        self.assertFalse(club.validarTelefono('1234589'))
+        self.assertFalse(club.validarTelefono('abcdefghi'))
+
+    def test_validarFecha(self):
+        club = Club()
+        self.assertTrue(club.validarFecha('12/12/14 17'))
+        self.assertFalse(club.validarFecha('12-12-14 17'))
+        self.assertFalse(club.validarFecha('32/22/14 17'))
+        self.assertFalse(club.validarFecha('12/20/14 17'))
+        self.assertFalse(club.validarFecha('12/12/14 17:00'))
+
+    def test_obtener_socio(self):
+        club = Club()
+        self.assertIsInstance(club.obtener_socio("49116999K"), Socio)
+        self.assertEqual(club.obtener_socio("socioNoExistente"), -1)
+
     def test_editar_socio(self):
         club = Club()
         club.editar_socio("49116999K","Juan Jose", "Perez","666209821","email_nuevo@example.org")
@@ -97,19 +111,7 @@ class TestClub(TestCase):
         self.assertEqual(profesor.movil,"733456564")
         self.assertEqual(profesor.correo,"eslebt@derkom.in")
         self.assertEqual(profesor.get_salario(),3000)
-        self.assertEqual(profesor.get_jornada(),"Completa")    def test_validarTelefono(self):
-        club = Club()
-        self.assertTrue(club.validarTelefono('123456789'))
-        self.assertFalse(club.validarTelefono('1234589'))
-        self.assertFalse(club.validarTelefono('abcdefghi'))
-
-    def test_validarFecha(self):
-        club = Club()
-        self.assertTrue(club.validarFecha('12/12/14 17'))
-        self.assertFalse(club.validarFecha('12-12-14 17'))
-        self.assertFalse(club.validarFecha('32/22/14 17'))
-        self.assertFalse(club.validarFecha('12/20/14 17'))
-        self.assertFalse(club.validarFecha('12/12/14 17:00'))
+        self.assertEqual(profesor.get_jornada(),"Completa")
 
     def test_crear_reserva(self):
         fecha = self.crear_fecha_random()
