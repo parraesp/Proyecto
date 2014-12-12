@@ -53,11 +53,14 @@ class Conexion():
     def guardar_clase(self,clase):
         self.__conexion_clase.guardar_clase(clase)
 
-    def sacar_reserva(self,DNI, fecha):
-        return self.__conexion_reserva.sacar_reserva(DNI,fecha)
+    def sacar_reserva(self, DNI, fecha):
+        return self.__conexion_reserva.sacar_reserva(DNI, fecha)
 
-    def borrar_reserva(self,DNI,fecha):
-        return self.__conexion_reserva.borrar_reserva(DNI,fecha)
+    def verificar_reserva(self, fecha):
+        return self.__conexion_reserva.verificar_reserva(fecha)
+
+    def borrar_reserva(self, DNI, fecha):
+        return self.__conexion_reserva.borrar_reserva(DNI, fecha)
 
     def guardar_alquiler(self,alquiler):
         self.__conexion_alquiler.guardar_alquiler(alquiler)

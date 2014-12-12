@@ -14,8 +14,8 @@ class conexion_alquiler():
         self.__alquileres = self.__listar_alquileres()
 
     def guardar_alquiler(self,alquiler):
-        f = open(os.path.dirname(__file__)+'/files/alquileres.csv','a+')
-        self.guardar_alquiler_fichero(alquiler,f)
+        f = open(os.path.dirname(__file__)+'/files/alquileres.csv', 'a+')
+        self.guardar_alquiler_fichero(alquiler, f)
         f.close()
         self.__alquileres.append(alquiler)
 
@@ -26,7 +26,7 @@ class conexion_alquiler():
         while(cont<len(self.__alquileres) and not(encontrado)):
             if(self.__alquileres[cont].reserva == reserva):
                 encontrado = True
-                valor=self.__alquileres[cont]
+                valor = self.__alquileres[cont]
             else:
                 cont=cont+1
         return valor
@@ -49,13 +49,13 @@ class conexion_alquiler():
         f.close()
         return valor
 
-    def guardar_alquiler_fichero(self,alquiler,fichero):
-        texto =''
-        texto +=alquiler.reserva.socio.DNI+'\t'
-        texto+= str(alquiler.reserva.fecha)+'\t'
+    def guardar_alquiler_fichero(self, alquiler, fichero):
+        texto = ''
+        texto += alquiler.reserva.socio.DNI+'\t'
+        texto += str(alquiler.reserva.fecha.strftime("%d/%m/%y %H:%M"))+'\t'
         for ins in alquiler.instalaciones:
-            texto+=str(ins.id)+'\t'
-        texto+=str(alquiler.devuelto)+'\n'
+            texto += str(ins.id)+'\t'
+        texto += str(alquiler.devuelto)+'\n'
         fichero.write(texto)
 
     def __listar_alquileres(self):
@@ -64,9 +64,9 @@ class conexion_alquiler():
             content = csv.reader(f, delimiter='\t')
             for row in content:
                 fecha = datetime.strptime(row[1], "%d/%m/%y %H:%M")
-                reserva = self.reservas.sacar_reserva(row[0],fecha)
+                reserva = self.reservas.sacar_reserva(row[0], fecha)
                 alquiler = Alquiler(reserva)
-                for i in range(2,len(row)-1,1):
+                for i in range(2, len(row)-1, 1):
                     instalacion = self.instalaciones.sacar_instalacion(row[i])
                     alquiler.aniadir_instalacion(instalacion)
                 if (row[len(row)-1] == 'True'):

@@ -155,12 +155,12 @@ while(seleccion!='0'):
         print '2. Devolver alquiler'
         print '3. Consultar alquiler'
         seleccion = raw_input('Haga su seleccion: ')
-        if (seleccion=='1'):
+        if (seleccion == '1'):
             reserva = consultar_reserva()
             if (reserva != -1):
                 inst = '-1'
                 ids = []
-                while(inst!= '0'):
+                while(inst != '0'):
                     if (inst != '-1'):
                         ids.append(inst)
                     print 'Introduzca el id de la instalacion a alquilar o 0 para salir.'
@@ -168,7 +168,7 @@ while(seleccion!='0'):
                     while not club.validarInstalacion(inst) and inst != '0':
                         print '\033[91m'+'La instalacion no existe.'+'\033[0m'
                         inst = raw_input('Introduzca el id de la instalacion a alquilar o 0 para salir: ')
-                club.crear_alquiler(reserva,ids)
+                club.crear_alquiler(reserva, ids)
             else:
                 print "No existe una reserva para esa fecha"
         if (seleccion=='2'):

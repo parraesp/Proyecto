@@ -45,7 +45,7 @@ class conexion_socio():
                 cont=cont+1
         return valor
 
-    def dar_baja_socio(self,socio):
+    def dar_baja_socio(self, socio):
         ind = self.__socios.index(socio)
         self.__socios[ind].cambiar_estado()
         #Ahora lo cambiamos en el archivo
@@ -56,7 +56,7 @@ class conexion_socio():
             writer = csv.writer(tempfile, delimiter='\t')
 
             for row in reader:
-                if(row[0]==self.__socios[ind].DNI):
+                if(row[0] == self.__socios[ind].DNI):
                     row[6]=False
                     writer.writerow(row)
                 else:

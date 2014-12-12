@@ -30,9 +30,6 @@ class Reserva():
         self.__fecha = fecha
         self.__instalacion = instalacion
 
-    def __eq__(self, other):
-        return self.__fecha == other.fecha and self.__socio.DNI == other.socio.DNI
-
     def __str__(self):
         return 'Socio: ' + self.__socio.__str__() + ' Fecha: '+str(self.__fecha) + \
                ' Instalacion: '+self.__instalacion.__str__()
