@@ -1,5 +1,6 @@
 
 from src.Conexion import Conexion
+from src.Socio import Socio
 from src.Reserva import Reserva
 from src.Torneo import Torneo
 from src.Alquiler import Alquiler

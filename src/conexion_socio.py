@@ -77,7 +77,6 @@ class conexion_socio():
         self.__socios[cont].set_apellidos(apellidos)
         self.__socios[cont].set_movil(movil)
         self.__socios[cont].set_correo(correo)
-        print self.__socios[cont]
         #Ahora lo cambiamos en el archivo
         tempfile = NamedTemporaryFile(delete=False)
 
