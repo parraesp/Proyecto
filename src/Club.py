@@ -1,7 +1,5 @@
-
 from src.Conexion import Conexion
-
-
+from src.Socio import Socio
 __author__ = 'Ricardo'
 from datetime import *
 import re

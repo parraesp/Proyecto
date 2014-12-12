@@ -78,7 +78,6 @@ class conexion_profesor():
         self.__profesores[cont].set_correo(correo)
         self.__profesores[cont].set_salario(sueldo)
         self.__profesores[cont].set_jornada(jornada)
-        print self.__profesores[cont]
         #Ahora lo cambiamos en el archivo
         tempfile = NamedTemporaryFile(delete=False)
 

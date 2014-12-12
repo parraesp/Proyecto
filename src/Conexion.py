@@ -31,7 +31,6 @@ class Conexion():
     def sacar_socio(self,DNI):
         return self.__conexion_socio.sacar_socio(DNI)
 
-
     def sacar_profesor(self,DNI):
         return self.__conexion_profesor.sacar_profesor(DNI)
 
