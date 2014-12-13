@@ -96,10 +96,6 @@ class Club():
         #fecha = datetime.strptime(fecha, "%d/%m/%y %H")
         return self.__conexion.borrar_clase(profesor,fecha)
 
-    def obtener_instalacion(self,id):
-        instalacion = self.__conexion.sacar_instalacion(id)
-        return instalacion
-
     def obtener_clase(self,profesor, fecha):
         clase = self.__conexion.sacar_clase(profesor,fecha)
         return clase
@@ -152,14 +148,17 @@ class Club():
             result = False
         return result
 
-    def validarFecha(self,fecha):
+    def validarFecha(self, fecha):
         result = False
         try:
-            if datetime.strptime(fecha,'%d/%m/%y %H'):
+            if datetime.strptime(fecha, '%d/%m/%y %H'):
                 result = True
         except:
             pass
         return result
 
-    def validarInstalacion(self,instalacionID):
-        return self.__conexion.sacar_instalacion(instalacionID)
+    def validarInstalacion(self, instalacionID):
+        valida = True
+        if self.__conexion.sacar_instalacion(instalacionID) == -1:
+            valida = False
+        return valida

@@ -21,10 +21,6 @@ class Reserva():
     def set_instalacion(self, instalacion):
         self.__instalacion = instalacion
 
-    fecha = property(get_fecha, set_fecha)
-    instalacion = property(get_instalacion, set_instalacion)
-    socio = property(get_socio, set_socio)
-
     def __init__(self, socio, fecha, instalacion):
         self.__socio = socio
         self.__fecha = fecha

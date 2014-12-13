@@ -11,10 +11,6 @@ class Instalacion():
     def get_instalacion_id(self):
         return self.__instalacion_id
 
-    id = property(get_instalacion_id)
-    descripcion = property(get_descripcion)
-    precio = property(get_precio)
-
     def __init__(self, instalacion_id, descripcion, precio):
         self.__instalacion_id = instalacion_id
         self.__precio = precio

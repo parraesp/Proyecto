@@ -26,8 +26,8 @@ class conexion_reserva():
         cont = 0
         encontrado = False
         while(cont < len(self.__reservas) and not(encontrado)):
-            if(self.__reservas[cont].fecha == fecha and
-               self.__reservas[cont].socio.DNI == DNI):
+            if(self.__reservas[cont].get_fecha() == fecha and
+               self.__reservas[cont].get_socio().get_DNI() == DNI):
                 encontrado = True
                 valor = self.__reservas[cont]
             else:
@@ -38,7 +38,7 @@ class conexion_reserva():
         cont = 0
         verf = True
         while(cont < len(self.__reservas) and verf):
-            if(self.__reservas[cont].fecha == fecha):
+            if(self.__reservas[cont].get_fecha() == fecha):
                 verf = False
             else:
                 cont = cont+1

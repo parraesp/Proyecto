@@ -7,55 +7,54 @@ from datetime import datetime
 
 
 class conexion_alquiler():
-
     def __init__(self, reservas, instalaciones):
         self.reservas = reservas
         self.instalaciones = instalaciones
         self.__alquileres = self.__listar_alquileres()
 
-    def guardar_alquiler(self,alquiler):
+    def guardar_alquiler(self, alquiler):
         f = open(os.path.dirname(__file__)+'/files/alquileres.csv', 'a+')
         self.guardar_alquiler_fichero(alquiler, f)
         f.close()
         self.__alquileres.append(alquiler)
 
-    def sacar_alquiler(self,reserva):
+    def sacar_alquiler(self, reserva):
         valor = -1
         cont = 0
         encontrado = False
-        while(cont<len(self.__alquileres) and not(encontrado)):
-            if(self.__alquileres[cont].reserva == reserva):
+        while(cont < len(self.__alquileres) and not(encontrado)):
+            if(self.__alquileres[cont].get_reserva() == reserva):
                 encontrado = True
                 valor = self.__alquileres[cont]
             else:
-                cont=cont+1
+                cont = cont+1
         return valor
 
-    def devolver_alquiler(self,reserva):
+    def devolver_alquiler(self, reserva):
         valor = -1
         cont = 0
         encontrado = False
-        while(cont<len(self.__alquileres) and not(encontrado)):
+        while(cont < len(self.__alquileres) and not(encontrado)):
             if(self.__alquileres[cont].reserva == reserva):
                 encontrado = True
                 self.__alquileres[cont].devuelto = True
-                valor=self.__alquileres[cont]
+                valor = self.__alquileres[cont]
             else:
-                cont=cont+1
+                cont = cont+1
 
-        f = open("src/files/alquileres.csv","w")
+        f = open("src/files/alquileres.csv", "w")
         for alq in self.__alquileres:
-            self.guardar_alquiler_fichero(alq,f)
+            self.guardar_alquiler_fichero(alq, f)
         f.close()
         return valor
 
     def guardar_alquiler_fichero(self, alquiler, fichero):
         texto = ''
-        texto += alquiler.reserva.socio.DNI+'\t'
-        texto += str(alquiler.reserva.fecha.strftime("%d/%m/%y %H:%M"))+'\t'
-        for ins in alquiler.instalaciones:
-            texto += str(ins.id)+'\t'
-        texto += str(alquiler.devuelto)+'\n'
+        texto += alquiler.get_reserva().get_socio().get_DNI()+'\t'
+        texto += str(alquiler.get_reserva().get_fecha().strftime("%d/%m/%y %H:%M"))+'\t'
+        for ins in alquiler.get_instalaciones():
+            texto += str(ins.get_instalacion_id())+'\t'
+        texto += str(alquiler.is_devuelto())+'\n'
         fichero.write(texto)
 
     def __listar_alquileres(self):
@@ -70,9 +69,9 @@ class conexion_alquiler():
                     instalacion = self.instalaciones.sacar_instalacion(row[i])
                     alquiler.aniadir_instalacion(instalacion)
                 if (row[len(row)-1] == 'True'):
-                    alquiler.devuelto = True
+                    alquiler.set_devuelto(True)
                 else:
-                    alquiler.devuelto = False
+                    alquiler.set_devuelto(False)
                 alquileres.append(alquiler)
         f.close()
         return alquileres
