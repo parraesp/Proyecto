@@ -32,7 +32,6 @@ class TestConexion_torneo(TestCase):
         self.assertIsInstance(con.sacar_torneo('calidad'), Torneo)
         self.assertEqual(-1, con.sacar_torneo('probando'), Torneo)
 
-
     def test_borrar_torneo(self):
         socio = mock(Socio)
         socio = mock(Socio)

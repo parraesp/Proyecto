@@ -14,9 +14,9 @@ class conexion_reserva():
     def guardar_reserva(self, reserva):
         f = open(os.path.dirname(__file__)+'/files/reservas.csv', 'a+')
         texto = ''
-        texto += str(reserva.socio.get_DNI())+'\t'
-        texto += str(reserva.fecha.strftime("%d/%m/%y %H:%M"))+'\t'
-        texto += str(reserva.instalacion.get_instalacion_id())+'\n'
+        texto += str(reserva.get_socio().get_DNI())+'\t'
+        texto += str(reserva.get_fecha().strftime("%d/%m/%y %H:%M"))+'\t'
+        texto += str(reserva.get_instalacion().get_instalacion_id())+'\n'
         f.write(texto)
         f.close()
         self.__reservas.append(reserva)
