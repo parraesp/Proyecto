@@ -40,11 +40,11 @@ class TestConexion_reserva(TestCase):
         self.assertEqual(-1, con.sacar_reserva('12345678A', fecha2), Reserva)
 
     def test_verificar_reserva(self):
-        con = conexion_reserva(mock(), mock())
+        con = conexion_reserva(mock(), conexion_instalacion())
         fecha = datetime.strptime('02/05/24 16', '%d/%m/%y %H')
         fecha2 = datetime.strptime('02/01/07 07', '%d/%m/%y %H')
-        self.assertFalse(con.verificar_reserva(fecha))
-        self.assertTrue(con.verificar_reserva(fecha2))
+        self.assertFalse(con.verificar_reserva(fecha, 'inst01'))
+        self.assertTrue(con.verificar_reserva(fecha2, 'inst01'))
 
     def test_borrar_reserva(self):
         socio = mock(Socio)

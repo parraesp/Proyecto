@@ -20,6 +20,7 @@ class TestConexion_profesor(TestCase):
         tmp_file.close()
         tmp_file = open(link, 'w')
         tmp_file.writelines(lines)
+        tmp_file.close()
 
     def test_sacar_profesor(self):
         con = conexion_profesor()
@@ -35,21 +36,24 @@ class TestConexion_profesor(TestCase):
         tmp_file.close()
         tmp_file = open(link, 'w')
         tmp_file.writelines(lines)
+        tmp_file.close()
 
     def test_dar_baja_profesor(self):
         con = conexion_profesor()
         prof = Profesor("49116666Q", "Don Juan", "Tenorio", "634824490", "daswirdaendern@jetzt.de", 3000, "Completa")
         con.guardar_profesor(prof)
+        con.dar_baja_profesor(prof.DNI)
         link = os.path.dirname(__file__)
         link = link[:-6] + '/src/files/profesores.csv'
         tmp_file = open(link, 'r')
-        con.dar_baja_profesor(prof.DNI)
         lines = tmp_file.readlines()
-        self.assertEqual(lines[len(lines)-1], "49116666Q\tDon Juan\tTenorio\t634824490\tdaswirdaendern@jetzt.de\t"+str(time.strftime("%d/%m/%y"))+"\tFalse\t3000\tCompleta\r\n")
-        lines.pop()
+        self.assertEqual(lines[len(lines)-1], "49116666Q\tDon Juan\tTenorio\t634824490\tdaswirdaendern@jetzt.de\t"
+                         + str(time.strftime("%d/%m/%y"))+"\tFalse\t3000\tCompleta\r\n")
         tmp_file.close()
+        lines.pop()
         tmp_file = open(link, 'w')
         tmp_file.writelines(lines)
+        tmp_file.close()
 
     def test_cambiar_profesor(self):
         con = conexion_profesor()
@@ -65,3 +69,4 @@ class TestConexion_profesor(TestCase):
         tmp_file.close()
         tmp_file = open(link, 'w')
         tmp_file.writelines(lines)
+        tmp_file.close()
