@@ -6,6 +6,8 @@ import csv
 import shutil
 from tempfile import NamedTemporaryFile
 from datetime import datetime
+
+
 class conexion_clase():
     def __init__(self):
         self.__clases = self.__listar_clases()

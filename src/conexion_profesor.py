@@ -38,7 +38,7 @@ class conexion_profesor():
                 cont=cont+1
         return valor
 
-    def dar_baja_profesor(self,DNI):
+    def dar_baja_profesor(self, DNI):
         cont = 0
         encontrado = False
         while(cont<len(self.__profesores) and not(encontrado)):
