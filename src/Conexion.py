@@ -18,9 +18,7 @@ class Conexion():
         self.__conexion_reserva = conexion_reserva(self.__conexion_socio, self.__conexion_instalacion)
         self.__conexion_alquiler = conexion_alquiler(self.__conexion_reserva, self.__conexion_instalacion)
         self.__conexion_clase = conexion_clase()
-
         self.__conexion_torneo = conexion_torneo(self.__conexion_socio)
-
 
     def guardar_socio(self,socio):
         self.__conexion_socio.guardar_socio(socio)

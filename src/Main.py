@@ -73,11 +73,11 @@ while(seleccion!='0'):
         print '4. Consultar socio'
         seleccion = raw_input('Haga su seleccion: ')
 
-        if(seleccion=='1'):
+        if(seleccion == '1'):
             datos = pedir_datos_persona()
             club.alta_socio(datos[0],datos[1],datos[2],datos[3],datos[4])
             seleccion = '-1'
-        if(seleccion=='2'):
+        if(seleccion == '2'):
             DNI = raw_input('Editar datos del socio: ')
             while not club.validarDNI(DNI):
                 print '\033[91m'+'El DNI no tiene un formato correcto.'+'\033[0m'

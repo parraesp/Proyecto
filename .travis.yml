@@ -23,9 +23,3 @@ after_success:
     - radon mi tests/.
     - radon mi src/.
     - coveralls
-notifications:
-  email:
-    recipients:
-      - ricki7_92@hotmail.com
-    on_failure: always
-    on_success: never

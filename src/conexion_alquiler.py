@@ -42,7 +42,7 @@ class conexion_alquiler():
             else:
                 cont = cont+1
 
-        f = open("src/files/alquileres.csv", "w")
+        f = open(os.path.dirname(__file__)+'/files/alquileres.csv', "w")
         for alq in self.__alquileres:
             self.guardar_alquiler_fichero(alq, f)
         f.close()

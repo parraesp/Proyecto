@@ -16,7 +16,6 @@ class Club():
         self.__conexion = Conexion()
 
     def alta_socio(self,DNI,nombre,apellidos,movil,correo):
-        #verificar datos
         socio = Socio(DNI,nombre,apellidos,movil,correo)
         self.__conexion.guardar_socio(socio)
 
