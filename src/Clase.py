@@ -31,22 +31,6 @@ class Clase():
         """
         return self.__reserva
 
-    def set_profesor(self, profesor):
-        """
-        Asigna un profesor a una clase
-
-        :param: Profesor
-        """
-        self.__profesor = profesor
-
-    def set_reservaI(self, reserva):
-        """
-        Asigna una reserva a una clase
-
-        :param: Reserva
-        """
-        self.__reserva = reserva
-
     def __str__(self):
         """
         Devuelve en una cadena toda la informacion de una clase

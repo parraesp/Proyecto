@@ -2,20 +2,26 @@ from unittest import TestCase
 from src.Socio import Socio
 from src.Torneo import Torneo
 from mockito import mock, when
-from src.conexion_torneo import conexion_torneo
-from src.conexion_socio import conexion_socio
+from src.conexion_torneo import ConexionTorneo
+from src.conexion_socio import ConexionSocio
 import os
 __author__ = 'Ricardo'
 
 
-class TestConexion_torneo(TestCase):
+class TestConexionTorneo(TestCase):
+    """
+    Clase con los test unitarios del modelo de torneos
+    """
     def test_guardar_torneo_fichero(self):
+        """
+        Test unitario que verificar que se guarda un torneo en el fichero
+        """
         socio = mock(Socio)
-        when(socio).get_DNI().thenReturn('11111111K')
+        when(socio).get_dni().thenReturn('11111111K')
         socios = []
         for i in range(0, 8, 1):
             socios.append(socio)
-        con = conexion_torneo(mock(conexion_socio))
+        con = ConexionTorneo(mock(ConexionSocio))
         torneo = Torneo('torneoprueba', socios)
         f = open('newFile.txt', 'w')
         con.guardar_torneo_fichero(torneo, f)
@@ -28,18 +34,23 @@ class TestConexion_torneo(TestCase):
         os.remove('newFile.txt')
 
     def test_sacar_torneo(self):
-        con = conexion_torneo(mock(conexion_socio))
+        """
+        Test unitario para verificar que se obtiene un torneo del modelo
+        """
+        con = ConexionTorneo(mock(ConexionSocio))
         self.assertIsInstance(con.sacar_torneo('calidad'), Torneo)
         self.assertEqual(-1, con.sacar_torneo('probando'), Torneo)
 
     def test_borrar_torneo(self):
+        """
+        Test unitario que verifica la  eliminacion de un torneo de forma permanente
+        """
         socio = mock(Socio)
-        socio = mock(Socio)
-        when(socio).get_DNI().thenReturn('11111111K')
+        when(socio).get_dni().thenReturn('11111111K')
         socios = []
         for i in range(0, 8, 1):
             socios.append(socio)
-        con = conexion_torneo(mock(conexion_socio))
+        con = ConexionTorneo(mock(ConexionSocio))
         torneo = Torneo('torneoprueba', socios)
         con.guardar_torneo(torneo)
         con.borrar_torneo(torneo)

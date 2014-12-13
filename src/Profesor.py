@@ -7,11 +7,11 @@ class Profesor(Socio):
     """
     Clase que gestiona los profesores del club
     """
-    def __init__(self, DNI, nombre, apellidos, movil, correo , salario, jornada, *otros):
+    def __init__(self, dni, nombre, apellidos, movil, correo, salario, jornada, *otros):
         """
         Constructor de la clase profesor
 
-        :param: DNI
+        :param: dni
         :param: nombre
         :param: apellidos
         :param: movil
@@ -20,10 +20,10 @@ class Profesor(Socio):
         :param: tipo de jornada
         :param: parametros a usar en caso de querer cargar un objeto de la persistencia en lugar de crear uno nuevo
         """
-        if(len(otros) == 2):
-            Socio.__init__(self, DNI, nombre, apellidos, movil, correo, otros[0], otros[1])
+        if len(otros) == 2:
+            Socio.__init__(self, dni, nombre, apellidos, movil, correo, otros[0], otros[1])
         else:
-            Socio.__init__(self, DNI, nombre, apellidos, movil, correo)
+            Socio.__init__(self, dni, nombre, apellidos, movil, correo)
         self.__salario = int(salario)
         self.__jornada = str(jornada)
 

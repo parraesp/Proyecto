@@ -5,24 +5,30 @@ from src.Alquiler import Alquiler
 from src.Instalacion import Instalacion
 from mockito import mock, when
 from datetime import *
-from src.conexion_alquiler import conexion_alquiler
-from src.conexion_reserva import conexion_reserva
-from src.conexion_instalacion import conexion_instalacion
+from src.conexion_alquiler import ConexionAlquiler
+from src.conexion_reserva import ConexionReserva
+from src.conexion_instalacion import ConexionInstalacion
 import os
 __author__ = 'Ricardo'
 
 
-class TestConexion_alquiler(TestCase):
+class TestConexionAlquiler(TestCase):
+    """
+    Clases con los test unitarios del modelo de alquiler
+    """
     def test_guardar_alquiler_fichero(self):
+        """
+        Test para guardar un alquiler en un fichero
+        """
         socio = mock(Socio)
-        when(socio).get_DNI().thenReturn('11111111K')
+        when(socio).get_dni().thenReturn('11111111K')
         inst = mock(Instalacion)
         when(inst).get_instalacion_id().thenReturn('instprueba')
         fecha = datetime.strptime('01/01/07 07', '%d/%m/%y %H')
         reserva = Reserva(socio, fecha, mock(Instalacion))
         alquiler = Alquiler(reserva)
         alquiler.aniadir_instalacion(inst)
-        con = conexion_alquiler(mock(conexion_reserva),  mock(conexion_instalacion))
+        con = ConexionAlquiler(mock(ConexionReserva),  mock(ConexionInstalacion))
         f = open('newFile.txt', 'w')
         con.guardar_alquiler_fichero(alquiler, f)
         f.close()
