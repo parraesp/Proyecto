@@ -1,0 +1,2 @@
+[![Build Status](https://travis-ci.org/racede/empresa_travis.svg?branch=master)](https://travis-ci.org/racede/empresa_travis)
+[![Coverage Status](https://coveralls.io/repos/racede/empresa_travis/badge.png?branch=master)](https://coveralls.io/r/racede/empresa_travis?branch=master)
