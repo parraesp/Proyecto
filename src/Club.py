@@ -187,7 +187,7 @@ class Club():
         Devuelve los datos de un torneo ya creado
 
         :param nombre: nombre del torneo
-        :return:torneo
+        :return: torneo
         """
         return self.__conexion.sacar_torneo(nombre)
 
