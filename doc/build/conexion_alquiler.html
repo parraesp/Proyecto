@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Conexion de alquiler &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="index.html" />
+    <link rel="next" title="Conexion de clase" href="conexion_clase.html" />
+    <link rel="prev" title="Conexion" href="conexion.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="conexion_clase.html" title="Conexion de clase"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="conexion.html" title="Conexion"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="conexion-de-alquiler">
+<h1>Conexion de alquiler<a class="headerlink" href="#conexion-de-alquiler" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-src.conexion_alquiler"></span><dl class="class">
+<dt id="src.conexion_alquiler.ConexionAlquiler">
+<em class="property">class </em><tt class="descclassname">src.conexion_alquiler.</tt><tt class="descname">ConexionAlquiler</tt><big>(</big><em>reservas</em>, <em>instalaciones</em><big>)</big><a class="reference internal" href="_modules/src/conexion_alquiler.html#ConexionAlquiler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_alquiler.ConexionAlquiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modelo para la clase alquiler</p>
+<dl class="method">
+<dt id="src.conexion_alquiler.ConexionAlquiler.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>reservas</em>, <em>instalaciones</em><big>)</big><a class="reference internal" href="_modules/src/conexion_alquiler.html#ConexionAlquiler.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_alquiler.ConexionAlquiler.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor de la conexion alquiler</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>reservas</strong> &#8211; conexion de reservas</li>
+<li><strong>instalaciones</strong> &#8211; conexion de alquileres</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.conexion_alquiler.ConexionAlquiler.devolver_alquiler">
+<tt class="descname">devolver_alquiler</tt><big>(</big><em>reserva</em><big>)</big><a class="reference internal" href="_modules/src/conexion_alquiler.html#ConexionAlquiler.devolver_alquiler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_alquiler.ConexionAlquiler.devolver_alquiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve un alquiler y lo guarda en fichero</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reserva</strong> &#8211; reserva asociada</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">alquiler devuelto</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.conexion_alquiler.ConexionAlquiler.guardar_alquiler">
+<tt class="descname">guardar_alquiler</tt><big>(</big><em>alquiler</em><big>)</big><a class="reference internal" href="_modules/src/conexion_alquiler.html#ConexionAlquiler.guardar_alquiler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_alquiler.ConexionAlquiler.guardar_alquiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guarda un alquiler en el club y en el fichero</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alquiler</strong> &#8211; alquiler a guardar</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="src.conexion_alquiler.ConexionAlquiler.guardar_alquiler_fichero">
+<em class="property">static </em><tt class="descname">guardar_alquiler_fichero</tt><big>(</big><em>alquiler</em>, <em>fichero</em><big>)</big><a class="reference internal" href="_modules/src/conexion_alquiler.html#ConexionAlquiler.guardar_alquiler_fichero"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_alquiler.ConexionAlquiler.guardar_alquiler_fichero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metodo para guadar un alquiler en fichero</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>alquiler</strong> &#8211; alquiler a guardar</li>
+<li><strong>fichero</strong> &#8211; fichero para guardar</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.conexion_alquiler.ConexionAlquiler.sacar_alquiler">
+<tt class="descname">sacar_alquiler</tt><big>(</big><em>reserva</em><big>)</big><a class="reference internal" href="_modules/src/conexion_alquiler.html#ConexionAlquiler.sacar_alquiler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_alquiler.ConexionAlquiler.sacar_alquiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene un alquiler del modelo</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reserva</strong> &#8211; reserva asociada</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">alquiler</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="conexion.html"
+                        title="previous chapter">Conexion</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="conexion_clase.html"
+                        title="next chapter">Conexion de clase</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/conexion_alquiler.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="conexion_clase.html" title="Conexion de clase"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="conexion.html" title="Conexion"
+             >previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

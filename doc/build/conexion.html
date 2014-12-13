@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Conexion &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="index.html" />
+    <link rel="next" title="Conexion de alquiler" href="conexion_alquiler.html" />
+    <link rel="prev" title="Club" href="club.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="conexion_alquiler.html" title="Conexion de alquiler"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="club.html" title="Club"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="conexion">
+<h1>Conexion<a class="headerlink" href="#conexion" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-src.Conexion"></span><dl class="class">
+<dt id="src.Conexion.Conexion">
+<em class="property">class </em><tt class="descclassname">src.Conexion.</tt><tt class="descname">Conexion</tt><a class="reference internal" href="_modules/src/Conexion.html#Conexion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modelo de la aplicacion, tiene el resto de conexiones necesarias para guardar los datos.
+Se encarga solo de conectarse con los modelos especificos.</p>
+<dl class="method">
+<dt id="src.Conexion.Conexion.__init__">
+<tt class="descname">__init__</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor de la clase conexion</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.borrar_clase">
+<tt class="descname">borrar_clase</tt><big>(</big><em>profesor</em>, <em>fecha</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.borrar_clase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.borrar_clase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Elimina una clase del club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>profesor</strong> &#8211; dni del profesor</li>
+<li><strong>fecha</strong> &#8211; fecha de la clase</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.borrar_reserva">
+<tt class="descname">borrar_reserva</tt><big>(</big><em>dni</em>, <em>fecha</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.borrar_reserva"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.borrar_reserva" title="Permalink to this definition">¶</a></dt>
+<dd><p>Borra una reserva del club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dni</strong> &#8211; dni del socio</li>
+<li><strong>fecha</strong> &#8211; fecha de la reserva</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">reserva borrada</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.borrar_torneo">
+<tt class="descname">borrar_torneo</tt><big>(</big><em>torneo</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.borrar_torneo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.borrar_torneo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Elimina un torneo del club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>torneo</strong> &#8211; nombre del torneo</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.cambiar_profesor">
+<tt class="descname">cambiar_profesor</tt><big>(</big><em>dni</em>, <em>nombre</em>, <em>apellidos</em>, <em>movil</em>, <em>correo</em>, <em>sueldo</em>, <em>jornada</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.cambiar_profesor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.cambiar_profesor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edita los datos de un profesor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dni</strong> &#8211; dni del socio</li>
+<li><strong>nombre</strong> &#8211; nuevo nombre</li>
+<li><strong>apellidos</strong> &#8211; nuevos apellidos</li>
+<li><strong>movil</strong> &#8211; nuevo telefono</li>
+<li><strong>correo</strong> &#8211; nuevo correo</li>
+<li><strong>sueldo</strong> &#8211; nuevo sueldo</li>
+<li><strong>joranda</strong> &#8211; nueva jornada</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.cambiar_socio">
+<tt class="descname">cambiar_socio</tt><big>(</big><em>dni</em>, <em>nombre</em>, <em>apellidos</em>, <em>movil</em>, <em>correo</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.cambiar_socio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.cambiar_socio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edita los datos de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dni</strong> &#8211; dni del socio</li>
+<li><strong>nombre</strong> &#8211; nuevo nombre</li>
+<li><strong>apellidos</strong> &#8211; nuevos apellidos</li>
+<li><strong>movil</strong> &#8211; nuevo telefono</li>
+<li><strong>correo</strong> &#8211; nuevo correo</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.dar_baja_profesor">
+<tt class="descname">dar_baja_profesor</tt><big>(</big><em>dni</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.dar_baja_profesor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.dar_baja_profesor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Da de baja a un profesor en el club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dni</strong> &#8211; dni del profesor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.dar_baja_socio">
+<tt class="descname">dar_baja_socio</tt><big>(</big><em>socio</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.dar_baja_socio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.dar_baja_socio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Da de baja a un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>socio</strong> &#8211; socio</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.devolver_alquiler">
+<tt class="descname">devolver_alquiler</tt><big>(</big><em>reserva</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.devolver_alquiler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.devolver_alquiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve un alquiler</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reserva</strong> &#8211; reserva asociada</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">alquiler devuelto</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.guardar_alquiler">
+<tt class="descname">guardar_alquiler</tt><big>(</big><em>alquiler</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.guardar_alquiler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.guardar_alquiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guarda un alquiler en el club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alquiler</strong> &#8211; alquiler a guardar</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.guardar_clase">
+<tt class="descname">guardar_clase</tt><big>(</big><em>clase</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.guardar_clase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.guardar_clase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guarda una clase en el club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>clase</strong> &#8211; clase a guardar</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.guardar_profesor">
+<tt class="descname">guardar_profesor</tt><big>(</big><em>profesor</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.guardar_profesor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.guardar_profesor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guarda un profesor en el club
+:param profesor: profesor a guardar</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.guardar_reserva">
+<tt class="descname">guardar_reserva</tt><big>(</big><em>reserva</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.guardar_reserva"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.guardar_reserva" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guarda una reserva en el club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reserva</strong> &#8211; reserva a guardar</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.guardar_socio">
+<tt class="descname">guardar_socio</tt><big>(</big><em>socio</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.guardar_socio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.guardar_socio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guarda un socio
+:param socio: socio a guardar</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.guardar_torneo">
+<tt class="descname">guardar_torneo</tt><big>(</big><em>torneo</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.guardar_torneo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.guardar_torneo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guarda un torneo en el club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>torneo</strong> &#8211; torneo a guardar</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.poner_resultado">
+<tt class="descname">poner_resultado</tt><big>(</big><em>torneo</em>, <em>partido</em>, <em>resultado</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.poner_resultado"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.poner_resultado" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establece un resultado para un partido de un toreno</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>torneo</strong> &#8211; nombre del torneo</li>
+<li><strong>partido</strong> &#8211; partido el torneo</li>
+<li><strong>resultado</strong> &#8211; resultado del torneo</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.sacar_alquiler">
+<tt class="descname">sacar_alquiler</tt><big>(</big><em>reserva</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.sacar_alquiler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.sacar_alquiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene los datos de un alquiler</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reserva</strong> &#8211; reserva asociada</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">alquiler</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.sacar_clase">
+<tt class="descname">sacar_clase</tt><big>(</big><em>profesor</em>, <em>dni</em>, <em>fecha</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.sacar_clase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.sacar_clase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene un clase del club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>profesor</strong> &#8211; dni del profesor</li>
+<li><strong>dni</strong> &#8211; dni del socio</li>
+<li><strong>fecha</strong> &#8211; fecha de la clase</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">clase</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.sacar_instalacion">
+<tt class="descname">sacar_instalacion</tt><big>(</big><em>instalacion_id</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.sacar_instalacion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.sacar_instalacion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una instalacion del club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>instalacion_id</strong> &#8211; id de la instalacion</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">instalacion</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.sacar_profesor">
+<tt class="descname">sacar_profesor</tt><big>(</big><em>dni</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.sacar_profesor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.sacar_profesor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene un profesor del club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dni</strong> &#8211; dni del profesor</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">profesor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.sacar_reserva">
+<tt class="descname">sacar_reserva</tt><big>(</big><em>dni</em>, <em>fecha</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.sacar_reserva"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.sacar_reserva" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene una reserva del club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dni</strong> &#8211; dni del socio que reservo</li>
+<li><strong>fecha</strong> &#8211; fecha de la reserva</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">reserva</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.sacar_socio">
+<tt class="descname">sacar_socio</tt><big>(</big><em>dni</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.sacar_socio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.sacar_socio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene un socio del club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dni</strong> &#8211; dni del socio</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">socio</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.sacar_torneo">
+<tt class="descname">sacar_torneo</tt><big>(</big><em>nombre</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.sacar_torneo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.sacar_torneo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene los datos de un torneo existente</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>nombre</strong> &#8211; nombre del torneo</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">torneo</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Conexion.Conexion.verificar_reserva">
+<tt class="descname">verificar_reserva</tt><big>(</big><em>fecha</em>, <em>instalacion_id</em><big>)</big><a class="reference internal" href="_modules/src/Conexion.html#Conexion.verificar_reserva"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Conexion.Conexion.verificar_reserva" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifica si una reserva existe ya para una fecha e instalacion dada</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fecha</strong> &#8211; fecha de la reserva</li>
+<li><strong>instalacion_id</strong> &#8211; id de la isntalacion</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">reserve valida</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="club.html"
+                        title="previous chapter">Club</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="conexion_alquiler.html"
+                        title="next chapter">Conexion de alquiler</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/conexion.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="conexion_alquiler.html" title="Conexion de alquiler"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="club.html" title="Club"
+             >previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

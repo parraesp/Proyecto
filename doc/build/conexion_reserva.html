@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Conexion de reserva &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="index.html" />
+    <link rel="next" title="Conexion de socio" href="conexion_socio.html" />
+    <link rel="prev" title="Conexion de alquiler" href="conexion_profesor.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="conexion_socio.html" title="Conexion de socio"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="conexion_profesor.html" title="Conexion de alquiler"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="conexion-de-reserva">
+<h1>Conexion de reserva<a class="headerlink" href="#conexion-de-reserva" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-src.conexion_reserva"></span><dl class="class">
+<dt id="src.conexion_reserva.ConexionReserva">
+<em class="property">class </em><tt class="descclassname">src.conexion_reserva.</tt><tt class="descname">ConexionReserva</tt><big>(</big><em>socios</em>, <em>instalaciones</em><big>)</big><a class="reference internal" href="_modules/src/conexion_reserva.html#ConexionReserva"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_reserva.ConexionReserva" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modelo de la clase reserva</p>
+<dl class="method">
+<dt id="src.conexion_reserva.ConexionReserva.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>socios</em>, <em>instalaciones</em><big>)</big><a class="reference internal" href="_modules/src/conexion_reserva.html#ConexionReserva.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_reserva.ConexionReserva.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor de la clase</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>socios</strong> &#8211; modelo de socios</li>
+<li><strong>instalaciones</strong> &#8211; modelo de instalaciones</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.conexion_reserva.ConexionReserva.borrar_reserva">
+<tt class="descname">borrar_reserva</tt><big>(</big><em>dni</em>, <em>fecha</em><big>)</big><a class="reference internal" href="_modules/src/conexion_reserva.html#ConexionReserva.borrar_reserva"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_reserva.ConexionReserva.borrar_reserva" title="Permalink to this definition">¶</a></dt>
+<dd><p>Borra una reserva del fichero y del club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dni</strong> &#8211; socio que reservo</li>
+<li><strong>fecha</strong> &#8211; fecha de la reserva</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.conexion_reserva.ConexionReserva.guardar_reserva">
+<tt class="descname">guardar_reserva</tt><big>(</big><em>reserva</em><big>)</big><a class="reference internal" href="_modules/src/conexion_reserva.html#ConexionReserva.guardar_reserva"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_reserva.ConexionReserva.guardar_reserva" title="Permalink to this definition">¶</a></dt>
+<dd><p>Guarda una reserva en el fichero y en el club</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reserva</strong> &#8211; reserva a guardar</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.conexion_reserva.ConexionReserva.sacar_reserva">
+<tt class="descname">sacar_reserva</tt><big>(</big><em>dni</em>, <em>fecha</em><big>)</big><a class="reference internal" href="_modules/src/conexion_reserva.html#ConexionReserva.sacar_reserva"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_reserva.ConexionReserva.sacar_reserva" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtiene los datos de una reserva</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dni</strong> &#8211; dni del socio</li>
+<li><strong>fecha</strong> &#8211; fecha de la reserva</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">reserva</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.conexion_reserva.ConexionReserva.verificar_reserva">
+<tt class="descname">verificar_reserva</tt><big>(</big><em>fecha</em>, <em>instalacion_id</em><big>)</big><a class="reference internal" href="_modules/src/conexion_reserva.html#ConexionReserva.verificar_reserva"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.conexion_reserva.ConexionReserva.verificar_reserva" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifica los datos de un reserva para no repetirla</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fecha</strong> &#8211; fecha de la reserva</li>
+<li><strong>instalacion_id</strong> &#8211; instalacion a reservas</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">reserva valida</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="conexion_profesor.html"
+                        title="previous chapter">Conexion de alquiler</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="conexion_socio.html"
+                        title="next chapter">Conexion de socio</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/conexion_reserva.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="conexion_socio.html" title="Conexion de socio"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="conexion_profesor.html" title="Conexion de alquiler"
+             >previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

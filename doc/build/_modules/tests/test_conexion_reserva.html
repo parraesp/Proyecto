@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tests.test_conexion_reserva &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for tests.test_conexion_reserva</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">src.conexion_reserva</span> <span class="kn">import</span> <span class="n">ConexionReserva</span>
+<span class="kn">from</span> <span class="nn">src.Reserva</span> <span class="kn">import</span> <span class="n">Reserva</span>
+<span class="kn">from</span> <span class="nn">src.Socio</span> <span class="kn">import</span> <span class="n">Socio</span>
+<span class="kn">from</span> <span class="nn">src.Instalacion</span> <span class="kn">import</span> <span class="n">Instalacion</span>
+<span class="kn">from</span> <span class="nn">mockito</span> <span class="kn">import</span> <span class="n">mock</span><span class="p">,</span> <span class="n">when</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.conexion_socio</span> <span class="kn">import</span> <span class="n">ConexionSocio</span>
+<span class="kn">from</span> <span class="nn">src.conexion_instalacion</span> <span class="kn">import</span> <span class="n">ConexionInstalacion</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Ricardo&#39;</span>
+
+
+<div class="viewcode-block" id="TestConexionReserva"><a class="viewcode-back" href="../../test_reserva.html#tests.test_conexion_reserva.TestConexionReserva">[docs]</a><span class="k">class</span> <span class="nc">TestConexionReserva</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase con los test unitarios del modelo de reservas</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TestConexionReserva.test_guardar_reserva"><a class="viewcode-back" href="../../test_reserva.html#tests.test_conexion_reserva.TestConexionReserva.test_guardar_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">test_guardar_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test unitario que verifica que se guarda una reserva de forma permanente</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">socio</span> <span class="o">=</span> <span class="n">mock</span><span class="p">(</span><span class="n">Socio</span><span class="p">)</span>
+        <span class="n">con</span> <span class="o">=</span> <span class="n">ConexionReserva</span><span class="p">(</span><span class="n">mock</span><span class="p">(</span><span class="n">ConexionSocio</span><span class="p">),</span> <span class="n">mock</span><span class="p">(</span><span class="n">ConexionInstalacion</span><span class="p">))</span>
+        <span class="n">inst</span> <span class="o">=</span> <span class="n">mock</span><span class="p">(</span><span class="n">Instalacion</span><span class="p">)</span>
+        <span class="n">when</span><span class="p">(</span><span class="n">socio</span><span class="p">)</span><span class="o">.</span><span class="n">get_dni</span><span class="p">()</span><span class="o">.</span><span class="n">thenReturn</span><span class="p">(</span><span class="s">&#39;11111111K&#39;</span><span class="p">)</span>
+        <span class="n">when</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span><span class="o">.</span><span class="n">get_instalacion_id</span><span class="p">()</span><span class="o">.</span><span class="n">thenReturn</span><span class="p">(</span><span class="s">&#39;inst02&#39;</span><span class="p">)</span>
+        <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s">&#39;01/01/07 07&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s">/%m/%y %H&#39;</span><span class="p">)</span>
+        <span class="n">reserva</span> <span class="o">=</span> <span class="n">Reserva</span><span class="p">(</span><span class="n">socio</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="n">inst</span><span class="p">)</span>
+        <span class="n">con</span><span class="o">.</span><span class="n">guardar_reserva</span><span class="p">(</span><span class="n">reserva</span><span class="p">)</span>
+        <span class="n">link</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
+        <span class="n">link</span> <span class="o">=</span> <span class="n">link</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;src/files/reservas.csv&#39;</span>
+        <span class="n">tmp_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">tmp_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;11111111K</span><span class="se">\t</span><span class="s">01/01/07 07:00</span><span class="se">\t</span><span class="s">inst02</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">tmp_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">tmp_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">tmp_file</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestConexionReserva.test_sacar_reserva"><a class="viewcode-back" href="../../test_reserva.html#tests.test_conexion_reserva.TestConexionReserva.test_sacar_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">test_sacar_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test unitario que verifica que obtiene una reserva del modelo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">con</span> <span class="o">=</span> <span class="n">ConexionReserva</span><span class="p">(</span><span class="n">ConexionSocio</span><span class="p">(),</span> <span class="n">mock</span><span class="p">(</span><span class="n">ConexionInstalacion</span><span class="p">))</span>
+        <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s">&#39;02/05/24 16&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s">/%m/%y %H&#39;</span><span class="p">)</span>
+        <span class="n">fecha2</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s">&#39;02/05/23 16&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s">/%m/%y %H&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">sacar_reserva</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">,</span> <span class="n">fecha</span><span class="p">),</span> <span class="n">Reserva</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">con</span><span class="o">.</span><span class="n">sacar_reserva</span><span class="p">(</span><span class="s">&#39;12222278A&#39;</span><span class="p">,</span> <span class="n">fecha</span><span class="p">),</span> <span class="n">Reserva</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">con</span><span class="o">.</span><span class="n">sacar_reserva</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">,</span> <span class="n">fecha2</span><span class="p">),</span> <span class="n">Reserva</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestConexionReserva.test_verificar_reserva"><a class="viewcode-back" href="../../test_reserva.html#tests.test_conexion_reserva.TestConexionReserva.test_verificar_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">test_verificar_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test unitario para verificar una reserva existente</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">con</span> <span class="o">=</span> <span class="n">ConexionReserva</span><span class="p">(</span><span class="n">mock</span><span class="p">(),</span> <span class="n">ConexionInstalacion</span><span class="p">())</span>
+        <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s">&#39;02/05/24 16&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s">/%m/%y %H&#39;</span><span class="p">)</span>
+        <span class="n">fecha2</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s">&#39;02/01/07 07&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s">/%m/%y %H&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">verificar_reserva</span><span class="p">(</span><span class="n">fecha</span><span class="p">,</span> <span class="s">&#39;inst01&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">verificar_reserva</span><span class="p">(</span><span class="n">fecha2</span><span class="p">,</span> <span class="s">&#39;inst01&#39;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="TestConexionReserva.test_borrar_reserva"><a class="viewcode-back" href="../../test_reserva.html#tests.test_conexion_reserva.TestConexionReserva.test_borrar_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">test_borrar_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test unitario que verifica que se borra una reserva de forma permanente</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">socio</span> <span class="o">=</span> <span class="n">mock</span><span class="p">(</span><span class="n">Socio</span><span class="p">)</span>
+        <span class="n">con</span> <span class="o">=</span> <span class="n">ConexionReserva</span><span class="p">(</span><span class="n">ConexionSocio</span><span class="p">(),</span> <span class="n">mock</span><span class="p">(</span><span class="n">ConexionInstalacion</span><span class="p">))</span>
+        <span class="n">inst</span> <span class="o">=</span> <span class="n">mock</span><span class="p">(</span><span class="n">Instalacion</span><span class="p">)</span>
+        <span class="n">when</span><span class="p">(</span><span class="n">socio</span><span class="p">)</span><span class="o">.</span><span class="n">get_dni</span><span class="p">()</span><span class="o">.</span><span class="n">thenReturn</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">)</span>
+        <span class="n">when</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span><span class="o">.</span><span class="n">get_instalacion_id</span><span class="p">()</span><span class="o">.</span><span class="n">thenReturn</span><span class="p">(</span><span class="s">&#39;inst02&#39;</span><span class="p">)</span>
+        <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s">&#39;01/01/07 07&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s">/%m/%y %H&#39;</span><span class="p">)</span>
+        <span class="n">reserva</span> <span class="o">=</span> <span class="n">Reserva</span><span class="p">(</span><span class="n">socio</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="n">inst</span><span class="p">)</span>
+        <span class="n">con</span><span class="o">.</span><span class="n">guardar_reserva</span><span class="p">(</span><span class="n">reserva</span><span class="p">)</span>
+        <span class="n">con</span><span class="o">.</span><span class="n">borrar_reserva</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">,</span> <span class="n">fecha</span><span class="p">)</span>
+        <span class="n">link</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
+        <span class="n">link</span> <span class="o">=</span> <span class="n">link</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;src/files/reservas.csv&#39;</span>
+        <span class="n">tmp_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">tmp_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEquals</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;11111111K</span><span class="se">\t</span><span class="s">01/01/07 07:00</span><span class="se">\t</span><span class="s">inst02</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+        <span class="n">tmp_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

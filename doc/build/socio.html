@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Socio &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="index.html" />
+    <link rel="next" title="Torneo" href="torneo.html" />
+    <link rel="prev" title="Reserva" href="reserva.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="torneo.html" title="Torneo"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="reserva.html" title="Reserva"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="socio">
+<h1>Socio<a class="headerlink" href="#socio" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-src.Socio"></span><dl class="class">
+<dt id="src.Socio.Socio">
+<em class="property">class </em><tt class="descclassname">src.Socio.</tt><tt class="descname">Socio</tt><big>(</big><em>dni</em>, <em>nombre</em>, <em>apellidos</em>, <em>movil</em>, <em>correo</em>, <em>*otros</em><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clase encargada de gestionar los socios del club</p>
+<dl class="method">
+<dt id="src.Socio.Socio.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>dni</em>, <em>nombre</em>, <em>apellidos</em>, <em>movil</em>, <em>correo</em>, <em>*otros</em><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor de la clase socio.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">dni</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Param:</th><td class="field-body">nombre</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">apellidos</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Param:</th><td class="field-body">movil</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">correo</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Param:</th><td class="field-body">parametros a usar en caso de querer cargar un objeto de la persistencia en lugar de crear uno nuevo</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.__str__">
+<tt class="descname">__str__</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.__str__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve los datos de un socio en forma de cadena</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Socio</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="src.Socio.Socio.apellidos">
+<tt class="descname">apellidos</tt><a class="headerlink" href="#src.Socio.Socio.apellidos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve los apellidos de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">apellidos</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.cambiar_estado">
+<tt class="descname">cambiar_estado</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.cambiar_estado"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.cambiar_estado" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asigna el estado del usuario a &#8220;dado de baja&#8221;</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="src.Socio.Socio.correo">
+<tt class="descname">correo</tt><a class="headerlink" href="#src.Socio.Socio.correo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el correo electronico de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">correo</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="src.Socio.Socio.dni">
+<tt class="descname">dni</tt><a class="headerlink" href="#src.Socio.Socio.dni" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el dni de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dni</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="src.Socio.Socio.estado">
+<tt class="descname">estado</tt><a class="headerlink" href="#src.Socio.Socio.estado" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el estado de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">estado</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="src.Socio.Socio.fecha_alta">
+<tt class="descname">fecha_alta</tt><a class="headerlink" href="#src.Socio.Socio.fecha_alta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve la fecha de alta de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">fecha_alta</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.get_apellidos">
+<tt class="descname">get_apellidos</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.get_apellidos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.get_apellidos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve los apellidos de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">apellidos</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.get_correo">
+<tt class="descname">get_correo</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.get_correo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.get_correo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el correo electronico de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">correo</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.get_dni">
+<tt class="descname">get_dni</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.get_dni"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.get_dni" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el dni de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dni</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.get_estado">
+<tt class="descname">get_estado</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.get_estado"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.get_estado" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el estado de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">estado</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.get_fecha_alta">
+<tt class="descname">get_fecha_alta</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.get_fecha_alta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.get_fecha_alta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve la fecha de alta de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">fecha_alta</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.get_movil">
+<tt class="descname">get_movil</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.get_movil"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.get_movil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el movil de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">movil</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.get_nombre">
+<tt class="descname">get_nombre</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.get_nombre"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.get_nombre" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el nombre de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">nombre</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="src.Socio.Socio.movil">
+<tt class="descname">movil</tt><a class="headerlink" href="#src.Socio.Socio.movil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el movil de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">movil</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="src.Socio.Socio.nombre">
+<tt class="descname">nombre</tt><a class="headerlink" href="#src.Socio.Socio.nombre" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el nombre de un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">nombre</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.set_apellidos">
+<tt class="descname">set_apellidos</tt><big>(</big><em>apellidos</em><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.set_apellidos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.set_apellidos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asigna nuevo(s) apellido(s) al socio
+:param: apellido(s)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.set_correo">
+<tt class="descname">set_correo</tt><big>(</big><em>correo</em><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.set_correo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.set_correo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asigna un nuevo correo electronico</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">correo electronico</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.set_fecha_alta">
+<tt class="descname">set_fecha_alta</tt><big>(</big><em>fecha</em><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.set_fecha_alta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.set_fecha_alta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asigna una nueva fecha de alta</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">fecha de alta</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.set_movil">
+<tt class="descname">set_movil</tt><big>(</big><em>movil</em><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.set_movil"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.set_movil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asigna un nuevo movil</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">movil</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Socio.Socio.set_nombre">
+<tt class="descname">set_nombre</tt><big>(</big><em>nombre</em><big>)</big><a class="reference internal" href="_modules/src/Socio.html#Socio.set_nombre"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Socio.Socio.set_nombre" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asigna un nuevo nombre a un socio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">nombre</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="reserva.html"
+                        title="previous chapter">Reserva</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="torneo.html"
+                        title="next chapter">Torneo</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/socio.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="torneo.html" title="Torneo"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="reserva.html" title="Reserva"
+             >previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

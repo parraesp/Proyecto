@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tests.test_conexion_alquiler &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for tests.test_conexion_alquiler</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">src.Reserva</span> <span class="kn">import</span> <span class="n">Reserva</span>
+<span class="kn">from</span> <span class="nn">src.Socio</span> <span class="kn">import</span> <span class="n">Socio</span>
+<span class="kn">from</span> <span class="nn">src.Alquiler</span> <span class="kn">import</span> <span class="n">Alquiler</span>
+<span class="kn">from</span> <span class="nn">src.Instalacion</span> <span class="kn">import</span> <span class="n">Instalacion</span>
+<span class="kn">from</span> <span class="nn">mockito</span> <span class="kn">import</span> <span class="n">mock</span><span class="p">,</span> <span class="n">when</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.conexion_alquiler</span> <span class="kn">import</span> <span class="n">ConexionAlquiler</span>
+<span class="kn">from</span> <span class="nn">src.conexion_reserva</span> <span class="kn">import</span> <span class="n">ConexionReserva</span>
+<span class="kn">from</span> <span class="nn">src.conexion_instalacion</span> <span class="kn">import</span> <span class="n">ConexionInstalacion</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Ricardo&#39;</span>
+
+
+<div class="viewcode-block" id="TestConexionAlquiler"><a class="viewcode-back" href="../../test_alquiler.html#tests.test_conexion_alquiler.TestConexionAlquiler">[docs]</a><span class="k">class</span> <span class="nc">TestConexionAlquiler</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clases con los test unitarios del modelo de alquiler</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TestConexionAlquiler.test_guardar_alquiler_fichero"><a class="viewcode-back" href="../../test_alquiler.html#tests.test_conexion_alquiler.TestConexionAlquiler.test_guardar_alquiler_fichero">[docs]</a>    <span class="k">def</span> <span class="nf">test_guardar_alquiler_fichero</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test para guardar un alquiler en un fichero</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">socio</span> <span class="o">=</span> <span class="n">mock</span><span class="p">(</span><span class="n">Socio</span><span class="p">)</span>
+        <span class="n">when</span><span class="p">(</span><span class="n">socio</span><span class="p">)</span><span class="o">.</span><span class="n">get_dni</span><span class="p">()</span><span class="o">.</span><span class="n">thenReturn</span><span class="p">(</span><span class="s">&#39;11111111K&#39;</span><span class="p">)</span>
+        <span class="n">inst</span> <span class="o">=</span> <span class="n">mock</span><span class="p">(</span><span class="n">Instalacion</span><span class="p">)</span>
+        <span class="n">when</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span><span class="o">.</span><span class="n">get_instalacion_id</span><span class="p">()</span><span class="o">.</span><span class="n">thenReturn</span><span class="p">(</span><span class="s">&#39;instprueba&#39;</span><span class="p">)</span>
+        <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s">&#39;01/01/07 07&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s">/%m/%y %H&#39;</span><span class="p">)</span>
+        <span class="n">reserva</span> <span class="o">=</span> <span class="n">Reserva</span><span class="p">(</span><span class="n">socio</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="n">mock</span><span class="p">(</span><span class="n">Instalacion</span><span class="p">))</span>
+        <span class="n">alquiler</span> <span class="o">=</span> <span class="n">Alquiler</span><span class="p">(</span><span class="n">reserva</span><span class="p">)</span>
+        <span class="n">alquiler</span><span class="o">.</span><span class="n">aniadir_instalacion</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span>
+        <span class="n">con</span> <span class="o">=</span> <span class="n">ConexionAlquiler</span><span class="p">(</span><span class="n">mock</span><span class="p">(</span><span class="n">ConexionReserva</span><span class="p">),</span>  <span class="n">mock</span><span class="p">(</span><span class="n">ConexionInstalacion</span><span class="p">))</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;newFile.txt&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">con</span><span class="o">.</span><span class="n">guardar_alquiler_fichero</span><span class="p">(</span><span class="n">alquiler</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;newFile.txt&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;11111111K</span><span class="se">\t</span><span class="s">01/01/07 07:00</span><span class="se">\t</span><span class="s">instprueba</span><span class="se">\t</span><span class="s">False</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s">&#39;newFile.txt&#39;</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

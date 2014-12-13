@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Alquiler &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for src.Alquiler</h1><div class="highlight"><pre>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Ricardo&#39;</span>
+
+
+<div class="viewcode-block" id="Alquiler"><a class="viewcode-back" href="../../alquiler.html#src.Alquiler.Alquiler">[docs]</a><span class="k">class</span> <span class="nc">Alquiler</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase para gestionar los alquileres de los socios</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Alquiler.is_devuelto"><a class="viewcode-back" href="../../alquiler.html#src.Alquiler.Alquiler.is_devuelto">[docs]</a>    <span class="k">def</span> <span class="nf">is_devuelto</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve si el alquiler esta devuelto</span>
+
+<span class="sd">        :return: devuelto</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__devuelto</span>
+</div>
+<div class="viewcode-block" id="Alquiler.get_reserva"><a class="viewcode-back" href="../../alquiler.html#src.Alquiler.Alquiler.get_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">get_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuleva la reserva relacionada con el alquiler</span>
+
+<span class="sd">        :return: reserva</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reserva</span>
+</div>
+<div class="viewcode-block" id="Alquiler.get_instalaciones"><a class="viewcode-back" href="../../alquiler.html#src.Alquiler.Alquiler.get_instalaciones">[docs]</a>    <span class="k">def</span> <span class="nf">get_instalaciones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve el conjunto de instalaciones alquiladas</span>
+
+<span class="sd">        :return: instalaciones</span>
+<span class="sd">        :rtype: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__instalaciones</span>
+</div>
+<div class="viewcode-block" id="Alquiler.aniadir_instalacion"><a class="viewcode-back" href="../../alquiler.html#src.Alquiler.Alquiler.aniadir_instalacion">[docs]</a>    <span class="k">def</span> <span class="nf">aniadir_instalacion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instalacion</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Aniade una instalacion a la lista de instalaciones</span>
+
+<span class="sd">        :param instalacion: tipo instalacion</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__instalaciones</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instalacion</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Alquiler.set_devuelto"><a class="viewcode-back" href="../../alquiler.html#src.Alquiler.Alquiler.set_devuelto">[docs]</a>    <span class="k">def</span> <span class="nf">set_devuelto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">devuelto</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Establece si se ha devuelto el alquiler</span>
+
+<span class="sd">        :param devuelto: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__devuelto</span> <span class="o">=</span> <span class="n">devuelto</span>
+</div>
+<div class="viewcode-block" id="Alquiler.__init__"><a class="viewcode-back" href="../../alquiler.html#src.Alquiler.Alquiler.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reserva</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor de la clase alquiler</span>
+
+<span class="sd">        :param reserva: tipo reserva</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__reserva</span> <span class="o">=</span> <span class="n">reserva</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__instalaciones</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__devuelto</span> <span class="o">=</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="Alquiler.__str__"><a class="viewcode-back" href="../../alquiler.html#src.Alquiler.Alquiler.__str__">[docs]</a>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Metodo to string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">texto</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reserva</span><span class="o">.</span><span class="n">__str__</span><span class="p">()</span><span class="o">+</span><span class="s">&#39;,&#39;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__instalaciones</span><span class="p">:</span>
+            <span class="n">texto</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">__str__</span><span class="p">())</span>
+        <span class="n">texto</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__devuelto</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

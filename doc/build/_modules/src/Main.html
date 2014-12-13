@@ -1,0 +1,446 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Main &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for src.Main</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">src.Club</span> <span class="kn">import</span> <span class="n">Club</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;alberto&#39;</span>
+
+
+<div class="viewcode-block" id="pedir_reserva"><a class="viewcode-back" href="../../main.html#src.Main.pedir_reserva">[docs]</a><span class="k">def</span> <span class="nf">pedir_reserva</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pide los datos para crear un reserva</span>
+
+<span class="sd">    :return: reserva creada</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dni_res</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni del socio que desea reservar: &#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni_res</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni_res</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+    <span class="n">fecha_res</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Fecha y hora para la reserva (dd/mm/aa HH): &#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_fecha</span><span class="p">(</span><span class="n">fecha_res</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;La fecha no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">fecha_res</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Fecha y hora para la reserva (dd/mm/aa HH): &#39;</span><span class="p">)</span>
+    <span class="n">instalacion_id</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Pista que desea reservar: &#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_instalacion</span><span class="p">(</span><span class="n">instalacion_id</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;La instalacion no existe.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">instalacion_id</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Pista que desea reservar: &#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">club</span><span class="o">.</span><span class="n">crear_reserva</span><span class="p">(</span><span class="n">dni_res</span><span class="p">,</span> <span class="n">fecha_res</span><span class="p">,</span> <span class="n">instalacion_id</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="consultar_reserva"><a class="viewcode-back" href="../../main.html#src.Main.consultar_reserva">[docs]</a><span class="k">def</span> <span class="nf">consultar_reserva</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pide los datos para consultar una reserva</span>
+
+<span class="sd">    :return: reserva consultada</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dni_res</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni del socio que ha reservado: &#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni_res</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni_res</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+    <span class="n">fecha_res</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Fecha y hora para la reserva (dd/mm/aa HH): &#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_fecha</span><span class="p">(</span><span class="n">fecha_res</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;La fecha no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">fecha_res</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Fecha y hora para la reserva (dd/mm/aa HH): &#39;</span><span class="p">)</span>
+    <span class="n">reserva_res</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">consultar_reserva</span><span class="p">(</span><span class="n">dni_res</span><span class="p">,</span> <span class="n">fecha_res</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reserva_res</span>
+
+</div>
+<div class="viewcode-block" id="pedir_datos_persona"><a class="viewcode-back" href="../../main.html#src.Main.pedir_datos_persona">[docs]</a><span class="k">def</span> <span class="nf">pedir_datos_persona</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pide los datos necesarios para crear un socio o un profesor.</span>
+
+<span class="sd">    :return: lista de datos</span>
+<span class="sd">    :rtype: list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dni_res</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni_res</span><span class="p">)</span> <span class="ow">and</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_socio</span><span class="p">(</span><span class="n">dni_res</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_profesor</span><span class="p">(</span><span class="n">dni_res</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto o ya existe.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+        <span class="n">dni_res</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+    <span class="n">nombre_per</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Nombre: &#39;</span><span class="p">)</span>
+    <span class="n">apellidos_per</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Apellidos: &#39;</span><span class="p">)</span>
+    <span class="n">movil_per</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Movil: &#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_telefono</span><span class="p">(</span><span class="n">movil</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El telefono no tiene un formato correcto. Deben ser 9 digitos&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+        <span class="n">movil_per</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Movil: &#39;</span><span class="p">)</span>
+    <span class="n">correo_per</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Correo electronico: &#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_email</span><span class="p">(</span><span class="n">correo_per</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El email no es correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+        <span class="n">correo_per</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Correo electronico: &#39;</span><span class="p">)</span>
+    <span class="n">datos_per</span> <span class="o">=</span> <span class="p">[</span><span class="n">dni_res</span><span class="p">,</span> <span class="n">nombre_per</span><span class="p">,</span> <span class="n">apellidos_per</span><span class="p">,</span> <span class="n">movil_per</span><span class="p">,</span> <span class="n">correo_per</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">datos_per</span>
+
+</div>
+<span class="n">seleccion</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="k">print</span> <span class="s">&#39;Bienvenido al sistema de gestion de clubes de padel&#39;</span>
+<span class="k">print</span> <span class="s">&#39;===================================================&#39;</span>
+<span class="k">print</span> <span class="s">&quot;Cargando el club...&quot;</span>
+<span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+<span class="k">print</span> <span class="s">&quot;Club cargado&quot;</span>
+<span class="k">while</span> <span class="n">seleccion</span> <span class="o">!=</span> <span class="s">&#39;0&#39;</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;1. Socios&#39;</span>
+    <span class="k">print</span> <span class="s">&#39;2. Reservas&#39;</span>
+    <span class="k">print</span> <span class="s">&#39;3. Alquileres&#39;</span>
+    <span class="k">print</span> <span class="s">&#39;4. Profesores&#39;</span>
+    <span class="k">print</span> <span class="s">&#39;5. Clases&#39;</span>
+    <span class="k">print</span> <span class="s">&#39;6. Torneos&#39;</span>
+    <span class="k">print</span> <span class="s">&#39;0. Salir&#39;</span>
+    <span class="n">seleccion</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Haga su seleccion: &#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;Haga su seleccion: &#39;</span>
+        <span class="k">print</span> <span class="s">&#39;1. Crear socio&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;2. Editar socio&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;3. Dar socio de baja&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;4. Consultar socio&#39;</span>
+        <span class="n">seleccion</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Haga su seleccion: &#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+            <span class="n">datos</span> <span class="o">=</span> <span class="n">pedir_datos_persona</span><span class="p">()</span>
+            <span class="n">club</span><span class="o">.</span><span class="n">alta_socio</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">datos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">datos</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">datos</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+            <span class="n">seleccion</span> <span class="o">=</span> <span class="s">&#39;-1&#39;</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;2&#39;</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Editar datos del socio: &#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+            <span class="n">socio</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_socio</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">socio</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;Introduzca nuevos valores: &#39;</span>
+                <span class="k">print</span> <span class="n">socio</span>
+                <span class="n">nombre</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Nombre: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">nombre</span><span class="p">))</span>
+                <span class="n">apellidos</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Apellidos: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">apellidos</span><span class="p">))</span>
+                <span class="n">movil</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Movil: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">movil</span><span class="p">))</span>
+                <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_telefono</span><span class="p">(</span><span class="n">movil</span><span class="p">):</span>
+                    <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El telefono no tiene un formato correcto. Deben ser 9 digitos&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                    <span class="n">movil</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Movil: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">movil</span><span class="p">))</span>
+                <span class="n">correo</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Correo electronico: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">correo</span><span class="p">))</span>
+                <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_email</span><span class="p">(</span><span class="n">correo</span><span class="p">):</span>
+                    <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El email no es correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                    <span class="n">correo</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Correo electronico: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">correo</span><span class="p">))</span>
+                <span class="n">club</span><span class="o">.</span><span class="n">editar_socio</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">,</span> <span class="n">movil</span><span class="p">,</span> <span class="n">correo</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;No existe ningun socio con ese dni.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+            <span class="n">seleccion</span> <span class="o">=</span> <span class="s">&#39;-1&#39;</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;3&#39;</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el dni del usuario a dar de baja: &#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+            <span class="n">socio</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">dar_baja_socio</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">socio</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;No existe ningun socio con ese dni.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+            <span class="n">seleccion</span> <span class="o">=</span> <span class="s">&#39;-1&#39;</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;4&#39;</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el dni del usuario a consultar: &#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el dni del usuario a consultar: &#39;</span><span class="p">)</span>
+            <span class="n">socio</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_socio</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">socio</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">socio</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;No existe ningun socio con ese dni.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+            <span class="n">seleccion</span> <span class="o">=</span> <span class="s">&#39;-1&#39;</span>
+
+    <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;2&#39;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;Haga su seleccion: &#39;</span>
+        <span class="k">print</span> <span class="s">&#39;1. Crear reserva&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;2. Cancelar reserva&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;3. Consultar reservas&#39;</span>
+        <span class="n">seleccion</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Haga su seleccion: &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+            <span class="n">reserva</span> <span class="o">=</span> <span class="n">pedir_reserva</span><span class="p">()</span>
+            <span class="n">seleccion</span> <span class="o">=</span> <span class="s">&quot;-1&quot;</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;2&#39;</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni del socio que desea reservar: &#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+            <span class="n">fecha</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Fecha y hora para la reserva (dd/mm/aa HH): &#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_fecha</span><span class="p">(</span><span class="n">fecha</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;La fecha no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">fecha</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Fecha y hora para la reserva (dd/mm/aa HH): &#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">club</span><span class="o">.</span><span class="n">cancelar_reserva</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="n">fecha</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&quot;La reserva ha sido cancelada&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;No existia ninguna reserva para esa fecha&quot;</span>
+            <span class="n">seleccion</span> <span class="o">=</span> <span class="s">&quot;-1&quot;</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;3&#39;</span><span class="p">:</span>
+            <span class="n">reserva</span> <span class="o">=</span> <span class="n">consultar_reserva</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">reserva</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">reserva</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;No existe una reserva para esa fecha&quot;</span>
+            <span class="n">seleccion</span> <span class="o">=</span> <span class="s">&quot;-1&quot;</span>
+
+    <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;3&#39;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;Haga su seleccion: &#39;</span>
+        <span class="k">print</span> <span class="s">&#39;1. Crear alquiler&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;2. Devolver alquiler&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;3. Consultar alquiler&#39;</span>
+        <span class="n">seleccion</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Haga su seleccion: &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+            <span class="n">reserva</span> <span class="o">=</span> <span class="n">consultar_reserva</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">reserva</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">inst</span> <span class="o">=</span> <span class="s">&#39;-1&#39;</span>
+                <span class="n">ids</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">while</span> <span class="n">inst</span> <span class="o">!=</span> <span class="s">&#39;0&#39;</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">inst</span> <span class="o">!=</span> <span class="s">&#39;-1&#39;</span><span class="p">:</span>
+                        <span class="n">ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span>
+                    <span class="k">print</span> <span class="s">&#39;Introduzca el id de la instalacion a alquilar o 0 para salir.&#39;</span>
+                    <span class="n">inst</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Instalacion: &#39;</span><span class="p">)</span>
+                    <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_instalacion</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span> <span class="ow">and</span> <span class="n">inst</span> <span class="o">!=</span> <span class="s">&#39;0&#39;</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;La instalacion no existe.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                        <span class="n">inst</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el id de la instalacion a alquilar o 0 para salir: &#39;</span><span class="p">)</span>
+                <span class="n">club</span><span class="o">.</span><span class="n">crear_alquiler</span><span class="p">(</span><span class="n">reserva</span><span class="p">,</span> <span class="n">ids</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;No existe una reserva para esa fecha&quot;</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;2&#39;</span><span class="p">:</span>
+            <span class="n">reserva</span> <span class="o">=</span> <span class="n">consultar_reserva</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">reserva</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">club</span><span class="o">.</span><span class="n">devolver_alquiler</span><span class="p">(</span><span class="n">reserva</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;3&#39;</span><span class="p">:</span>
+            <span class="n">reserva</span> <span class="o">=</span> <span class="n">consultar_reserva</span><span class="p">()</span>
+            <span class="n">alquiler</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">consultar_alquiler</span><span class="p">(</span><span class="n">reserva</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">alquiler</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">alquiler</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;No existe una alquiler para esa fecha&quot;</span>
+
+    <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;4&#39;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;Haga su seleccion: &#39;</span>
+        <span class="k">print</span> <span class="s">&#39;1. Crear profesor&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;2. Editar profesor&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;3. Dar profesor de baja&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;4. Consultar profesor&#39;</span>
+        <span class="n">seleccion</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Haga su seleccion: &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+            <span class="n">datos</span> <span class="o">=</span> <span class="n">pedir_datos_persona</span><span class="p">()</span>
+            <span class="n">salario</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Salario en euros: &#39;</span><span class="p">)</span>
+            <span class="n">jornada</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Tipo de jornada: &#39;</span><span class="p">)</span>
+            <span class="n">club</span><span class="o">.</span><span class="n">alta_profesor</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">datos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">datos</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">datos</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">salario</span><span class="p">,</span> <span class="n">jornada</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;2&#39;</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni del profesor: &#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+            <span class="n">profesor</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_profesor</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">profesor</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;Introduzca nuevos valores: &#39;</span>
+                <span class="n">nombre</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Nombre: &#39;</span><span class="p">)</span>
+                <span class="n">apellidos</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Apellidos: &#39;</span><span class="p">)</span>
+                <span class="n">movil</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Movil: &#39;</span><span class="p">)</span>
+                <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_telefono</span><span class="p">(</span><span class="n">movil</span><span class="p">):</span>
+                    <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El telefono no tiene un formato correcto. Deben ser 9 digitos&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                    <span class="n">movil</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Movil: &#39;</span><span class="p">)</span>
+                <span class="n">correo</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Correo electronico: &#39;</span><span class="p">)</span>
+                <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_email</span><span class="p">(</span><span class="n">correo</span><span class="p">):</span>
+                    <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El email no es correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                    <span class="n">correo</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Correo electronico: &#39;</span><span class="p">)</span>
+                <span class="n">sueldo</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Sueldo: &#39;</span><span class="p">)</span>
+                <span class="n">jornada</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Jornada: &#39;</span><span class="p">)</span>
+                <span class="n">club</span><span class="o">.</span><span class="n">editar_profesor</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">,</span> <span class="n">movil</span><span class="p">,</span> <span class="n">correo</span><span class="p">,</span> <span class="n">sueldo</span><span class="p">,</span> <span class="n">jornada</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;No existe ningun profesor con ese dni&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+            <span class="n">seleccion</span> <span class="o">=</span> <span class="s">&#39;-1&#39;</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;3&#39;</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el dni del profesor a dar de baja: &#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+            <span class="n">club</span><span class="o">.</span><span class="n">dar_baja_profesor</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;4&#39;</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el dni del profesor a consultar: &#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+            <span class="n">profesor</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_profesor</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">profesor</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">profesor</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;No existe dicho profesor.&#39;</span>
+
+    <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;5&#39;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;Haga su seleccion: &#39;</span>
+        <span class="k">print</span> <span class="s">&#39;1. Registrar Clase&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;2. Cancelar clase&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;3. Consultar informacion clase&#39;</span>
+        <span class="n">seleccion</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Haga su seleccion: &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+            <span class="n">reserva</span> <span class="o">=</span> <span class="n">pedir_reserva</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">reserva</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">dni_profesor</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca dni profesor: &#39;</span><span class="p">)</span>
+                <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni_profesor</span><span class="p">):</span>
+                    <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                    <span class="n">dni_profesor</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca dni profesor: &#39;</span><span class="p">)</span>
+                <span class="n">profesor</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_profesor</span><span class="p">(</span><span class="n">dni_profesor</span><span class="p">)</span>
+                <span class="n">club</span><span class="o">.</span><span class="n">registrar_clase</span><span class="p">(</span><span class="n">profesor</span><span class="p">,</span> <span class="n">reserva</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;Ya existe una reserva para esa fecha&#39;</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;2&#39;</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el dni del profesor que da la clase:&#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+            <span class="n">dni2</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el dni del socio:&#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni2</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni2</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+            <span class="n">fecha</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Fecha y hora para la clase (dd/mm/aa HH): &#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_fecha</span><span class="p">(</span><span class="n">fecha</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;La fecha no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">fecha</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Fecha y hora para la clase (dd/mm/aa HH): &#39;</span><span class="p">)</span>
+            <span class="n">club</span><span class="o">.</span><span class="n">cancelar_clase</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="n">dni2</span><span class="p">,</span> <span class="n">fecha</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;3&#39;</span><span class="p">:</span>
+            <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el dni del profesor que da la clase:&#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+            <span class="n">dni2</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el dni del socio:&#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni2</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">dni2</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+            <span class="n">fecha</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Fecha y hora para la clase (dd/mm/aa HH): &#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_fecha</span><span class="p">(</span><span class="n">fecha</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;La fecha no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">fecha</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Fecha y hora para la clase (dd/mm/aa HH): &#39;</span><span class="p">)</span>
+            <span class="n">clase</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_clase</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="n">dni2</span><span class="p">,</span> <span class="n">fecha</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">clase</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">clase</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;No existe clase dicha clase.&#39;</span>
+
+    <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;6&#39;</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&#39;Haga su seleccion: &#39;</span>
+        <span class="k">print</span> <span class="s">&#39;1. Crear Torneo.&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;2. Introducir resultado.&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;3. Borrar torneo.&#39;</span>
+        <span class="k">print</span> <span class="s">&#39;4. Consultar torneo.&#39;</span>
+        <span class="n">seleccion</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Haga su seleccion: &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">:</span>
+            <span class="n">nombre</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el nombre del torneo: &#39;</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">socios</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+                <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el dni del participante: &#39;</span><span class="p">)</span>
+                <span class="k">while</span> <span class="ow">not</span> <span class="n">Club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+                    <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;El dni no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                    <span class="n">dni</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;dni: &#39;</span><span class="p">)</span>
+                <span class="n">socio</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_socio</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">socio</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">socios</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">socio</span><span class="p">)</span>
+                    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="s">&#39;No existe socio para ese dni.&#39;</span>
+            <span class="n">fecha</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca una fecha para empezar el torneo: &#39;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">club</span><span class="o">.</span><span class="n">validar_fecha</span><span class="p">(</span><span class="n">fecha</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s">&#39;</span><span class="se">\033</span><span class="s">[91m&#39;</span><span class="o">+</span><span class="s">&#39;La fecha no tiene un formato correcto.&#39;</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\033</span><span class="s">[0m&#39;</span>
+                <span class="n">fecha</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Fecha y hora para la clase (dd/mm/aa HH): &#39;</span><span class="p">)</span>
+            <span class="n">club</span><span class="o">.</span><span class="n">crear_torneo</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">socios</span><span class="p">,</span> <span class="n">fecha</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;2&#39;</span><span class="p">:</span>
+            <span class="n">nombre</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el nombre del torneo: &#39;</span><span class="p">)</span>
+            <span class="n">partido</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el partido del torneo: &#39;</span><span class="p">)</span>
+            <span class="n">resultado</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el resultado del partido: &#39;</span><span class="p">)</span>
+            <span class="n">club</span><span class="o">.</span><span class="n">introducir_resultado</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">partido</span><span class="p">,</span> <span class="n">resultado</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;3&#39;</span><span class="p">:</span>
+            <span class="n">nombre</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el nombre del torneo: &#39;</span><span class="p">)</span>
+            <span class="n">torneo</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">borrar_torneo</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">torneo</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;No existe un toreno con ese nombre.&#39;</span>
+
+        <span class="k">if</span> <span class="n">seleccion</span> <span class="o">==</span> <span class="s">&#39;4&#39;</span><span class="p">:</span>
+            <span class="n">nombre</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Introduzca el nombre del torneo: &#39;</span><span class="p">)</span>
+            <span class="n">torneo</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">consultar_torneo</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">torneo</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="k">print</span> <span class="n">torneo</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&#39;No existe un toreno con ese nombre.&#39;</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

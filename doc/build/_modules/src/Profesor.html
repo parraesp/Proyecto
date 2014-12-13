@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Profesor &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for src.Profesor</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">src.Socio</span> <span class="kn">import</span> <span class="n">Socio</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;alberto&#39;</span>
+
+
+<div class="viewcode-block" id="Profesor"><a class="viewcode-back" href="../../profesor.html#src.Profesor.Profesor">[docs]</a><span class="k">class</span> <span class="nc">Profesor</span><span class="p">(</span><span class="n">Socio</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase que gestiona los profesores del club</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Profesor.__init__"><a class="viewcode-back" href="../../profesor.html#src.Profesor.Profesor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">,</span> <span class="n">movil</span><span class="p">,</span> <span class="n">correo</span><span class="p">,</span> <span class="n">salario</span><span class="p">,</span> <span class="n">jornada</span><span class="p">,</span> <span class="o">*</span><span class="n">otros</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor de la clase profesor</span>
+
+<span class="sd">        :param: dni</span>
+<span class="sd">        :param: nombre</span>
+<span class="sd">        :param: apellidos</span>
+<span class="sd">        :param: movil</span>
+<span class="sd">        :param: correo</span>
+<span class="sd">        :param: salario</span>
+<span class="sd">        :param: tipo de jornada</span>
+<span class="sd">        :param: parametros a usar en caso de querer cargar un objeto de la persistencia en lugar de crear uno nuevo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">otros</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">Socio</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">,</span> <span class="n">movil</span><span class="p">,</span> <span class="n">correo</span><span class="p">,</span> <span class="n">otros</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">otros</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Socio</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">,</span> <span class="n">movil</span><span class="p">,</span> <span class="n">correo</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">salario</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__jornada</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">jornada</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Profesor.set_salario"><a class="viewcode-back" href="../../profesor.html#src.Profesor.Profesor.set_salario">[docs]</a>    <span class="k">def</span> <span class="nf">set_salario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">salario</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Asgina un nuevo salario a un profesor</span>
+
+<span class="sd">        :param: salario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span> <span class="o">=</span> <span class="n">salario</span>
+</div>
+<div class="viewcode-block" id="Profesor.set_jornada"><a class="viewcode-back" href="../../profesor.html#src.Profesor.Profesor.set_jornada">[docs]</a>    <span class="k">def</span> <span class="nf">set_jornada</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jornada</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Asgina un nuevo tipo de jornada a un profesor</span>
+
+<span class="sd">        :param: jornada</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__jornada</span> <span class="o">=</span> <span class="n">jornada</span>
+</div>
+<div class="viewcode-block" id="Profesor.get_salario"><a class="viewcode-back" href="../../profesor.html#src.Profesor.Profesor.get_salario">[docs]</a>    <span class="k">def</span> <span class="nf">get_salario</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve el salario de un profesor</span>
+
+<span class="sd">        :return: salario</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__salario</span>
+</div>
+<div class="viewcode-block" id="Profesor.get_jornada"><a class="viewcode-back" href="../../profesor.html#src.Profesor.Profesor.get_jornada">[docs]</a>    <span class="k">def</span> <span class="nf">get_jornada</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve el tipo de jornada que tiene un profesor</span>
+
+<span class="sd">        :return: jornada</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__jornada</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

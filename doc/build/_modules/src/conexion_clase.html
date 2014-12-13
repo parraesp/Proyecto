@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.conexion_clase &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for src.conexion_clase</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">src.Clase</span> <span class="kn">import</span> <span class="n">Clase</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;alberto&#39;</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="kn">import</span> <span class="n">NamedTemporaryFile</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+
+<div class="viewcode-block" id="ConexionClase"><a class="viewcode-back" href="../../conexion_clase.html#src.conexion_clase.ConexionClase">[docs]</a><span class="k">class</span> <span class="nc">ConexionClase</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Modelo para la clase Clase</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="ConexionClase.__init__"><a class="viewcode-back" href="../../conexion_clase.html#src.conexion_clase.ConexionClase.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profesores</span><span class="p">,</span> <span class="n">reservas</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor del modelo</span>
+
+<span class="sd">        :param profesores: modelo de profesores</span>
+<span class="sd">        :param reservas: modelo de reserva</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__profesores</span> <span class="o">=</span> <span class="n">profesores</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__reservas</span> <span class="o">=</span> <span class="n">reservas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__clases</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__listar_clases</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="ConexionClase.sacar_clase"><a class="viewcode-back" href="../../conexion_clase.html#src.conexion_clase.ConexionClase.sacar_clase">[docs]</a>    <span class="k">def</span> <span class="nf">sacar_clase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profesor</span><span class="p">,</span> <span class="n">socio</span><span class="p">,</span> <span class="n">fecha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtiene la clase del modelo</span>
+
+<span class="sd">        :param profesor: dni del profesor</span>
+<span class="sd">        :param socio: dni del socio</span>
+<span class="sd">        :param fecha: fecha de la clase</span>
+<span class="sd">        :return: clase</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">valor</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">cont</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">encontrado</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">while</span> <span class="n">cont</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__clases</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">encontrado</span><span class="p">:</span>
+            <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__clases</span><span class="p">[</span><span class="n">cont</span><span class="p">]</span><span class="o">.</span><span class="n">get_profesor</span><span class="p">()</span><span class="o">.</span><span class="n">DNI</span> <span class="o">==</span> <span class="n">profesor</span>
+               <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">__clases</span><span class="p">[</span><span class="n">cont</span><span class="p">]</span><span class="o">.</span><span class="n">get_reserva</span><span class="p">()</span><span class="o">.</span><span class="n">get_fecha</span><span class="p">()</span> <span class="o">==</span> <span class="n">fecha</span>
+               <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">__clases</span><span class="p">[</span><span class="n">cont</span><span class="p">]</span><span class="o">.</span><span class="n">get_reserva</span><span class="p">()</span><span class="o">.</span><span class="n">get_socio</span><span class="p">()</span><span class="o">.</span><span class="n">get_DNI</span><span class="p">()</span> <span class="o">==</span> <span class="n">socio</span><span class="p">):</span>
+                <span class="n">encontrado</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">valor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__clases</span><span class="p">[</span><span class="n">cont</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cont</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">valor</span>
+</div>
+<div class="viewcode-block" id="ConexionClase.guardar_clase"><a class="viewcode-back" href="../../conexion_clase.html#src.conexion_clase.ConexionClase.guardar_clase">[docs]</a>    <span class="k">def</span> <span class="nf">guardar_clase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clase</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Guarda una clase de forma absoluta.</span>
+
+<span class="sd">        :param clase: clase a guardar</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span><span class="o">+</span><span class="s">&#39;/files/clases.csv&#39;</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span>
+        <span class="n">texto</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="n">texto</span> <span class="o">+=</span> <span class="n">clase</span><span class="o">.</span><span class="n">get_profesor</span><span class="p">()</span><span class="o">.</span><span class="n">get_DNI</span><span class="p">()</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span>
+        <span class="n">texto</span> <span class="o">+=</span> <span class="n">clase</span><span class="o">.</span><span class="n">get_reserva</span><span class="p">()</span><span class="o">.</span><span class="n">get_socio</span><span class="p">()</span><span class="o">.</span><span class="n">get_DNI</span><span class="p">()</span><span class="o">+</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span>
+        <span class="n">texto</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">clase</span><span class="o">.</span><span class="n">get_reserva</span><span class="p">()</span><span class="o">.</span><span class="n">get_fecha</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%d</span><span class="s">/%m/%y %H:%M&quot;</span><span class="p">))</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__clases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clase</span><span class="p">)</span>
+</div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="ConexionClase.borrar_clase"><a class="viewcode-back" href="../../conexion_clase.html#src.conexion_clase.ConexionClase.borrar_clase">[docs]</a>    <span class="k">def</span> <span class="nf">borrar_clase</span><span class="p">(</span><span class="n">profesor</span><span class="p">,</span> <span class="n">fecha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Borra una clase del fichero</span>
+
+<span class="sd">        :param profesor: dni del profesor</span>
+<span class="sd">        :param fecha: fehca de la clase</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tempfile</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span><span class="o">+</span><span class="s">&#39;/files/clases.csv&#39;</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvFile</span><span class="p">,</span> <span class="n">tempfile</span><span class="p">:</span>
+            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csvFile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span>
+            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">tempfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">profesor</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fecha</span><span class="p">):</span>
+                    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span><span class="o">+</span><span class="s">&#39;/files/clases.csv&#39;</span><span class="p">)</span>
+        <span class="n">csvFile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">tempfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</div>
+    <span class="k">def</span> <span class="nf">__listar_clases</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtiene un lista de todas las clases existentes en el fichero</span>
+
+<span class="sd">        :return: lista de clases</span>
+<span class="sd">        :rtype: list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">clases</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span><span class="o">+</span><span class="s">&#39;/files/clases.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">content</span><span class="p">:</span>
+                <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s">/%m/%y %H:%M&quot;</span><span class="p">)</span>
+                <span class="n">clase</span> <span class="o">=</span> <span class="n">Clase</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__profesores</span><span class="o">.</span><span class="n">sacar_profesor</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reservas</span><span class="o">.</span><span class="n">sacar_reserva</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fecha</span><span class="p">))</span>
+                <span class="n">clases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clase</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">clases</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

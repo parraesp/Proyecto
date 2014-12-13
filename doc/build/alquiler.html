@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Alquiler &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="index.html" />
+    <link rel="next" title="Clase" href="clase.html" />
+    <link rel="prev" title="Conexion de torneo" href="conexion_torneo.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="clase.html" title="Clase"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="conexion_torneo.html" title="Conexion de torneo"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="alquiler">
+<h1>Alquiler<a class="headerlink" href="#alquiler" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-src.Alquiler"></span><dl class="class">
+<dt id="src.Alquiler.Alquiler">
+<em class="property">class </em><tt class="descclassname">src.Alquiler.</tt><tt class="descname">Alquiler</tt><big>(</big><em>reserva</em><big>)</big><a class="reference internal" href="_modules/src/Alquiler.html#Alquiler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Alquiler.Alquiler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clase para gestionar los alquileres de los socios</p>
+<dl class="method">
+<dt id="src.Alquiler.Alquiler.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>reserva</em><big>)</big><a class="reference internal" href="_modules/src/Alquiler.html#Alquiler.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Alquiler.Alquiler.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor de la clase alquiler</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>reserva</strong> &#8211; tipo reserva</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Alquiler.Alquiler.__str__">
+<tt class="descname">__str__</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Alquiler.html#Alquiler.__str__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Alquiler.Alquiler.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metodo to string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Alquiler.Alquiler.aniadir_instalacion">
+<tt class="descname">aniadir_instalacion</tt><big>(</big><em>instalacion</em><big>)</big><a class="reference internal" href="_modules/src/Alquiler.html#Alquiler.aniadir_instalacion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Alquiler.Alquiler.aniadir_instalacion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aniade una instalacion a la lista de instalaciones</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>instalacion</strong> &#8211; tipo instalacion</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Alquiler.Alquiler.get_instalaciones">
+<tt class="descname">get_instalaciones</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Alquiler.html#Alquiler.get_instalaciones"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Alquiler.Alquiler.get_instalaciones" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el conjunto de instalaciones alquiladas</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">instalaciones</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Alquiler.Alquiler.get_reserva">
+<tt class="descname">get_reserva</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Alquiler.html#Alquiler.get_reserva"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Alquiler.Alquiler.get_reserva" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuleva la reserva relacionada con el alquiler</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">reserva</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Alquiler.Alquiler.is_devuelto">
+<tt class="descname">is_devuelto</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Alquiler.html#Alquiler.is_devuelto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Alquiler.Alquiler.is_devuelto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve si el alquiler esta devuelto</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">devuelto</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Alquiler.Alquiler.set_devuelto">
+<tt class="descname">set_devuelto</tt><big>(</big><em>devuelto</em><big>)</big><a class="reference internal" href="_modules/src/Alquiler.html#Alquiler.set_devuelto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Alquiler.Alquiler.set_devuelto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establece si se ha devuelto el alquiler</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>devuelto</strong> &#8211; bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="conexion_torneo.html"
+                        title="previous chapter">Conexion de torneo</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="clase.html"
+                        title="next chapter">Clase</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/alquiler.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="clase.html" title="Clase"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="conexion_torneo.html" title="Conexion de torneo"
+             >previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Socio &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for src.Socio</h1><div class="highlight"><pre>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;francisco&#39;</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<div class="viewcode-block" id="Socio"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio">[docs]</a><span class="k">class</span> <span class="nc">Socio</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase encargada de gestionar los socios del club</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Socio.__init__"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">,</span> <span class="n">movil</span><span class="p">,</span> <span class="n">correo</span><span class="p">,</span> <span class="o">*</span><span class="n">otros</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor de la clase socio.</span>
+
+<span class="sd">        :param: dni</span>
+<span class="sd">        :param: nombre</span>
+<span class="sd">        :param: apellidos</span>
+<span class="sd">        :param: movil</span>
+<span class="sd">        :param: correo</span>
+<span class="sd">        :param: parametros a usar en caso de querer cargar un objeto de la persistencia en lugar de crear uno nuevo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dni</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__apellidos</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">apellidos</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__movil</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">movil</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__correo</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">correo</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">otros</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__fecha_alta</span> <span class="o">=</span> <span class="n">otros</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__estado</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">otros</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__fecha_alta</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%d</span><span class="s">/%m/%y&quot;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__estado</span> <span class="o">=</span> <span class="bp">True</span>
+</div>
+<div class="viewcode-block" id="Socio.__str__"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.__str__">[docs]</a>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve los datos de un socio en forma de cadena</span>
+
+<span class="sd">        :return: Socio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s">&#39;dni: &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dni</span> <span class="o">+</span> <span class="s">&#39;, fecha: &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__fecha_alta</span> \
+               <span class="o">+</span> <span class="s">&#39;, estado: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__estado</span><span class="p">)</span><span class="o">+</span><span class="s">&#39;, correo: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">correo</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Socio.get_dni"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.get_dni">[docs]</a>    <span class="k">def</span> <span class="nf">get_dni</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve el dni de un socio</span>
+
+<span class="sd">        :return: dni</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dni</span>
+</div>
+<div class="viewcode-block" id="Socio.get_nombre"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.get_nombre">[docs]</a>    <span class="k">def</span> <span class="nf">get_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve el nombre de un socio</span>
+
+<span class="sd">        :return: nombre</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span>
+</div>
+<div class="viewcode-block" id="Socio.get_apellidos"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.get_apellidos">[docs]</a>    <span class="k">def</span> <span class="nf">get_apellidos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve los apellidos de un socio</span>
+
+<span class="sd">        :return: apellidos</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__apellidos</span>
+</div>
+<div class="viewcode-block" id="Socio.get_movil"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.get_movil">[docs]</a>    <span class="k">def</span> <span class="nf">get_movil</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve el movil de un socio</span>
+
+<span class="sd">        :return: movil</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__movil</span>
+</div>
+<div class="viewcode-block" id="Socio.get_correo"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.get_correo">[docs]</a>    <span class="k">def</span> <span class="nf">get_correo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve el correo electronico de un socio</span>
+
+<span class="sd">        :return: correo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__correo</span>
+</div>
+<div class="viewcode-block" id="Socio.get_fecha_alta"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.get_fecha_alta">[docs]</a>    <span class="k">def</span> <span class="nf">get_fecha_alta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve la fecha de alta de un socio</span>
+
+<span class="sd">        :return: fecha_alta</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__fecha_alta</span>
+</div>
+<div class="viewcode-block" id="Socio.get_estado"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.get_estado">[docs]</a>    <span class="k">def</span> <span class="nf">get_estado</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve el estado de un socio</span>
+
+<span class="sd">        :return: estado</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__estado</span>
+</div>
+<div class="viewcode-block" id="Socio.cambiar_estado"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.cambiar_estado">[docs]</a>    <span class="k">def</span> <span class="nf">cambiar_estado</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Asigna el estado del usuario a &quot;dado de baja&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__estado</span> <span class="o">=</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="Socio.set_fecha_alta"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.set_fecha_alta">[docs]</a>    <span class="k">def</span> <span class="nf">set_fecha_alta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fecha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Asigna una nueva fecha de alta</span>
+
+<span class="sd">        :param: fecha de alta</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__fecha_alta</span> <span class="o">=</span> <span class="n">fecha</span>
+</div>
+<div class="viewcode-block" id="Socio.set_nombre"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.set_nombre">[docs]</a>    <span class="k">def</span> <span class="nf">set_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Asigna un nuevo nombre a un socio</span>
+
+<span class="sd">        :param: nombre</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+</div>
+<div class="viewcode-block" id="Socio.set_apellidos"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.set_apellidos">[docs]</a>    <span class="k">def</span> <span class="nf">set_apellidos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Asigna nuevo(s) apellido(s) al socio</span>
+<span class="sd">        :param: apellido(s)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__apellidos</span> <span class="o">=</span> <span class="n">apellidos</span>
+</div>
+<div class="viewcode-block" id="Socio.set_correo"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.set_correo">[docs]</a>    <span class="k">def</span> <span class="nf">set_correo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">correo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Asigna un nuevo correo electronico</span>
+
+<span class="sd">        :param: correo electronico</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__correo</span> <span class="o">=</span> <span class="n">correo</span>
+</div>
+<div class="viewcode-block" id="Socio.set_movil"><a class="viewcode-back" href="../../socio.html#src.Socio.Socio.set_movil">[docs]</a>    <span class="k">def</span> <span class="nf">set_movil</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">movil</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Asigna un nuevo movil</span>
+
+<span class="sd">        :param: movil</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__movil</span> <span class="o">=</span> <span class="n">movil</span>
+</div>
+    <span class="n">dni</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_dni</span><span class="p">)</span>
+    <span class="n">nombre</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_nombre</span><span class="p">)</span>
+    <span class="n">apellidos</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_apellidos</span><span class="p">)</span>
+    <span class="n">movil</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_movil</span><span class="p">)</span>
+    <span class="n">correo</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_correo</span><span class="p">)</span>
+    <span class="n">fecha_alta</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_fecha_alta</span><span class="p">,</span> <span class="n">set_fecha_alta</span><span class="p">)</span>
+    <span class="n">estado</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_estado</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

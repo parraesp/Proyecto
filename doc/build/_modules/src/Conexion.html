@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>src.Conexion &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for src.Conexion</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">src.conexion_reserva</span> <span class="kn">import</span> <span class="n">ConexionReserva</span>
+<span class="kn">from</span> <span class="nn">src.conexion_profesor</span> <span class="kn">import</span> <span class="n">ConexionProfesor</span>
+<span class="kn">from</span> <span class="nn">src.conexion_alquiler</span> <span class="kn">import</span> <span class="n">ConexionAlquiler</span>
+<span class="kn">from</span> <span class="nn">src.conexion_clase</span> <span class="kn">import</span> <span class="n">ConexionClase</span>
+<span class="kn">from</span> <span class="nn">src.conexion_instalacion</span> <span class="kn">import</span> <span class="n">ConexionInstalacion</span>
+<span class="kn">from</span> <span class="nn">src.conexion_socio</span> <span class="kn">import</span> <span class="n">ConexionSocio</span>
+<span class="kn">from</span> <span class="nn">src.conexion_torneo</span> <span class="kn">import</span> <span class="n">ConexionTorneo</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;alberto&#39;</span>
+
+
+<div class="viewcode-block" id="Conexion"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion">[docs]</a><span class="k">class</span> <span class="nc">Conexion</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Modelo de la aplicacion, tiene el resto de conexiones necesarias para guardar los datos.</span>
+<span class="sd">    Se encarga solo de conectarse con los modelos especificos.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Conexion.__init__"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor de la clase conexion</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_socio</span> <span class="o">=</span> <span class="n">ConexionSocio</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_profesor</span> <span class="o">=</span> <span class="n">ConexionProfesor</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_instalacion</span> <span class="o">=</span> <span class="n">ConexionInstalacion</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_reserva</span> <span class="o">=</span> <span class="n">ConexionReserva</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__conexion_socio</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_instalacion</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_alquiler</span> <span class="o">=</span> <span class="n">ConexionAlquiler</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__conexion_reserva</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_instalacion</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_clase</span> <span class="o">=</span> <span class="n">ConexionClase</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__conexion_profesor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_reserva</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_torneo</span> <span class="o">=</span> <span class="n">ConexionTorneo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__conexion_socio</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.guardar_socio"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.guardar_socio">[docs]</a>    <span class="k">def</span> <span class="nf">guardar_socio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">socio</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Guarda un socio</span>
+<span class="sd">        :param socio: socio a guardar</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_socio</span><span class="o">.</span><span class="n">guardar_socio</span><span class="p">(</span><span class="n">socio</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.guardar_profesor"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.guardar_profesor">[docs]</a>    <span class="k">def</span> <span class="nf">guardar_profesor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profesor</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Guarda un profesor en el club</span>
+<span class="sd">        :param profesor: profesor a guardar</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_profesor</span><span class="o">.</span><span class="n">guardar_profesor</span><span class="p">(</span><span class="n">profesor</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.sacar_socio"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.sacar_socio">[docs]</a>    <span class="k">def</span> <span class="nf">sacar_socio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtiene un socio del club</span>
+
+<span class="sd">        :param dni: dni del socio</span>
+<span class="sd">        :return: socio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_socio</span><span class="o">.</span><span class="n">sacar_socio</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.sacar_profesor"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.sacar_profesor">[docs]</a>    <span class="k">def</span> <span class="nf">sacar_profesor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtiene un profesor del club</span>
+
+<span class="sd">        :param dni: dni del profesor</span>
+<span class="sd">        :return: profesor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_profesor</span><span class="o">.</span><span class="n">sacar_profesor</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.dar_baja_socio"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.dar_baja_socio">[docs]</a>    <span class="k">def</span> <span class="nf">dar_baja_socio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">socio</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Da de baja a un socio</span>
+
+<span class="sd">        :param socio: socio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_socio</span><span class="o">.</span><span class="n">dar_baja_socio</span><span class="p">(</span><span class="n">socio</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.dar_baja_profesor"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.dar_baja_profesor">[docs]</a>    <span class="k">def</span> <span class="nf">dar_baja_profesor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Da de baja a un profesor en el club</span>
+
+<span class="sd">        :param dni: dni del profesor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_profesor</span><span class="o">.</span><span class="n">dar_baja_profesor</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.sacar_instalacion"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.sacar_instalacion">[docs]</a>    <span class="k">def</span> <span class="nf">sacar_instalacion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instalacion_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtiene una instalacion del club</span>
+
+<span class="sd">        :param instalacion_id: id de la instalacion</span>
+<span class="sd">        :return: instalacion</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_instalacion</span><span class="o">.</span><span class="n">sacar_instalacion</span><span class="p">(</span><span class="n">instalacion_id</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.sacar_clase"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.sacar_clase">[docs]</a>    <span class="k">def</span> <span class="nf">sacar_clase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profesor</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">fecha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtiene un clase del club</span>
+
+<span class="sd">        :param profesor: dni del profesor</span>
+<span class="sd">        :param dni: dni del socio</span>
+<span class="sd">        :param fecha: fecha de la clase</span>
+<span class="sd">        :return: clase</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_clase</span><span class="o">.</span><span class="n">sacar_clase</span><span class="p">(</span><span class="n">profesor</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">fecha</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.guardar_reserva"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.guardar_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">guardar_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reserva</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Guarda una reserva en el club</span>
+
+<span class="sd">        :param reserva: reserva a guardar</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_reserva</span><span class="o">.</span><span class="n">guardar_reserva</span><span class="p">(</span><span class="n">reserva</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.guardar_clase"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.guardar_clase">[docs]</a>    <span class="k">def</span> <span class="nf">guardar_clase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clase</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Guarda una clase en el club</span>
+
+<span class="sd">        :param clase: clase a guardar</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_clase</span><span class="o">.</span><span class="n">guardar_clase</span><span class="p">(</span><span class="n">clase</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.sacar_reserva"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.sacar_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">sacar_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">fecha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtiene una reserva del club</span>
+
+<span class="sd">        :param dni: dni del socio que reservo</span>
+<span class="sd">        :param fecha: fecha de la reserva</span>
+<span class="sd">        :return: reserva</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_reserva</span><span class="o">.</span><span class="n">sacar_reserva</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="n">fecha</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.verificar_reserva"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.verificar_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">verificar_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="n">instalacion_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Verifica si una reserva existe ya para una fecha e instalacion dada</span>
+
+<span class="sd">        :param fecha: fecha de la reserva</span>
+<span class="sd">        :param instalacion_id: id de la isntalacion</span>
+<span class="sd">        :return: reserve valida</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_reserva</span><span class="o">.</span><span class="n">verificar_reserva</span><span class="p">(</span><span class="n">fecha</span><span class="p">,</span> <span class="n">instalacion_id</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.borrar_reserva"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.borrar_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">borrar_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">fecha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Borra una reserva del club</span>
+
+<span class="sd">        :param dni: dni del socio</span>
+<span class="sd">        :param fecha: fecha de la reserva</span>
+<span class="sd">        :return: reserva borrada</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_reserva</span><span class="o">.</span><span class="n">borrar_reserva</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="n">fecha</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.guardar_alquiler"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.guardar_alquiler">[docs]</a>    <span class="k">def</span> <span class="nf">guardar_alquiler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alquiler</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Guarda un alquiler en el club</span>
+
+<span class="sd">        :param alquiler: alquiler a guardar</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_alquiler</span><span class="o">.</span><span class="n">guardar_alquiler</span><span class="p">(</span><span class="n">alquiler</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.sacar_alquiler"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.sacar_alquiler">[docs]</a>    <span class="k">def</span> <span class="nf">sacar_alquiler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reserva</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtiene los datos de un alquiler</span>
+
+<span class="sd">        :param reserva: reserva asociada</span>
+<span class="sd">        :return: alquiler</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_alquiler</span><span class="o">.</span><span class="n">sacar_alquiler</span><span class="p">(</span><span class="n">reserva</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.devolver_alquiler"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.devolver_alquiler">[docs]</a>    <span class="k">def</span> <span class="nf">devolver_alquiler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reserva</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve un alquiler</span>
+
+<span class="sd">        :param reserva: reserva asociada</span>
+<span class="sd">        :return: alquiler devuelto</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_alquiler</span><span class="o">.</span><span class="n">devolver_alquiler</span><span class="p">(</span><span class="n">reserva</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.borrar_clase"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.borrar_clase">[docs]</a>    <span class="k">def</span> <span class="nf">borrar_clase</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">profesor</span><span class="p">,</span> <span class="n">fecha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Elimina una clase del club</span>
+
+<span class="sd">        :param profesor: dni del profesor</span>
+<span class="sd">        :param fecha: fecha de la clase</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_clase</span><span class="o">.</span><span class="n">borrar_clase</span><span class="p">(</span><span class="n">profesor</span><span class="p">,</span> <span class="n">fecha</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.cambiar_socio"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.cambiar_socio">[docs]</a>    <span class="k">def</span> <span class="nf">cambiar_socio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">,</span> <span class="n">movil</span><span class="p">,</span> <span class="n">correo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Edita los datos de un socio</span>
+
+<span class="sd">        :param dni: dni del socio</span>
+<span class="sd">        :param nombre: nuevo nombre</span>
+<span class="sd">        :param apellidos: nuevos apellidos</span>
+<span class="sd">        :param movil: nuevo telefono</span>
+<span class="sd">        :param correo: nuevo correo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_socio</span><span class="o">.</span><span class="n">cambiar_socio</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">,</span> <span class="n">movil</span><span class="p">,</span> <span class="n">correo</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.cambiar_profesor"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.cambiar_profesor">[docs]</a>    <span class="k">def</span> <span class="nf">cambiar_profesor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dni</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">,</span> <span class="n">movil</span><span class="p">,</span> <span class="n">correo</span><span class="p">,</span> <span class="n">sueldo</span><span class="p">,</span> <span class="n">jornada</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Edita los datos de un profesor</span>
+
+<span class="sd">        :param dni: dni del socio</span>
+<span class="sd">        :param nombre: nuevo nombre</span>
+<span class="sd">        :param apellidos: nuevos apellidos</span>
+<span class="sd">        :param movil: nuevo telefono</span>
+<span class="sd">        :param correo: nuevo correo</span>
+<span class="sd">        :param sueldo: nuevo sueldo</span>
+<span class="sd">        :param joranda: nueva jornada</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_profesor</span><span class="o">.</span><span class="n">cambiar_profesor</span><span class="p">(</span><span class="n">dni</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">apellidos</span><span class="p">,</span> <span class="n">movil</span><span class="p">,</span> <span class="n">correo</span><span class="p">,</span> <span class="n">sueldo</span><span class="p">,</span> <span class="n">jornada</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.guardar_torneo"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.guardar_torneo">[docs]</a>    <span class="k">def</span> <span class="nf">guardar_torneo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torneo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Guarda un torneo en el club</span>
+
+<span class="sd">        :param torneo: torneo a guardar</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_torneo</span><span class="o">.</span><span class="n">guardar_torneo</span><span class="p">(</span><span class="n">torneo</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.sacar_torneo"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.sacar_torneo">[docs]</a>    <span class="k">def</span> <span class="nf">sacar_torneo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Obtiene los datos de un torneo existente</span>
+
+<span class="sd">        :param nombre: nombre del torneo</span>
+<span class="sd">        :return: torneo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_torneo</span><span class="o">.</span><span class="n">sacar_torneo</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.poner_resultado"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.poner_resultado">[docs]</a>    <span class="k">def</span> <span class="nf">poner_resultado</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torneo</span><span class="p">,</span> <span class="n">partido</span><span class="p">,</span> <span class="n">resultado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Establece un resultado para un partido de un toreno</span>
+
+<span class="sd">        :param torneo: nombre del torneo</span>
+<span class="sd">        :param partido: partido el torneo</span>
+<span class="sd">        :param resultado: resultado del torneo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_torneo</span><span class="o">.</span><span class="n">poner_resultado</span><span class="p">(</span><span class="n">torneo</span><span class="p">,</span> <span class="n">partido</span><span class="p">,</span> <span class="n">resultado</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Conexion.borrar_torneo"><a class="viewcode-back" href="../../conexion.html#src.Conexion.Conexion.borrar_torneo">[docs]</a>    <span class="k">def</span> <span class="nf">borrar_torneo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">torneo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Elimina un torneo del club</span>
+
+<span class="sd">        :param torneo: nombre del torneo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__conexion_torneo</span><span class="o">.</span><span class="n">borrar_torneo</span><span class="p">(</span><span class="n">torneo</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

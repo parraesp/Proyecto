@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tests.test_club &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for tests.test_club</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">unittest</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">src.Club</span> <span class="kn">import</span> <span class="n">Club</span>
+<span class="kn">from</span> <span class="nn">src.Reserva</span> <span class="kn">import</span> <span class="n">Reserva</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randrange</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">src.Socio</span> <span class="kn">import</span> <span class="n">Socio</span>
+<span class="kn">from</span> <span class="nn">src.Profesor</span> <span class="kn">import</span> <span class="n">Profesor</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Ricardo&#39;</span>
+
+
+<div class="viewcode-block" id="TestClub"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub">[docs]</a><span class="k">class</span> <span class="nc">TestClub</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Clase que testea la clase Club</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TestClub.crear_fecha_random"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.crear_fecha_random">[docs]</a>    <span class="k">def</span> <span class="nf">crear_fecha_random</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Metodo para generar una fecha aleatoria</span>
+
+<span class="sd">        :return: fecha</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s">&#39;1/1/00 15&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s">/%m/%y %H&#39;</span><span class="p">)</span>
+        <span class="n">random_second</span> <span class="o">=</span> <span class="n">randrange</span><span class="p">(</span><span class="mi">999999999</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">delta</span>
+                <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">random_second</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%d</span><span class="s">/%m/%y %H&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_validar_dni"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_validar_dni">[docs]</a>    <span class="k">def</span> <span class="nf">test_validar_dni</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Testea la validacion de un dni</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="s">&#39;12345678a&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="s">&#39;olakase&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="s">&#39;123456789&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="s">&#39;12345678-a&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_dni</span><span class="p">(</span><span class="s">&#39;1234567a8&#39;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_validar_instalacion"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_validar_instalacion">[docs]</a>    <span class="k">def</span> <span class="nf">test_validar_instalacion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Testea la validacion de una instalacion</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_instalacion</span><span class="p">(</span><span class="s">&#39;inst01&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_instalacion</span><span class="p">(</span><span class="s">&#39;luz&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_instalacion</span><span class="p">(</span><span class="s">&#39;pala3&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_instalacion</span><span class="p">(</span><span class="s">&#39;1234134&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_instalacion</span><span class="p">(</span><span class="s">&#39;inst1&#39;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_validar_email"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_validar_email">[docs]</a>    <span class="k">def</span> <span class="nf">test_validar_email</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Testea la validacion de un email</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_email</span><span class="p">(</span><span class="s">&#39;olakase@hotmail.com&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_email</span><span class="p">(</span><span class="s">&#39;noesunemail&#39;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_validar_telefono"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_validar_telefono">[docs]</a>    <span class="k">def</span> <span class="nf">test_validar_telefono</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Testea la validacion de un telefono</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_telefono</span><span class="p">(</span><span class="s">&#39;123456789&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_telefono</span><span class="p">(</span><span class="s">&#39;1234589&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_telefono</span><span class="p">(</span><span class="s">&#39;abcdefghi&#39;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_validar_fecha"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_validar_fecha">[docs]</a>    <span class="k">def</span> <span class="nf">test_validar_fecha</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Testea la validacion de una fecha</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_fecha</span><span class="p">(</span><span class="s">&#39;12/12/14 17&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_fecha</span><span class="p">(</span><span class="s">&#39;12-12-14 17&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_fecha</span><span class="p">(</span><span class="s">&#39;32/22/14 17&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_fecha</span><span class="p">(</span><span class="s">&#39;12/20/14 17&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">validar_fecha</span><span class="p">(</span><span class="s">&#39;12/12/14 17:00&#39;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_obtener_socio"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_obtener_socio">[docs]</a>    <span class="k">def</span> <span class="nf">test_obtener_socio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test de integracion para validar como el controlador obtiene un socio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">obtener_socio</span><span class="p">(</span><span class="s">&quot;12345677B&quot;</span><span class="p">),</span> <span class="n">Socio</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">obtener_socio</span><span class="p">(</span><span class="s">&quot;socioNoExistente&quot;</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_editar_socio"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_editar_socio">[docs]</a>    <span class="k">def</span> <span class="nf">test_editar_socio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test del controlador para editar un socio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="n">club</span><span class="o">.</span><span class="n">editar_socio</span><span class="p">(</span><span class="s">&quot;12345677B&quot;</span><span class="p">,</span> <span class="s">&quot;Juan Jose&quot;</span><span class="p">,</span> <span class="s">&quot;Perez&quot;</span><span class="p">,</span> <span class="s">&quot;666209821&quot;</span><span class="p">,</span>
+                          <span class="s">&quot;email_nuevo@example.org&quot;</span><span class="p">)</span>
+        <span class="n">socio</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_socio</span><span class="p">(</span><span class="s">&quot;12345677B&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="s">&quot;Juan Jose&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">apellidos</span><span class="p">,</span> <span class="s">&quot;Perez&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">movil</span><span class="p">,</span> <span class="s">&quot;666209821&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">correo</span><span class="p">,</span> <span class="s">&quot;email_nuevo@example.org&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_dar_baja_socio"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_dar_baja_socio">[docs]</a>    <span class="k">def</span> <span class="nf">test_dar_baja_socio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test de integracion del controlador para dar de baja a un socio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="n">club</span><span class="o">.</span><span class="n">dar_baja_socio</span><span class="p">(</span><span class="s">&quot;12345677B&quot;</span><span class="p">)</span>
+        <span class="n">socio</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_socio</span><span class="p">(</span><span class="s">&quot;12345677B&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">estado</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestClub.alta_socio"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.alta_socio">[docs]</a>    <span class="k">def</span> <span class="nf">alta_socio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test de integracion del controlador para dar de alta a un socio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="n">club</span><span class="o">.</span><span class="n">alta_socio</span><span class="p">(</span><span class="s">&quot;49116999J&quot;</span><span class="p">,</span> <span class="s">&quot;Ernesto&quot;</span><span class="p">,</span> <span class="s">&quot;de la Serna&quot;</span><span class="p">,</span> <span class="s">&quot;633456564&quot;</span><span class="p">,</span>
+                        <span class="s">&quot;rotesherztz@mail.de&quot;</span><span class="p">)</span>
+        <span class="n">socio</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_socio</span><span class="p">(</span><span class="s">&quot;49116999J&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="s">&quot;Ernesto&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">apellidos</span><span class="p">,</span> <span class="s">&quot;de la Serna&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">movil</span><span class="p">,</span> <span class="s">&quot;633456564&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">socio</span><span class="o">.</span><span class="n">correo</span><span class="p">,</span> <span class="s">&quot;rotesherztz@mail.de&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_obtener_profesor"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_obtener_profesor">[docs]</a>    <span class="k">def</span> <span class="nf">test_obtener_profesor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test de integracion del controlador para obtener un profesor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">obtener_profesor</span><span class="p">(</span><span class="s">&quot;25335374T&quot;</span><span class="p">),</span> <span class="n">Profesor</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">obtener_profesor</span><span class="p">(</span><span class="s">&quot;profesorNoExistente&quot;</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_editar_profesor"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_editar_profesor">[docs]</a>    <span class="k">def</span> <span class="nf">test_editar_profesor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test de integracion del controlador para editar los datos de un profesor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="n">club</span><span class="o">.</span><span class="n">editar_profesor</span><span class="p">(</span><span class="s">&quot;25335374T&quot;</span><span class="p">,</span> <span class="s">&quot;Don Juan&quot;</span><span class="p">,</span> <span class="s">&quot;Tenorio&quot;</span><span class="p">,</span> <span class="s">&quot;666209821&quot;</span><span class="p">,</span>
+                             <span class="s">&quot;email_nuevo@example.org&quot;</span><span class="p">,</span> <span class="mi">2500</span><span class="p">,</span> <span class="s">&quot;Completa&quot;</span><span class="p">)</span>
+        <span class="n">profesor</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_profesor</span><span class="p">(</span><span class="s">&quot;25335374T&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="s">&quot;Don Juan&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">apellidos</span><span class="p">,</span> <span class="s">&quot;Tenorio&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">movil</span><span class="p">,</span> <span class="s">&quot;666209821&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">correo</span><span class="p">,</span> <span class="s">&quot;email_nuevo@example.org&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">get_salario</span><span class="p">(),</span> <span class="mi">2500</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">get_jornada</span><span class="p">(),</span> <span class="s">&quot;Completa&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_dar_baja_profesor"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_dar_baja_profesor">[docs]</a>    <span class="k">def</span> <span class="nf">test_dar_baja_profesor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test de integracion del controlador para dar de baja a un profesor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="n">club</span><span class="o">.</span><span class="n">dar_baja_profesor</span><span class="p">(</span><span class="s">&quot;25335374T&quot;</span><span class="p">)</span>
+        <span class="n">profesor</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_profesor</span><span class="p">(</span><span class="s">&quot;25335374T&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">estado</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestClub.alta_profesor"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.alta_profesor">[docs]</a>    <span class="k">def</span> <span class="nf">alta_profesor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test de integracion del controlador para dar de alta a un profesor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="n">club</span><span class="o">.</span><span class="n">alta_profesor</span><span class="p">(</span><span class="s">&quot;49116999A&quot;</span><span class="p">,</span> <span class="s">&quot;Eva&quot;</span><span class="p">,</span> <span class="s">&quot;Castro&quot;</span><span class="p">,</span> <span class="s">&quot;733456564&quot;</span><span class="p">,</span>
+                           <span class="s">&quot;eslebt@derkom.in&quot;</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="s">&quot;Completa&quot;</span><span class="p">)</span>
+        <span class="n">profesor</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">obtener_profesor</span><span class="p">(</span><span class="s">&quot;49116999A&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">nombre</span><span class="p">,</span> <span class="s">&quot;Eva&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">apellidos</span><span class="p">,</span> <span class="s">&quot;Castro&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">movil</span><span class="p">,</span> <span class="s">&quot;733456564&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">correo</span><span class="p">,</span> <span class="s">&quot;eslebt@derkom.in&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">get_salario</span><span class="p">(),</span> <span class="mi">3000</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">profesor</span><span class="o">.</span><span class="n">get_jornada</span><span class="p">(),</span> <span class="s">&quot;Completa&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_crear_reserva"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_crear_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">test_crear_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test de integracion del controlador para crear una reserva</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fecha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crear_fecha_random</span><span class="p">()</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">crear_reserva</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="s">&#39;inst01&#39;</span><span class="p">),</span>
+                              <span class="n">Reserva</span><span class="p">)</span>
+        <span class="n">res1</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">crear_reserva</span><span class="p">(</span><span class="s">&#39;11111111A&#39;</span><span class="p">,</span> <span class="s">&#39;01/01/01 15&#39;</span><span class="p">,</span> <span class="s">&#39;inst01&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">res1</span><span class="p">)</span>
+        <span class="n">res2</span> <span class="o">=</span> <span class="n">club</span><span class="o">.</span><span class="n">crear_reserva</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="s">&#39;inst01&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">res2</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_consultar_reserva"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_consultar_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">test_consultar_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test de integracion del controlador para obtener una reserva</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="n">fecha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crear_fecha_random</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">consultar_reserva</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">,</span> <span class="s">&#39;27/04/01 22&#39;</span><span class="p">),</span>
+                              <span class="n">Reserva</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">club</span><span class="o">.</span><span class="n">consultar_reserva</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">,</span> <span class="n">fecha</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">club</span><span class="o">.</span><span class="n">consultar_reserva</span><span class="p">(</span><span class="s">&#39;12223334A&#39;</span><span class="p">,</span> <span class="n">fecha</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">club</span><span class="o">.</span><span class="n">consultar_reserva</span><span class="p">(</span><span class="s">&#39;12223334A&#39;</span><span class="p">,</span> <span class="s">&#39;27/04/01 22&#39;</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="TestClub.test_cancelar_reserva"><a class="viewcode-back" href="../../test_club.html#tests.test_club.TestClub.test_cancelar_reserva">[docs]</a>    <span class="k">def</span> <span class="nf">test_cancelar_reserva</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test de integracion del controlador para cancelar una reserva</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fecha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crear_fecha_random</span><span class="p">()</span>
+        <span class="n">club</span> <span class="o">=</span> <span class="n">Club</span><span class="p">()</span>
+        <span class="n">club</span><span class="o">.</span><span class="n">crear_reserva</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">,</span> <span class="n">fecha</span><span class="p">,</span> <span class="s">&#39;inst02&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">club</span><span class="o">.</span><span class="n">cancelar_reserva</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">,</span> <span class="n">fecha</span><span class="p">),</span>
+                              <span class="n">Reserva</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">club</span><span class="o">.</span><span class="n">cancelar_reserva</span><span class="p">(</span><span class="s">&#39;12345678A&#39;</span><span class="p">,</span> <span class="n">fecha</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">club</span><span class="o">.</span><span class="n">cancelar_reserva</span><span class="p">(</span><span class="s">&#39;12345555A&#39;</span><span class="p">,</span> <span class="n">fecha</span><span class="p">))</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Proyecto 0.2 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

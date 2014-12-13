@@ -1,0 +1,11 @@
+Profesor
+===================================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+.. automodule:: src.Profesor
+   :members:
+   :special-members:

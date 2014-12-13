@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Profesor &mdash; Proyecto 0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Proyecto 0.2 documentation" href="index.html" />
+    <link rel="next" title="Reserva" href="reserva.html" />
+    <link rel="prev" title="Instalacion" href="instalacion.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="reserva.html" title="Reserva"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="instalacion.html" title="Instalacion"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="profesor">
+<h1>Profesor<a class="headerlink" href="#profesor" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-src.Profesor"></span><dl class="class">
+<dt id="src.Profesor.Profesor">
+<em class="property">class </em><tt class="descclassname">src.Profesor.</tt><tt class="descname">Profesor</tt><big>(</big><em>dni</em>, <em>nombre</em>, <em>apellidos</em>, <em>movil</em>, <em>correo</em>, <em>salario</em>, <em>jornada</em>, <em>*otros</em><big>)</big><a class="reference internal" href="_modules/src/Profesor.html#Profesor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Profesor.Profesor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clase que gestiona los profesores del club</p>
+<dl class="method">
+<dt id="src.Profesor.Profesor.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>dni</em>, <em>nombre</em>, <em>apellidos</em>, <em>movil</em>, <em>correo</em>, <em>salario</em>, <em>jornada</em>, <em>*otros</em><big>)</big><a class="reference internal" href="_modules/src/Profesor.html#Profesor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Profesor.Profesor.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor de la clase profesor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">dni</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Param:</th><td class="field-body">nombre</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">apellidos</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Param:</th><td class="field-body">movil</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">correo</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Param:</th><td class="field-body">salario</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">tipo de jornada</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Param:</th><td class="field-body">parametros a usar en caso de querer cargar un objeto de la persistencia en lugar de crear uno nuevo</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Profesor.Profesor.get_jornada">
+<tt class="descname">get_jornada</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Profesor.html#Profesor.get_jornada"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Profesor.Profesor.get_jornada" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el tipo de jornada que tiene un profesor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">jornada</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Profesor.Profesor.get_salario">
+<tt class="descname">get_salario</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/src/Profesor.html#Profesor.get_salario"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Profesor.Profesor.get_salario" title="Permalink to this definition">¶</a></dt>
+<dd><p>Devuelve el salario de un profesor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">salario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Profesor.Profesor.set_jornada">
+<tt class="descname">set_jornada</tt><big>(</big><em>jornada</em><big>)</big><a class="reference internal" href="_modules/src/Profesor.html#Profesor.set_jornada"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Profesor.Profesor.set_jornada" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asgina un nuevo tipo de jornada a un profesor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">jornada</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.Profesor.Profesor.set_salario">
+<tt class="descname">set_salario</tt><big>(</big><em>salario</em><big>)</big><a class="reference internal" href="_modules/src/Profesor.html#Profesor.set_salario"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.Profesor.Profesor.set_salario" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asgina un nuevo salario a un profesor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">salario</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="instalacion.html"
+                        title="previous chapter">Instalacion</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="reserva.html"
+                        title="next chapter">Reserva</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/profesor.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="reserva.html" title="Reserva"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="instalacion.html" title="Instalacion"
+             >previous</a> |</li>
+        <li><a href="index.html">Proyecto 0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, calidad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
