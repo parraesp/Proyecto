@@ -13,12 +13,6 @@ __author__ = 'Ricardo'
 
 
 class TestConexion_alquiler(TestCase):
-    def test_sacar_alquiler(self):
-        self.fail()
-
-    def test_devolver_alquiler(self):
-        self.fail()
-
     def test_guardar_alquiler_fichero(self):
         socio = mock(Socio)
         when(socio).get_DNI().thenReturn('11111111K')

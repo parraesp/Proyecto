@@ -18,10 +18,3 @@ class Torneo():
 
     def set_resultado(self, partido, dni):
         self.__resultados[partido] = dni
-
-    nombre = property(get_nombre)
-    socios = property(get_socios)
-    resultados = property(get_resultados)
-
-    def __eq__(self, other):
-        return self.__nombre == other.nombre

@@ -35,9 +35,9 @@ class conexion_alquiler():
         cont = 0
         encontrado = False
         while(cont < len(self.__alquileres) and not(encontrado)):
-            if(self.__alquileres[cont].reserva == reserva):
+            if(self.__alquileres[cont].get_reserva() == reserva):
                 encontrado = True
-                self.__alquileres[cont].devuelto = True
+                self.__alquileres[cont].set_devuelto(True)
                 valor = self.__alquileres[cont]
             else:
                 cont = cont+1

@@ -61,3 +61,4 @@ class TestConexion_reserva(TestCase):
         tmp_file = open(link, 'r')
         lines = tmp_file.readlines()
         self.assertNotEquals(lines[len(lines)-1], "11111111K\t01/01/07 07:00\tinst02\n")
+        tmp_file.close()
