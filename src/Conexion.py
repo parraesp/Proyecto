@@ -17,8 +17,10 @@ class Conexion():
         self.__conexion_instalacion = conexion_instalacion()
         self.__conexion_reserva = conexion_reserva(self.__conexion_socio, self.__conexion_instalacion)
         self.__conexion_alquiler = conexion_alquiler(self.__conexion_reserva, self.__conexion_instalacion)
-        self.__conexion_clase = conexion_clase()
+        self.__conexion_clase = conexion_clase(self.__conexion_profesor, self.__conexion_reserva)
+
         self.__conexion_torneo = conexion_torneo(self.__conexion_socio)
+
 
     def guardar_socio(self,socio):
         self.__conexion_socio.guardar_socio(socio)
@@ -41,8 +43,8 @@ class Conexion():
     def sacar_instalacion(self,instalacionID):
         return self.__conexion_instalacion.sacar_instalacion(instalacionID)
 
-    def sacar_clase(self,profesor, fecha):
-        return self.__conexion_clase.sacar_clase(profesor,fecha)
+    def sacar_clase(self,profesor, DNI, fecha):
+        return self.__conexion_clase.sacar_clase(profesor, DNI, fecha)
 
     def guardar_reserva(self,reserva):
         self.__conexion_reserva.guardar_reserva(reserva)
@@ -53,8 +55,8 @@ class Conexion():
     def sacar_reserva(self, DNI, fecha):
         return self.__conexion_reserva.sacar_reserva(DNI, fecha)
 
-    def verificar_reserva(self, fecha):
-        return self.__conexion_reserva.verificar_reserva(fecha)
+    def verificar_reserva(self, fecha, instalacion_id):
+        return self.__conexion_reserva.verificar_reserva(fecha, instalacion_id)
 
     def borrar_reserva(self, DNI, fecha):
         return self.__conexion_reserva.borrar_reserva(DNI, fecha)

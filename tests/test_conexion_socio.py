@@ -22,7 +22,6 @@ class TestConexion_socio(TestCase):
         tmp_file = open(link, 'w')
         tmp_file.writelines(lines)
         con.dar_baja_socio(socio)
-        tmp_file.close()
 
     def test_sacar_socio(self):
         con = conexion_socio()
@@ -38,7 +37,6 @@ class TestConexion_socio(TestCase):
         tmp_file.close()
         tmp_file = open(link, 'w')
         tmp_file.writelines(lines)
-        tmp_file.close()
 
     def test_dar_baja_socio(self):
         con = conexion_socio()
@@ -54,7 +52,6 @@ class TestConexion_socio(TestCase):
         tmp_file.close()
         tmp_file = open(link, 'w')
         tmp_file.writelines(lines)
-        tmp_file.close()
 
     def test_cambiar_socio(self):
         con = conexion_socio()
@@ -70,4 +67,3 @@ class TestConexion_socio(TestCase):
         tmp_file.close()
         tmp_file = open(link, 'w')
         tmp_file.writelines(lines)
-        tmp_file.close()

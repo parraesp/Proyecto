@@ -34,11 +34,12 @@ class conexion_reserva():
                 cont = cont+1
         return valor
 
-    def verificar_reserva(self, fecha):
+    def verificar_reserva(self, fecha, instalacion_id):
         cont = 0
         verf = True
         while(cont < len(self.__reservas) and verf):
-            if(self.__reservas[cont].get_fecha() == fecha):
+            if(self.__reservas[cont].get_fecha() == fecha and
+                    self.__reservas[cont].get_instalacion().get_instalacion_id() == instalacion_id):
                 verf = False
             else:
                 cont = cont+1

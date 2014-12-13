@@ -50,32 +50,6 @@ class TestClub(TestCase):
         self.assertFalse(club.validarFecha('32/22/14 17'))
         self.assertFalse(club.validarFecha('12/20/14 17'))
         self.assertFalse(club.validarFecha('12/12/14 17:00'))
-
-    def test_crear_reserva(self):
-        fecha = self.crear_fecha_random()
-        club = Club()
-        self.assertIsInstance(club.crear_reserva('12345678A', fecha, 'inst01'), Reserva)
-        res1 = club.crear_reserva('11111111A', '01/01/01 15', 'inst01')
-        self.assertEqual(-1, res1)
-        res2 = club.crear_reserva('12345678A', fecha, 'inst01')
-        self.assertEqual(-1, res2)
-
-    def test_consultar_reserva(self):
-        club = Club()
-        fecha = self.crear_fecha_random()
-        self.assertIsInstance(club.consultar_reserva('12345678A', '27/04/01 22'), Reserva)
-        self.assertEqual(-1, club.consultar_reserva('12345678A', fecha))
-        self.assertEqual(-1, club.consultar_reserva('12223334A', fecha))
-        self.assertEqual(-1, club.consultar_reserva('12223334A', '27/04/01 22'))
-
-    def test_cancelar_reserva(self):
-        fecha = self.crear_fecha_random()
-        club = Club()
-        club.crear_reserva('12345678A', fecha, 'inst02')
-        self.assertIsInstance(club.cancelar_reserva('12345678A', fecha), Reserva)
-        self.assertEqual(-1, club.cancelar_reserva('12345678A', fecha))
-        self.assertEqual(-1, club.cancelar_reserva('12345555A',fecha))
-
 """
     def test_obtener_socio(self):
         club = Club()
@@ -138,4 +112,29 @@ class TestClub(TestCase):
         self.assertEqual(profesor.correo,"eslebt@derkom.in")
         self.assertEqual(profesor.get_salario(),3000)
         self.assertEqual(profesor.get_jornada(),"Completa")
+
+    def test_crear_reserva(self):
+        fecha = self.crear_fecha_random()
+        club = Club()
+        self.assertIsInstance(club.crear_reserva('12345678A', fecha, 'inst01'), Reserva)
+        res1 = club.crear_reserva('11111111A', '01/01/01 15', 'inst01')
+        self.assertEqual(-1, res1)
+        res2 = club.crear_reserva('12345678A', fecha, 'inst01')
+        self.assertEqual(-1, res2)
+
+    def test_consultar_reserva(self):
+        club = Club()
+        fecha = self.crear_fecha_random()
+        self.assertIsInstance(club.consultar_reserva('12345678A', '27/04/01 22'), Reserva)
+        self.assertEqual(-1, club.consultar_reserva('12345678A', fecha))
+        self.assertEqual(-1, club.consultar_reserva('12223334A', fecha))
+        self.assertEqual(-1, club.consultar_reserva('12223334A', '27/04/01 22'))
+
+    def test_cancelar_reserva(self):
+        fecha = self.crear_fecha_random()
+        club = Club()
+        club.crear_reserva('12345678A', fecha, 'inst02')
+        self.assertIsInstance(club.cancelar_reserva('12345678A', fecha), Reserva)
+        self.assertEqual(-1, club.cancelar_reserva('12345678A', fecha))
+        self.assertEqual(-1, club.cancelar_reserva('12345555A',fecha))
 """

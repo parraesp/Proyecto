@@ -1,4 +1,4 @@
-from src import Clase
+from src.Clase import Clase
 import os
 __author__ = 'alberto'
 import csv
@@ -8,25 +8,30 @@ from datetime import datetime
 
 
 class conexion_clase():
-    def __init__(self):
+    def __init__(self, profesores, reservas):
+        self.__profesores = profesores
+        self.__reservas = reservas
         self.__clases = self.__listar_clases()
 
-    def sacar_clase(self,profesor, fecha):
+    def sacar_clase(self, profesor, socio, fecha):
         valor = -1
         cont = 0
         encontrado = False
         while(cont < len(self.__clases) and not(encontrado)):
-            if(self.__clases[cont].get_profesor().DNI == profesor and self.__clases[cont].get_reserva().get_fecha()==fecha):
+            if(self.__clases[cont].get_profesor().DNI == profesor
+               and self.__clases[cont].get_reserva().get_fecha() == fecha
+               and self.__clases[cont].get_reserva().get_socio().get_DNI() == socio):
                 encontrado = True
                 valor = self.__clases[cont]
             else:
-                cont=cont+1
+                cont = cont+1
         return valor
 
     def guardar_clase(self, clase):
         f = open(os.path.dirname(__file__)+'/files/clases.csv', 'a+')
         texto = ''
         texto += clase.get_profesor().get_DNI()+'\t'
+        texto += clase.get_reserva().get_socio().get_DNI()+"\t"
         texto += str(clase.get_reserva().get_fecha().strftime("%d/%m/%y %H:%M"))+'\n'
         f.write(texto)
         f.close()
@@ -40,7 +45,7 @@ class conexion_clase():
             writer = csv.writer(tempfile, delimiter='\t')
 
             for row in reader:
-                if(row[0] != profesor and row[1] != str(fecha)):
+                if(row[0] != profesor and row[2] != str(fecha)):
                     writer.writerow(row)
         shutil.move(tempfile.name, os.path.dirname(__file__)+'/files/clases.csv')
         csvFile.close()
@@ -51,8 +56,8 @@ class conexion_clase():
         with open(os.path.dirname(__file__)+'/files/clases.csv') as f:
             content = csv.reader(f, delimiter='\t')
             for row in content:
-                fecha = datetime.strptime(row[1], "%d/%m/%y %H:%M")
-                clase = Clase(self.sacar_profesor(row[0]), self.sacar_reserva(fecha))
+                fecha = datetime.strptime(row[2], "%d/%m/%y %H:%M")
+                clase = Clase(self.__profesores.sacar_profesor(row[0]), self.__reservas.sacar_reserva(row[1], fecha))
                 clases.append(clase)
         f.close()
         return clases

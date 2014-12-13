@@ -1,11 +1,10 @@
-
 from src.Conexion import Conexion
 from src.Socio import Socio
 from src.Reserva import Reserva
 from src.Torneo import Torneo
 from src.Alquiler import Alquiler
-
-
+from src.Profesor import Profesor
+from src.Clase import Clase
 __author__ = 'Ricardo'
 from datetime import *
 import re
@@ -16,13 +15,16 @@ class Club():
         self.__conexion = Conexion()
 
     def alta_socio(self,DNI,nombre,apellidos,movil,correo):
+        #verificar datos
         socio = Socio(DNI,nombre,apellidos,movil,correo)
-        self.__conexion.guardar_socio(socio)
+        if self.obtener_socio(DNI) == -1:
+            self.__conexion.guardar_socio(socio)
 
     def alta_profesor(self,DNI,nombre,apellidos,movil,correo,salario,jornada):
         #verificar datos
         profesor = Profesor(DNI,nombre,apellidos,movil,correo,salario,jornada)
-        self.__conexion.guardar_profesor(profesor)
+        if self.obtener_profesor(DNI) == -1:
+            self.__conexion.guardar_profesor(profesor)
 
     def editar_socio(self,DNI,nombre,apellidos,movil,correo):
         self.__conexion.cambiar_socio(DNI,nombre,apellidos,movil,correo)
@@ -45,13 +47,14 @@ class Club():
         return socio
 
     def dar_baja_profesor(self, DNI):
-        self.__conexion.dar_baja_profesor(DNI)
+        if(self.obtener_profesor(DNI)!=-1):
+            self.__conexion.dar_baja_profesor(DNI)
 
     def crear_reserva(self, DNI, fecha, instalacionID):
         socio = self.__conexion.sacar_socio(DNI)
         fecha = datetime.strptime(fecha, "%d/%m/%y %H")
         reserva = -1
-        if socio != -1 and self.__conexion.verificar_reserva(fecha):
+        if socio != -1 and self.__conexion.verificar_reserva(fecha, instalacionID):
             instalacion = self.__conexion.sacar_instalacion(instalacionID)
             reserva = Reserva(socio, fecha, instalacion)
             self.__conexion.guardar_reserva(reserva)
@@ -70,12 +73,15 @@ class Club():
         self.__conexion.borrar_reserva(DNI, fecha)
         return reserva
 
-    def crear_torneo(self, nombre,socios,fecha):
+    def crear_torneo(self, nombre, socios, fecha):
         fechaAux = datetime.strptime(fecha, "%d/%m/%y %H")
-        self.crear_reserva(socios[0].DNI,fechaAux.strftime("%d/%m/%y %H"),'inst02')
-        for i in range(0, 6, 1):
+        self.crear_reserva(socios[0].DNI, fechaAux.strftime("%d/%m/%y %H"), 'inst02')
+        i = 0
+        while (i < 7):
             fechaAux += timedelta(days=1)
-            self.crear_reserva(socios[0].DNI, fechaAux.strftime("%d/%m/%y %H"),'inst02')
+            if (self.__conexion.verificar_reserva(fechaAux, 'inst02')):
+                self.crear_reserva(socios[0].DNI, fechaAux.strftime("%d/%m/%y %H"), 'inst02')
+                i += 1
         torneo = Torneo(nombre, socios)
         self.__conexion.guardar_torneo(torneo)
 
@@ -91,12 +97,14 @@ class Club():
         self.__conexion.borrar_torneo(torneo)
         return torneo
 
-    def cancelar_clase(self,profesor, fecha):
-        #fecha = datetime.strptime(fecha, "%d/%m/%y %H")
-        return self.__conexion.borrar_clase(profesor,fecha)
+    def cancelar_clase(self,profesor, socio, fecha):
+        res = self.cancelar_reserva(socio, fecha)
+        fecha = datetime.strptime(fecha, "%d/%m/%y %H")
+        return self.__conexion.borrar_clase(profesor, fecha)
 
-    def obtener_clase(self,profesor, fecha):
-        clase = self.__conexion.sacar_clase(profesor,fecha)
+    def obtener_clase(self,profesor, socio, fecha):
+        fecha = datetime.strptime(fecha, "%d/%m/%y %H")
+        clase = self.__conexion.sacar_clase(profesor, socio, fecha)
         return clase
 
     def registrar_clase(self,profesor, reserva):

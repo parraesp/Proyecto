@@ -17,4 +17,4 @@ class Instalacion():
         self.__descripcion = descripcion
 
     def __str__(self):
-        return self.id + ','+self.descripcion
+        return self.get_instalacion_id() + ','+self.get_descripcion()
