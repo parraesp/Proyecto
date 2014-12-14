@@ -48,3 +48,9 @@ class Torneo():
         :param dni: dni del ganador
         """
         self.__resultados[partido] = dni
+
+    def __str__(self):
+        texto = 'Nombre: ' + self.get_nombre() + ', Resultados: '
+        for r in self.__resultados:
+            texto += r + ' : ' + self.__resultados[r] + ', '
+        return texto

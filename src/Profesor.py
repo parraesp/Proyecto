@@ -35,6 +35,12 @@ class Profesor(Socio):
         """
         self.__salario = salario
 
+    def __str__(self):
+        return 'dni: ' + self.get_dni()+' nombre: ' + self.get_nombre() + ' apellidos: ' + self.get_apellidos() \
+               + ', fecha de alta: ' + self.get_fecha_alta() + ', estado: ' + str(self.get_estado())\
+               + ', correo: ' + str(self.get_correo()) + ' movil: ' + self.get_movil() \
+               + " Salario: " + str(self.__salario) + " Jornada: " + self.__jornada
+
     def set_jornada(self, jornada):
         """
         Asgina un nuevo tipo de jornada a un profesor

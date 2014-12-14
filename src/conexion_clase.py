@@ -35,9 +35,9 @@ class ConexionClase():
         cont = 0
         encontrado = False
         while cont < len(self.__clases) and not encontrado:
-            if(self.__clases[cont].get_profesor().DNI == profesor
+            if(self.__clases[cont].get_profesor().dni == profesor
                and self.__clases[cont].get_reserva().get_fecha() == fecha
-               and self.__clases[cont].get_reserva().get_socio().get_DNI() == socio):
+               and self.__clases[cont].get_reserva().get_socio().get_dni() == socio):
                 encontrado = True
                 valor = self.__clases[cont]
             else:
@@ -52,8 +52,8 @@ class ConexionClase():
         """
         f = open(os.path.dirname(__file__)+'/files/clases.csv', 'a+')
         texto = ''
-        texto += clase.get_profesor().get_DNI()+'\t'
-        texto += clase.get_reserva().get_socio().get_DNI()+"\t"
+        texto += clase.get_profesor().get_dni()+'\t'
+        texto += clase.get_reserva().get_socio().get_dni()+"\t"
         texto += str(clase.get_reserva().get_fecha().strftime("%d/%m/%y %H:%M"))+'\n'
         f.write(texto)
         f.close()

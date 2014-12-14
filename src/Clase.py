@@ -37,4 +37,4 @@ class Clase():
 
         :return: Clase
         """
-        return self.__profesor.__str__()+self.__reserva.__str__()
+        return "Profesor: " + self.__profesor.get_dni() + "Reserva: " + self.__reserva.__str__()

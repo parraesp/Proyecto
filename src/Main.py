@@ -55,7 +55,7 @@ def pedir_datos_persona():
     nombre_per = raw_input('Nombre: ')
     apellidos_per = raw_input('Apellidos: ')
     movil_per = raw_input('Movil: ')
-    while not club.validar_telefono(movil):
+    while not club.validar_telefono(movil_per):
         print '\033[91m'+'El telefono no tiene un formato correcto. Deben ser 9 digitos'+'\033[0m'
         movil_per = raw_input('Movil: ')
     correo_per = raw_input('Correo electronico: ')

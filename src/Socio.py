@@ -35,8 +35,9 @@ class Socio():
 
         :return: Socio
         """
-        return 'dni: ' + self.__dni + ', fecha: ' + self.__fecha_alta \
-               + ', estado: ' + str(self.__estado)+', correo: ' + str(self.correo)
+        return 'dni: ' + self.__dni+' nombre: ' + self.__nombre + ' apellidos: ' + self.__apellidos \
+               + ', fecha de alta: ' + self.__fecha_alta + ', estado: ' + str(self.__estado)\
+               + ', correo: ' + str(self.correo) + ' movil: ' + self.__movil
 
     def get_dni(self):
         """

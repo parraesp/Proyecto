@@ -47,5 +47,5 @@ class Reserva():
 
         :return: string de reserva
         """
-        return 'Socio: ' + self.__socio.__str__() + ' Fecha: '+str(self.__fecha) + \
+        return 'Socio: ' + self.__socio.get_dni() + ' Fecha: '+str(self.__fecha) + \
                ' Instalacion: '+self.__instalacion.__str__()
